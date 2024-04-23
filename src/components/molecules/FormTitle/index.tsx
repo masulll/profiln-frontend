@@ -7,7 +7,7 @@ interface Props {
   wording: string;
 }
 
-const LogoDanUcapan: React.FC<Props> = ({ title, wording }) => {
+const FormTitle: React.FC<Props> = ({ title, wording }) => {
   const Stack = styled.div`
     display: flex;
     flex-direction: column;
@@ -48,4 +48,4 @@ const LogoDanUcapan: React.FC<Props> = ({ title, wording }) => {
   );
 };
 
-export default LogoDanUcapan;
+export default FormTitle;

@@ -2,13 +2,42 @@ import styled from "@emotion/styled";
 import theme from "binar/constants";
 import Image from "next/image";
 
-const ButtonLoginWithGoogle: React.FC = () => {
+interface Props {
+  buttonText: string;
+  buttonIcon?: string;
+}
+
+const PrimaryButton: React.FC<Props> = ({ buttonText }) => {
+  const CustomButtonLogin = styled.button`
+    background-color: ${theme.colors.primary};
+    font-family: ${theme.fonts.body};
+    color: white;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 0.25rem;
+    text-align: center;
+    width: 30rem;
+    height: 3.25rem;
+    border: none;
+  `;
+
+  return (
+    <>
+      <CustomButtonLogin>{buttonText}</CustomButtonLogin>
+    </>
+  );
+};
+
+const ButtonWithIcon: React.FC<Props> = ({ buttonText, buttonIcon }) => {
   const CustomButtonLoginWithGoogle = styled.button`
     background: #4285f4;
     width: 30rem;
     height: 3.25rem;
     border: none;
     flex-shrink: 0;
+    border-radius: 0.25rem;
   `;
 
   const ButtonStyle = styled.button`
@@ -24,7 +53,7 @@ const ButtonLoginWithGoogle: React.FC = () => {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    border-radius: 0.25rem;
+
     text-align: center;
   `;
 
@@ -34,17 +63,17 @@ const ButtonLoginWithGoogle: React.FC = () => {
         <ButtonStyle>
           <span>
             <Image
-              src="/assets/icons/Google.svg"
-              alt="Google Icon"
+              src={`${buttonIcon}`}
+              alt="Button Icon"
               width={18}
               height={18}
             />
           </span>
-          Google
+          {buttonText}
         </ButtonStyle>
       </CustomButtonLoginWithGoogle>
     </>
   );
 };
 
-export default ButtonLoginWithGoogle;
+export { PrimaryButton, ButtonWithIcon };

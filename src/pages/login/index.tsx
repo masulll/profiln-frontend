@@ -1,11 +1,15 @@
-import ButtonLoginWithGoogle from "binar/components/atoms/ButtonLoginGoogle";
-import LogoDanUcapan from "binar/components/molecules/LogoDanUcapan";
+import { ButtonWithIcon, PrimaryButton } from "binar/components/atoms/Buttons";
+import FormTitle from "binar/components/molecules/FormTitle";
 
 const login = () => {
   return (
     <>
-      {/* <ButtonLoginWithGoogle /> */}
-      <LogoDanUcapan title= "Selamat Dyahbsdg" wording= "shdbhsydbcfhdbhj" />
+      <FormTitle title="Selamat Dyahbsdg" wording="shdbhsydbcfhdbhj" />
+      <PrimaryButton buttonText="Login" />
+      <ButtonWithIcon
+        buttonText="Google"
+        buttonIcon="/assets/icons/Google.svg"
+      />
     </>
   );
 };
