@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 const causten = localFont({
   src: [
     {
-      path: "../../public/assets/fonts/Causten-Semi-Bold.ttf",
+      path: "../../public/assets/fonts/Causten-Regular.ttf",
       weight: "300",
       style: "normal",
     },
@@ -13,7 +13,7 @@ const causten = localFont({
       style: "semi-bold",
     },
     {
-      path: "../../public/assets/fonts/Causten-Semi-Bold.ttf",
+      path: "../../public/assets/fonts/Causten-Bold.ttf",
       weight: "400",
       style: "bold",
     },
