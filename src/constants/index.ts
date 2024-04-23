@@ -17,6 +17,18 @@ const theme = {
     white: "#FFFFFF",
     body_copy_black: "#393939",
     body_copy_grey: "#696969",
+  },
+  neutral_colors: {
+    grayscale_10: "#FFFFFF",
+    grayscale_20: "#F5F5F5",
+    grayscale_30: "#EDEDED",
+    grayscale_40: "#E0E0E0",
+    grayscale_50: "#C2C2C2",
+    grayscale_60: "#9E9E9E",
+    grayscale_70: "#757575",
+    grayscale_80: "#616161",
+    grayscale_90: "#404040",
+    grayscale_100: "#0A0A0A",
   }
 } as const;
 
