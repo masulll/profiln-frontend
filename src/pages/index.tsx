@@ -3,9 +3,8 @@ import Image from "next/image";
 import { Open_Sans } from "next/font/google";
 
 import styles from "binar/styles/Home.module.css";
-import InputEmail from "binar/components/atoms/InputComponent";
-import InputGroup from "binar/components/molecules/InputGroup";
-import FormAction from "binar/components/organisms/Form";
+
+import LoginForm from "binar/components/organisms/LoginForm";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
 
@@ -18,7 +17,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/assets/logo/Icon Binar.svg" />
       </Head>
-      <FormAction />
+      <LoginForm />
     </>
   );
 }

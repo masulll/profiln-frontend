@@ -5,10 +5,10 @@ import theme from "binar/constants";
 import { string } from "yup";
 
 interface Props {
-  types: string;
+  type: string;
   placeHolder: string;
 }
-const InputComponent: React.FC<Props> = ({ types, placeHolder }) => {
+const InputComponent: React.FC<Props> = ({ type, placeHolder }) => {
   const StyledFormControl = styled(Form.Control)`
     font-family: ${theme.fonts.body};
     border: none;
@@ -32,7 +32,7 @@ const InputComponent: React.FC<Props> = ({ types, placeHolder }) => {
   `;
   return (
     <>
-      <StyledFormControl type={types} placeholder={placeHolder} />
+      <StyledFormControl type={type} placeholder={placeHolder} />
     </>
   );
 };
