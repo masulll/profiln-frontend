@@ -1,38 +1,85 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
-import { Form } from "react-bootstrap";
-import theme from "binar/constants";
-import { string } from "yup";
+import { InputGroup, Form, Button } from "react-bootstrap";
+import { StyledFormControl } from "binar/constants/emotion/FormControl.style";
+import Image from "next/image";
 
 interface Props {
+  name: string;
   type: string;
-  placeHolder: string;
+  value: string;
+  placeholder: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  viewEyeIcon?: boolean;
+  isInvalid?: boolean;
+  togglePasswordVisibility?: () => void;
+  eyeIcon?: boolean;
+  errorText?: string;
 }
-const InputComponent: React.FC<Props> = ({ type, placeHolder }) => {
-  const StyledFormControl = styled(Form.Control)`
-    font-family: ${theme.fonts.body};
-    border: none;
 
-    &:focus {
-      border-color: ${theme.colors.primary};
-      outline-color: ${theme.colors.primary};
-      outline-style: solid;
-      outline-width: 2px;
-    }
-    display: flex;
-    width: 30rem;
-    height: 1.5rem;
-    padding: 0.625rem 0.875rem;
-    align-items: center;
-    gap: 0.625rem;
-    flex-shrink: 0;
-    border-radius: 0.25rem;
-    border: 1px solid var(--Primary-Main, #933393);
-    background: #fff;
+const InputComponent: React.FC<Props> = ({
+  name,
+  type,
+  placeholder,
+  onChange,
+  value,
+  viewEyeIcon,
+  isInvalid,
+  togglePasswordVisibility,
+  eyeIcon,
+  errorText,
+}) => {
+  const StyledForm = css`
+    ${StyledFormControl};
   `;
+
+  const IconStyling = css`
+    position: absolute;
+    top: 13.6%;
+    left: 30%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  `;
+
   return (
     <>
-      <StyledFormControl type={type} placeholder={placeHolder} />
+      <Form.Group>
+        <InputGroup hasValidation>
+          <div className="position-relative">
+            <Form.Control
+              name={name}
+              type={type}
+              placeholder={placeholder}
+              onChange={onChange}
+              value={value}
+              className={`${StyledForm} position-relative `}
+            />
+            {viewEyeIcon && (
+              <Button
+                type="button"
+                className={`${IconStyling} as string`}
+                onClick={togglePasswordVisibility}
+              >
+                <Image
+                  src={
+                    eyeIcon
+                      ? `assets/icons/Eye-visible.svg`
+                      : `assets/icons/Eye-invisible.svg`
+                  }
+                  width={24}
+                  height={24}
+                  alt=""
+                />
+              </Button>
+            )}
+          </div>
+
+          <Form.Control.Feedback type="invalid">
+            {errorText}
+          </Form.Control.Feedback>
+        </InputGroup>
+      </Form.Group>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import InputLogin from "binar/components/molecules/InputLogin";
+import InputLogin from "binar/components/molecules/InputForm";
 
 const LoginForm: React.FC = () => {
   return (
