@@ -7,6 +7,8 @@ import {
   StyledCheckboxInput,
   styledErrorText,
 } from "binar/constants/emotion/FormControl.style";
+import { PrimaryButton } from "binar/components/atoms/Buttons";
+import { HaveAccount } from "binar/components/atoms/FormFooter";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -129,6 +131,8 @@ const InputForm: React.FC = () => {
                 {errors.terms}
               </Form.Control.Feedback>
             </Form.Group>
+            <PrimaryButton buttonText="Buat Akun" />
+            <HaveAccount />
           </Form>
         )}
       </Formik>

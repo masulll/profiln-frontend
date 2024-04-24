@@ -15,10 +15,10 @@ const RegisterForm: React.FC = () => {
         title="Registrasi"
         wording="Buat akunmu untuk menjelajah lebih jauh"
       />
-      {/* <ButtonWithIcon
+      <ButtonWithIcon
         buttonText="Google"
         buttonIcon="/assets/icons/Google.svg"
-      /> */}
+      />
       <div className={`${containerStyle}`}>
         <div className={`${styledLine}`} />
         <p className={`${styledLineText}`}>atau</p>
