@@ -1,54 +1,48 @@
-import styled from "@emotion/styled";
-import theme from "binar/constants";
+import { css } from "@emotion/css";
+import {
+  FooterLinkForm,
+  TextFooterForm,
+} from "binar/constants/emotion/FormControl.style";
 import Link from "next/link";
 
-const TextFooter = styled.p`
-  color: ${theme.neutral_colors.grayscale_80};
-  font-family: Causten;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
+const FooterLink = css`
+  ${FooterLinkForm}
 `;
+
+const TextFooter = css`
+  ${TextFooterForm}
+`;
+
 export const HaveAccount = () => {
-  const FooterLink = styled.a`
-    color: ${theme.text_colors.primary};
-    font-family: Causten;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-left: 4px;
-  `;
   return (
     <>
-      <TextFooter>
+      <p className={`${TextFooter}`}>
         Sudah memiliki akun?
-        <Link href={"/login"} style={{ textDecoration: "none" }}>
-          <FooterLink>Masuk di sini</FooterLink>
+        <Link
+          href={"/login"}
+          className={`${FooterLink}`}
+          style={{ textDecoration: "none" }}
+        >
+          Masuk di sini
         </Link>
-      </TextFooter>
+      </p>
     </>
   );
 };
 
 export const NotHaveAccount = () => {
-  const FooterLink = styled.a`
-    color: ${theme.text_colors.primary};
-    font-family: Causten;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  `;
   return (
     <>
-      <TextFooter>
+      <p className={`${TextFooter}`}>
         Belum memiliki akun?
-        <Link href={"/register"} style={{ textDecoration: "none" }}>
-          <FooterLink> Daftar di sini</FooterLink>
+        <Link
+          href={"/register"}
+          className={`${FooterLink}`}
+          style={{ textDecoration: "none" }}
+        >
+          Daftar di sini
         </Link>
-      </TextFooter>
+      </p>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import {
-  customButtonPrimary,
-  customButtonWithIcon,
+  CustomButtonPrimary,
+  CustomButtonWithIcon,
 } from "binar/constants/emotion/FormControl.style";
 import Image from "next/image";
 import { Button } from "react-bootstrap";
@@ -13,7 +13,7 @@ interface Props {
 
 const PrimaryButton: React.FC<Props> = ({ buttonText }) => {
   const StyledButton = css`
-    ${customButtonPrimary}
+    ${CustomButtonPrimary}
   `;
 
   return (
@@ -25,7 +25,7 @@ const PrimaryButton: React.FC<Props> = ({ buttonText }) => {
 
 const ButtonWithIcon: React.FC<Props> = ({ buttonText, buttonIcon }) => {
   const StyledButtonWithIcon = css`
-    ${customButtonWithIcon}
+    ${CustomButtonWithIcon}
   `;
 
   return (
