@@ -61,14 +61,14 @@ const ButtonWithIcon: React.FC<Props> = ({ buttonText, buttonIcon }) => {
     <>
       <CustomButtonLoginWithGoogle>
         <ButtonStyle>
-          <span>
-            <Image
-              src={`${buttonIcon}`}
-              alt="Button Icon"
-              width={18}
-              height={18}
-            />
-          </span>
+          {/* <span> */}
+          <Image
+            src={`${buttonIcon}`}
+            alt="Button Icon"
+            width={18}
+            height={18}
+          />
+          {/* </span> */}
           {buttonText}
         </ButtonStyle>
       </CustomButtonLoginWithGoogle>
