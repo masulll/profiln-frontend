@@ -4,7 +4,7 @@ import FormTitle from "binar/components/molecules/FormTitle";
 const login = () => {
   return (
     <>
-      <FormTitle title="Selamat Dyahbsdg" wording="shdbhsydbcfhdbhj" />
+      <FormTitle title="Selamat Datang" wording="shdbhsydbcfhdbhj" />
       <PrimaryButton buttonText="Login" />
       <ButtonWithIcon
         buttonText="Google"

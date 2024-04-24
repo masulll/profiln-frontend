@@ -1,18 +1,25 @@
-import { css } from "@emotion/css";
 import { Form } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-
-import Labels from "binar/components/atoms/labels";
 import { useState } from "react";
-
 import InputComponent from "binar/components/atoms/InputComponent";
+import {
+  StyledCheckboxInput,
+  styledErrorText,
+} from "binar/constants/emotion/FormControl.style";
+import { PrimaryButton } from "binar/components/atoms/Buttons";
+import { HaveAccount } from "binar/components/atoms/FormFooter";
 
-const InputLogin: React.FC = () => {
+const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isVisible2, setIsVisible2] = useState(false);
 
   const changeVisibility = () => {
     setIsVisible((prevVisible) => !prevVisible);
+  };
+
+  const changeVisibility2 = () => {
+    setIsVisible2((prevVisible) => !prevVisible);
   };
 
   const loginSchema = Yup.object().shape({
@@ -20,14 +27,31 @@ const InputLogin: React.FC = () => {
       .email("Invalid email")
       .min(10, "too short")
       .required("Email address is required."),
-    password: Yup.string().required("This field is required"),
-    terms: Yup.bool().required().oneOf([true], "Terms must be accepted"),
+    password: Yup.string()
+      .required("This field is required")
+      .min(8, " password is at least 8 characters ")
+      .matches(
+        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        "Password must contain at least one special character"
+      ),
+    retypePassword: Yup.string()
+      .required("This field is required")
+      .oneOf([Yup.ref("password")], "Passwords must match"),
+
+    nama: Yup.string().required("This field is required"),
+    terms: Yup.bool().required().oneOf([true], " "),
   });
 
   return (
-    <>
+    <div>
       <Formik
-        initialValues={{ email: "", password: "", terms: false }}
+        initialValues={{
+          email: "",
+          nama: "",
+          password: "",
+          retypePassword: "",
+          terms: false,
+        }}
         onSubmit={(values) => {
           console.log(values);
           sessionStorage.setItem("data", JSON.stringify(values));
@@ -36,9 +60,8 @@ const InputLogin: React.FC = () => {
       >
         {({ errors, touched, handleChange, values, handleSubmit }) => (
           <Form>
-            <Labels title={"Masukkan Email Anda"} />
-
             <InputComponent
+              title="Email Kamu"
               name="email"
               type="email"
               value={values.email}
@@ -49,12 +72,23 @@ const InputLogin: React.FC = () => {
               errorText={errors.email}
             />
 
-            <Labels title={"Masukkan Password Anda"} />
             <InputComponent
+              title={"Nama Lengkap Kamu"}
+              name="nama"
+              type={"text"}
+              value={values.nama}
+              placeholder={"Masukkan nama lengkap kamu"}
+              onChange={handleChange}
+              isInvalid={!!errors.nama}
+              errorText={errors.nama}
+            />
+
+            <InputComponent
+              title={"Kata Sandi Kamu"}
               name="password"
               type={isVisible ? "text" : "password"}
               value={values.password}
-              placeholder={"Masukkan password kamu"}
+              placeholder={"Masukkan kata sandi kamu"}
               onChange={handleChange}
               isInvalid={!!errors.password}
               viewEyeIcon={true}
@@ -63,22 +97,47 @@ const InputLogin: React.FC = () => {
               togglePasswordVisibility={changeVisibility}
             />
 
-            <Form.Group className="mb-3">
-              <Form.Check
+            <InputComponent
+              title={"Ulangi Kata Sandi"}
+              name="retypePassword"
+              type={isVisible2 ? "text" : "password"}
+              value={values.retypePassword}
+              placeholder={"Masukkan kembali kata sandi"}
+              onChange={handleChange}
+              isInvalid={!!errors.retypePassword}
+              viewEyeIcon={true}
+              eyeIcon={isVisible2}
+              errorText={errors.retypePassword}
+              togglePasswordVisibility={changeVisibility2}
+            />
+
+            <Form.Group className={``}>
+              <Form.Check.Input
                 required
                 name="terms"
-                label="I agree to terms and conditions"
                 onChange={handleChange}
                 isInvalid={!!errors.terms}
-                feedback={errors.terms}
-                feedbackType="invalid"
+                className={` ${StyledCheckboxInput}`}
               />
+              <Form.Check.Label
+                className={errors.terms ? `${styledErrorText}` : ``}
+              >
+                Saya setuju dengan syarat dan ketentuan
+              </Form.Check.Label>
+              <Form.Control.Feedback
+                type="invalid"
+                className={`${styledErrorText}`}
+              >
+                {errors.terms}
+              </Form.Control.Feedback>
             </Form.Group>
+            <PrimaryButton buttonText="Buat Akun" />
+            <HaveAccount />
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 };
 
-export default InputLogin;
+export default InputForm;

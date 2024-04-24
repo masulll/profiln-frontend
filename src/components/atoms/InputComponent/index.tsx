@@ -1,10 +1,15 @@
-import styled from "@emotion/styled";
 import { css } from "@emotion/css";
 import { InputGroup, Form, Button } from "react-bootstrap";
-import { StyledFormControl } from "binar/constants/emotion/FormControl.style";
+import {
+  StyledInputGroup,
+  Wrapper,
+  styledFormGroup,
+  styledErrorText,
+} from "binar/constants/emotion/FormControl.style";
 import Image from "next/image";
-
+import Labels from "../labels";
 interface Props {
+  title: string;
   name: string;
   type: string;
   value: string;
@@ -18,6 +23,7 @@ interface Props {
 }
 
 const InputComponent: React.FC<Props> = ({
+  title,
   name,
   type,
   placeholder,
@@ -30,13 +36,15 @@ const InputComponent: React.FC<Props> = ({
   errorText,
 }) => {
   const StyledForm = css`
-    ${StyledFormControl};
+    ${StyledInputGroup};
   `;
 
   const IconStyling = css`
     position: absolute;
-    top: 13.6%;
-    left: 30%;
+
+    bottom: 0.5rem;
+    left: 27rem;
+
     border: none;
     background: transparent;
     cursor: pointer;
@@ -44,17 +52,19 @@ const InputComponent: React.FC<Props> = ({
 
   return (
     <>
-      <Form.Group>
+      <Form.Group className={`${styledFormGroup}`}>
         <InputGroup hasValidation>
-          <div className="position-relative">
+          <Labels title={title} />
+          <div className={`${Wrapper}`}>
             <Form.Control
               name={name}
               type={type}
               placeholder={placeholder}
               onChange={onChange}
               value={value}
-              className={`${StyledForm} position-relative `}
+              className={`${StyledForm}`}
             />
+
             {viewEyeIcon && (
               <Button
                 type="button"
@@ -75,7 +85,10 @@ const InputComponent: React.FC<Props> = ({
             )}
           </div>
 
-          <Form.Control.Feedback type="invalid">
+          <Form.Control.Feedback
+            type="invalid"
+            className={` ${styledErrorText}`}
+          >
             {errorText}
           </Form.Control.Feedback>
         </InputGroup>
