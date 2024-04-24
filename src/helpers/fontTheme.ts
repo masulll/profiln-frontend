@@ -8,6 +8,11 @@ const causten = localFont({
       style: "normal",
     },
     {
+      path: "../../public/assets/fonts/Causten-Regular.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
       path: "../../public/assets/fonts/Causten-Semi-Bold.ttf",
       weight: "600",
       style: "semi-bold",
