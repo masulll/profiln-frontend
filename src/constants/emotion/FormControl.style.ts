@@ -24,3 +24,40 @@ export const StyledFormControl = css`
   background: #fff;
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
 `;
+
+export const customButtonPrimary = css`
+  background-color: ${theme.colors.primary};
+  font-family: ${theme.fonts.body};
+  color: white;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 0.25rem;
+  text-align: center;
+  width: 30rem;
+  height: 3.25rem;
+  border: none;
+`;
+
+export const customButtonWithIcon = css`
+  background: #4285f4;
+  width: 30rem;
+  height: 3.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  border: none;
+  font-family: ${theme.fonts.body};
+  color: ${theme.text_colors.white};
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+
