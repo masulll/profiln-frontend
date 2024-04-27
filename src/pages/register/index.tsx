@@ -1,11 +1,11 @@
 import RegisterForm from "binar/components/organisms/registerForm";
 import Image from "next/image";
 import { BgAuth, StyledRegister } from "binar/constants/emotion/register.style";
-
+import { styledFormLayout } from "binar/constants/emotion/FormControl.style";
 const register = () => {
   return (
     <>
-      <div className={`${StyledRegister}`}>
+      <div className="container">
         <Image
           src="assets/images/auth-bg 1.svg"
           width={181}
@@ -13,16 +13,22 @@ const register = () => {
           alt="auth-bg 1"
           className={`${BgAuth} `}
         />
-        <div>
-          <h1>Selamat Datang di</h1>
-          <Image
-            src={"assets/logo/Logo Binar.svg"}
-            width={236}
-            height={76}
-            alt="Logo Binar"
-          />
+        <div className="row">
+          <div className={`${StyledRegister} `}>
+            <div>
+              <h2>Selamat Datang di</h2>
+              <Image
+                src={"assets/logo/Logo Binar.svg"}
+                width={329}
+                height={128}
+                alt="Logo Binar"
+              />
+            </div>
+            <div className={`${styledFormLayout} col-5`}>
+              {/* <RegisterForm /> */}
+            </div>
+          </div>
         </div>
-        <RegisterForm />
       </div>
     </>
   );

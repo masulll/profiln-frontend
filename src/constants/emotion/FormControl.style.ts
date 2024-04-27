@@ -78,16 +78,23 @@ export const FooterLinkForm = css`
   margin-left: 4px;
 `;
 
-export const styledForm = css`
-  display: inline-flex;
-  flex-direction: column;
-  padding: 2.5rem;
-  align-items: center;
-  gap: 1.875rem;
-  border-radius: 1.3125rem;
-  background: #fff;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-`;
+// export const styledForm = css`
+//   display: inline-flex;
+//   flex-direction: column;
+//   padding: 2.5rem;
+//   align-items: center;
+//   gap: 1.875rem;
+//   border-radius: 1.3125rem;
+//   background: #fff;
+//   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+// `;
+export const styledFormLayout = css({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  paddingLeft: 0,
+  paddingRight: 0,
+});
 
 export const styledFormGroup = css`
   display: flex;

@@ -1,7 +1,7 @@
 import InputForm from "binar/components/molecules/InputForm";
 
 import FormTitle from "binar/components/molecules/FormTitle";
-import { styledForm } from "binar/constants/emotion/FormControl.style";
+import { styledFormLayout } from "binar/constants/emotion/FormControl.style";
 import { ButtonWithIcon } from "binar/components/atoms/Buttons";
 import {
   containerStyle,
@@ -10,7 +10,7 @@ import {
 } from "binar/constants/emotion/register.style";
 const RegisterForm: React.FC = () => {
   return (
-    <div className={` ${styledForm} `}>
+    <div className={``}>
       <FormTitle
         title="Registrasi"
         wording="Buat akunmu untuk menjelajah lebih jauh"
@@ -19,11 +19,11 @@ const RegisterForm: React.FC = () => {
         buttonText="Google"
         buttonIcon="/assets/icons/Google.svg"
       />
-      <div className={`${containerStyle}`}>
+      {/* <div className={`${containerStyle}`}>
         <div className={`${styledLine}`} />
         <p className={`${styledLineText}`}>atau</p>
         <div className={`${styledLine}`} />
-      </div>
+      </div> */}
 
       <InputForm />
     </div>
