@@ -14,7 +14,7 @@ const register = () => {
           className={`${BgAuth} `}
         />
         <div className="row">
-          <div className={`${StyledRegister} `}>
+          <div className={`${StyledRegister} col-7`}>
             <div>
               <h2>Selamat Datang di</h2>
               <Image
@@ -24,9 +24,9 @@ const register = () => {
                 alt="Logo Binar"
               />
             </div>
-            <div className={`${styledFormLayout} col-5`}>
-              {/* <RegisterForm /> */}
-            </div>
+          </div>
+          <div className={`${styledFormLayout} col-5 `}>
+            <RegisterForm />
           </div>
         </div>
       </div>

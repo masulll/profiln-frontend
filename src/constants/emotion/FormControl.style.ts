@@ -88,10 +88,23 @@ export const FooterLinkForm = css`
 //   background: #fff;
 //   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 // `;
+
+export const styledForm = css({
+  display: "inline-flex",
+  flexDirection: "column",
+  padding: "15px",
+  alignItems: "center",
+  gap: "1.275rem",
+  borderRadius: "1.3125rem",
+  background: "#fff",
+  boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.25)",
+});
+
 export const styledFormLayout = css({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  justifyContent: "center",
   paddingLeft: 0,
   paddingRight: 0,
 });
