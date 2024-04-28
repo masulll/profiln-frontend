@@ -1,16 +1,12 @@
 import InputForm from "binar/components/molecules/InputForm";
 
 import FormTitle from "binar/components/molecules/FormTitle";
-import {
-  styledFormLayout,
-  styledForm,
-} from "binar/constants/emotion/FormControl.style";
+import { styledForm } from "binar/constants/emotion/FormControl.style";
 import { ButtonWithIcon } from "binar/components/atoms/Buttons";
 import {
-  containerStyle,
-  styledLine,
-  styledLineText,
-} from "binar/constants/emotion/register.style";
+  OrTextStyle,
+  OrWithLineStyle,
+} from "binar/constants/emotion/FormControl.style";
 const RegisterForm: React.FC = () => {
   return (
     <div className={`${styledForm} `}>
@@ -22,11 +18,11 @@ const RegisterForm: React.FC = () => {
         buttonText="Google"
         buttonIcon="/assets/icons/Google.svg"
       />
-      {/* <div className={`${containerStyle}`}>
-        <div className={`${styledLine}`} />
-        <p className={`${styledLineText}`}>atau</p>
-        <div className={`${styledLine}`} />
-      </div> */}
+      <div>
+        <div className={`${OrWithLineStyle}`}>
+          <p className={`${OrTextStyle}`}>atau</p>
+        </div>
+      </div>
 
       <InputForm />
     </div>

@@ -16,7 +16,7 @@ const register = () => {
         <div className="row">
           <div className={`${StyledRegister} col-7`}>
             <div>
-              <h2>Selamat Datang di</h2>
+              <h3 className="">Selamat Datang di</h3>
               <Image
                 src={"assets/logo/Logo Binar.svg"}
                 width={329}
@@ -25,7 +25,7 @@ const register = () => {
               />
             </div>
           </div>
-          <div className={`${styledFormLayout} col-5 `}>
+          <div className={`${styledFormLayout} col-5 mx-auto`}>
             <RegisterForm />
           </div>
         </div>

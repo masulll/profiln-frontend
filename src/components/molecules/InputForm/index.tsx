@@ -43,7 +43,7 @@ const InputForm: React.FC = () => {
   });
 
   return (
-    <div>
+    <>
       <Formik
         initialValues={{
           email: "",
@@ -111,17 +111,15 @@ const InputForm: React.FC = () => {
               togglePasswordVisibility={changeVisibility2}
             />
 
-            <Form.Group className={``}>
+            <Form.Group className={`mb-3 `}>
               <Form.Check.Input
                 required
                 name="terms"
                 onChange={handleChange}
                 isInvalid={!!errors.terms}
-                className={` ${StyledCheckboxInput}`}
+                className={` ${StyledCheckboxInput} `}
               />
-              <Form.Check.Label
-                className={errors.terms ? `${styledErrorText}` : ``}
-              >
+              <Form.Check.Label className={`${styledErrorText} mx-2`}>
                 Saya setuju dengan syarat dan ketentuan
               </Form.Check.Label>
               <Form.Control.Feedback
@@ -136,7 +134,7 @@ const InputForm: React.FC = () => {
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 };
 

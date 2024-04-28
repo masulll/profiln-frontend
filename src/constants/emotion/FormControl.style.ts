@@ -1,26 +1,18 @@
-// import { css } from "@emotion/css";
 import { css } from "@emotion/css";
 import theme from "binar/constants";
 
 export const StyledInputGroup = css`
   font-family: ${theme.fonts.body};
-  border: none;
-
-  &:focus {
+  .form-control&:focus {
+    border: none;
+    outline: 0;
     border-color: ${theme.colors.primary};
-    outline-color: ${theme.colors.primary};
-    outline-style: solid;
-    outline-width: 2px;
+    box-shadow: 0 0 0 1px ${theme.colors.primary};
   }
-  display: flex;
-  width: 30rem;
-  height: 2.75rem;
-  padding: 0.75rem 0.875rem;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  border-radius: 0.25rem;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 10px;
+  border-radius: 4px;
   background: #fff;
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
 `;
@@ -78,22 +70,9 @@ export const FooterLinkForm = css`
   margin-left: 4px;
 `;
 
-// export const styledForm = css`
-//   display: inline-flex;
-//   flex-direction: column;
-//   padding: 2.5rem;
-//   align-items: center;
-//   gap: 1.875rem;
-//   border-radius: 1.3125rem;
-//   background: #fff;
-//   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-// `;
-
 export const styledForm = css({
-  display: "inline-flex",
-  flexDirection: "column",
-  padding: "15px",
-  alignItems: "center",
+  padding: "20px 20px",
+  maxWidth: "560px",
   gap: "1.275rem",
   borderRadius: "1.3125rem",
   background: "#fff",
@@ -107,15 +86,12 @@ export const styledFormLayout = css({
   justifyContent: "center",
   paddingLeft: 0,
   paddingRight: 0,
-});
 
-export const styledFormGroup = css`
-  display: flex;
-  height: 5rem;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 0.625rem;
-`;
+  "@media screen and (max-width:1199px)": {
+    columns: "auto",
+    minHeight: "100vh",
+  },
+});
 
 export const Wrapper = css`
   position: relative;
@@ -123,19 +99,38 @@ export const Wrapper = css`
 
 export const StyledCheckboxInput = css`
   border-radius: 4px;
-  width: 1.25rem;
-  height: 1.25rem;
-
   background: ${theme.neutral_colors};
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
 
-  &:checked {
-    accent-color: ${theme.colors.primary};
+  .form-check-input&:checked {
+    background-color: ${theme.colors.primary};
   }
 `;
 
 export const styledErrorText = css`
-  color: ${theme.colors.error};
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 100;
+`;
+
+export const OrWithLineStyle = css`
+  display: flex;
+  align-items: center;
+  background-color: ${theme.neutral_colors.grayscale_60};
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+`;
+
+export const OrTextStyle = css`
+  color: ${theme.neutral_colors.grayscale_60};
+  text-align: center;
+  font-family: ${theme.fonts.heading};
+  font-style: normal;
   font-size: 0.875rem;
-  font-weight: 300;
+  font-weight: 700;
+  line-height: normal;
+  padding: 0 25px;
+  margin: 0 200px;
+  background-color: #fff;
 `;

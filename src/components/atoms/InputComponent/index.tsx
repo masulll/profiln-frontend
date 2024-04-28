@@ -3,7 +3,6 @@ import { InputGroup, Form, Button } from "react-bootstrap";
 import {
   StyledInputGroup,
   Wrapper,
-  styledFormGroup,
   styledErrorText,
 } from "binar/constants/emotion/FormControl.style";
 import Image from "next/image";
@@ -35,40 +34,37 @@ const InputComponent: React.FC<Props> = ({
   eyeIcon,
   errorText,
 }) => {
-  const StyledForm = css`
-    ${StyledInputGroup};
-  `;
-
   const IconStyling = css`
+    display: inline-block;
+    vertical-align: middle;
     position: absolute;
-
-    bottom: 0.5rem;
-    left: 27rem;
-
-    border: none;
-    background: transparent;
+    right: 10px;
+    top: 13px;
     cursor: pointer;
+    background: transparent;
+    z-index: 100;
   `;
 
   return (
     <>
-      <Form.Group className={`${styledFormGroup}`}>
-        <InputGroup hasValidation>
-          <Labels title={title} />
-          <div className={`${Wrapper}`}>
+      <Form.Group className="mb-3  ">
+        <Labels title={title} />
+
+        <div className={`${Wrapper}`}>
+          <InputGroup hasValidation>
             <Form.Control
               name={name}
               type={type}
               placeholder={placeholder}
               onChange={onChange}
               value={value}
-              className={`${StyledForm}`}
+              className={`${StyledInputGroup} `}
             />
 
             {viewEyeIcon && (
-              <Button
-                type="button"
-                className={`${IconStyling} as string`}
+              <div
+                role="button"
+                className={``}
                 onClick={togglePasswordVisibility}
               >
                 <Image
@@ -80,18 +76,19 @@ const InputComponent: React.FC<Props> = ({
                   width={24}
                   height={24}
                   alt=""
+                  className={`${IconStyling}`}
                 />
-              </Button>
+              </div>
             )}
-          </div>
 
-          <Form.Control.Feedback
-            type="invalid"
-            className={` ${styledErrorText}`}
-          >
-            {errorText}
-          </Form.Control.Feedback>
-        </InputGroup>
+            <Form.Control.Feedback
+              type="invalid"
+              className={` ${styledErrorText}`}
+            >
+              {errorText}
+            </Form.Control.Feedback>
+          </InputGroup>
+        </div>
       </Form.Group>
     </>
   );
