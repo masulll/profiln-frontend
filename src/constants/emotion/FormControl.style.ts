@@ -3,12 +3,16 @@ import theme from "binar/constants";
 
 export const StyledInputGroup = css`
   font-family: ${theme.fonts.body};
+
+  background-image: none !important;
+
   .form-control&:focus {
     border: none;
     outline: 0;
     border-color: ${theme.colors.primary};
     box-shadow: 0 0 0 1px ${theme.colors.primary};
   }
+
   font-size: 16px;
   line-height: 20px;
   padding: 10px;
@@ -73,7 +77,6 @@ export const FooterLinkForm = css`
 export const styledForm = css({
   padding: "20px 20px",
   maxWidth: "560px",
-  gap: "1.275rem",
   borderRadius: "1.3125rem",
   background: "#fff",
   boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.25)",

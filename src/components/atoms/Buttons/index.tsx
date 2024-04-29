@@ -9,16 +9,20 @@ import { Button } from "react-bootstrap";
 interface Props {
   buttonText: string;
   buttonIcon?: string;
+  type?: "button" | "reset" | "submit";
+  disabled?: boolean;
 }
 
-const PrimaryButton: React.FC<Props> = ({ buttonText }) => {
+const PrimaryButton: React.FC<Props> = ({ buttonText, type, disabled }) => {
   const StyledButton = css`
     ${CustomButtonPrimary}
   `;
 
   return (
     <>
-      <Button className={`${StyledButton}`}>{buttonText}</Button>
+      <Button className={`${StyledButton}`} type={type} disabled={disabled}>
+        {buttonText}
+      </Button>
     </>
   );
 };

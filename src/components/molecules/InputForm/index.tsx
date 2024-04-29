@@ -58,7 +58,7 @@ const InputForm: React.FC = () => {
         }}
         validationSchema={loginSchema}
       >
-        {({ errors, touched, handleChange, values, handleSubmit }) => (
+        {({ errors, touched, handleChange, values, handleSubmit, isValid }) => (
           <Form>
             <InputComponent
               title="Email Kamu"
@@ -129,7 +129,7 @@ const InputForm: React.FC = () => {
                 {errors.terms}
               </Form.Control.Feedback>
             </Form.Group>
-            <PrimaryButton buttonText="Buat Akun" />
+            <PrimaryButton buttonText="Buat Akun" type="submit" />
             <HaveAccount />
           </Form>
         )}

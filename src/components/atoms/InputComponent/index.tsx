@@ -58,7 +58,10 @@ const InputComponent: React.FC<Props> = ({
               placeholder={placeholder}
               onChange={onChange}
               value={value}
-              className={`${StyledInputGroup} `}
+              isInvalid={isInvalid}
+              className={`${StyledInputGroup} 
+                
+              }`}
             />
 
             {viewEyeIcon && (
@@ -83,7 +86,7 @@ const InputComponent: React.FC<Props> = ({
 
             <Form.Control.Feedback
               type="invalid"
-              className={` ${styledErrorText}`}
+              className={` ${styledErrorText} background-image-none`}
             >
               {errorText}
             </Form.Control.Feedback>
