@@ -23,3 +23,11 @@ export const StyledRegister = css({
     display: "none",
   },
 });
+
+export const welcomeTextStyle = css`
+  color: ${theme.text_colors.dark};
+  font-family: var(--font-Causten);
+  font-weight: 600;
+  line-height: normal;
+  margin: -10px 10px -10px;
+`;

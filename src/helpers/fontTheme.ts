@@ -4,7 +4,7 @@ const causten = localFont({
   src: [
     {
       path: "../../public/assets/fonts/Causten-Regular.ttf",
-      weight: "300",
+      weight: "400",
       style: "normal",
     },
     {
@@ -14,7 +14,7 @@ const causten = localFont({
     },
     {
       path: "../../public/assets/fonts/Causten-Bold.ttf",
-      weight: "400",
+      weight: "700",
       style: "bold",
     },
   ],

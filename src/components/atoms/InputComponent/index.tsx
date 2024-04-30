@@ -4,6 +4,7 @@ import {
   StyledInputGroup,
   Wrapper,
   styledErrorText,
+  IconStyling,
 } from "binar/constants/emotion/FormControl.style";
 import Image from "next/image";
 import Labels from "../labels";
@@ -34,17 +35,6 @@ const InputComponent: React.FC<Props> = ({
   eyeIcon,
   errorText,
 }) => {
-  const IconStyling = css`
-    display: inline-block;
-    vertical-align: middle;
-    position: absolute;
-    right: 10px;
-    top: 13px;
-    cursor: pointer;
-    background: transparent;
-    z-index: 100;
-  `;
-
   return (
     <>
       <Form.Group className="mb-3  ">
@@ -59,9 +49,7 @@ const InputComponent: React.FC<Props> = ({
               onChange={onChange}
               value={value}
               isInvalid={isInvalid}
-              className={`${StyledInputGroup} 
-                
-              }`}
+              className={`${StyledInputGroup} `}
             />
 
             {viewEyeIcon && (
@@ -73,8 +61,8 @@ const InputComponent: React.FC<Props> = ({
                 <Image
                   src={
                     eyeIcon
-                      ? `assets/icons/Eye-visible.svg`
-                      : `assets/icons/Eye-invisible.svg`
+                      ? `/assets/icons/Eye-visible.svg`
+                      : `/assets/icons/Eye-invisible.svg`
                   }
                   width={24}
                   height={24}

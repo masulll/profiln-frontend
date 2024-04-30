@@ -6,7 +6,7 @@ const theme = {
     disabled: "#C2C2C2",
   },
   fonts: {
-    heading: "Open Sans, sans-serif",
+    heading: "Causten-Bold, sans-serif",
     body: "Causten, sans-serif",
   },
   text_colors: {
@@ -29,7 +29,7 @@ const theme = {
     grayscale_80: "#616161",
     grayscale_90: "#404040",
     grayscale_100: "#0A0A0A",
-  }
+  },
 } as const;
 
 export default theme;

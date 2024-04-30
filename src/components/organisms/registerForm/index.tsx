@@ -9,7 +9,7 @@ import {
 } from "binar/constants/emotion/FormControl.style";
 const RegisterForm: React.FC = () => {
   return (
-    <div className={`${styledForm} `}>
+    <div className={`${styledForm} overflow-auto`}>
       <FormTitle
         title="Registrasi"
         wording="Buat akunmu untuk menjelajah lebih jauh"

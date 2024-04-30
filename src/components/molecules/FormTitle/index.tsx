@@ -13,6 +13,7 @@ const FormTitle: React.FC<Props> = ({ title, wording }) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
   `;
   const Title = styled.p`
     color: ${theme.text_colors.dark};

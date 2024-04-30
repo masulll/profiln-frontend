@@ -1,4 +1,4 @@
-import { styledLabel } from "binar/constants/emotion/label.style";
+import { styledLabel } from "binar/constants/emotion/Label.style";
 import { Form } from "react-bootstrap";
 
 interface Props {

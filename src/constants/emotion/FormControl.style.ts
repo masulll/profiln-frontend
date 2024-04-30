@@ -24,6 +24,13 @@ export const StyledInputGroup = css`
 export const CustomButtonPrimary = css`
   background-color: ${theme.colors.primary};
   font-family: ${theme.fonts.heading};
+
+  &:disabled {
+    background-color: ${theme.neutral_colors.grayscale_50};
+  }
+  &:hover {
+    background-color: ${theme.colors.primary};
+  }
   color: white;
   font-size: 1rem;
   font-style: normal;
@@ -63,6 +70,8 @@ export const TextFooterForm = css`
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+  text-align: center;
+  margin: 30px 40px;
 `;
 export const FooterLinkForm = css`
   color: ${theme.text_colors.primary};
@@ -77,9 +86,21 @@ export const FooterLinkForm = css`
 export const styledForm = css({
   padding: "20px 20px",
   maxWidth: "560px",
+  maxHeight: "600px",
   borderRadius: "1.3125rem",
   background: "#fff",
   boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.25)",
+
+  "@media screen and (max-width:1199px)": {
+    width: "auto",
+    maxHeight: "fit-content",
+  },
+  "@media screen and (max-width:550px)": {
+    maxWidth: "550px",
+  },
+  "@media screen and (max-width:327px)": {
+    maxWidth: "327px",
+  },
 });
 
 export const styledFormLayout = css({
@@ -136,4 +157,15 @@ export const OrTextStyle = css`
   padding: 0 25px;
   margin: 0 200px;
   background-color: #fff;
+`;
+
+export const IconStyling = css`
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  background: transparent;
+  z-index: 100;
 `;
