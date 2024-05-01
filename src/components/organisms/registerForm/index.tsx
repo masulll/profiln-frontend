@@ -15,7 +15,7 @@ const RegisterForm: React.FC = () => {
         wording="Buat akunmu untuk menjelajah lebih jauh"
       />
       <ButtonWithIcon
-        buttonText="Google"
+        buttonText="Daftar dengan Google"
         buttonIcon="/assets/icons/Google.svg"
       />
       <div>

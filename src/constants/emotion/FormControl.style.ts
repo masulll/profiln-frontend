@@ -152,7 +152,7 @@ export const OrTextStyle = css`
   font-family: ${theme.fonts.heading};
   font-style: normal;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: normal;
   padding: 0 25px;
   margin: 0 200px;

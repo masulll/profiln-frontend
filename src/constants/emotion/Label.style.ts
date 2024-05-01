@@ -6,5 +6,5 @@ export const styledLabel = css({
   fontSize: "16px",
   color: `${theme.text_colors.dark}`,
   lineHeight: "20px",
-  marginBottom: "4px",
+  marginBottom: "7px",
 });
