@@ -5,4 +5,5 @@ export const styledLink = css({
   textDecoration: "underline",
   color: `${theme.text_colors.dark}`,
   fontSize: "16px",
+  marginTop: "-30px",
 });

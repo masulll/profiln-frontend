@@ -1,6 +1,10 @@
 import RegisterForm from "binar/components/organisms/registerForm";
 import Image from "next/image";
-import { BgAuth, StyledRegister } from "binar/constants/emotion/register.style";
+import {
+  BgAuth,
+  StyledRegister,
+  welcomeTextStyle,
+} from "binar/constants/emotion/register.style";
 import { styledFormLayout } from "binar/constants/emotion/FormControl.style";
 import VerificationForm from "binar/components/organisms/VerificationForm";
 
@@ -18,7 +22,7 @@ const verification = () => {
         <div className="row">
           <div className={`${StyledRegister} col-7`}>
             <div>
-              <h3 className="">Selamat Datang di</h3>
+              <h3 className={`${welcomeTextStyle}`}>Selamat Datang di</h3>
               <Image
                 src={"/assets/logo/Logo Binar.svg"}
                 width={329}

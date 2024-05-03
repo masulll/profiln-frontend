@@ -9,6 +9,8 @@ import {
 } from "binar/constants/emotion/FormControl.style";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
+import axios from "axios";
+import { registerUser } from "binar/pages/api/v1/register";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,7 +40,7 @@ const InputForm: React.FC = () => {
       .required("This field is required")
       .oneOf([Yup.ref("password")], "Passwords must match"),
 
-    nama: Yup.string().required("This field is required"),
+    fullname: Yup.string().required("This field is required"),
     terms: Yup.bool().required().oneOf([true], " "),
   });
 
@@ -47,20 +49,32 @@ const InputForm: React.FC = () => {
       <Formik
         initialValues={{
           email: "",
-          nama: "",
+          fullname: "",
           password: "",
           retypePassword: "",
           terms: false,
         }}
-        onSubmit={(values) => {
-          console.log(values);
-          sessionStorage.setItem("data", JSON.stringify(values));
+        onSubmit={async (values, { setSubmitting }) => {
+          const { email, fullname, password } = values;
+
+          try {
+            const responseData = await registerUser({
+              email,
+              fullname,
+              password,
+            });
+            console.log(responseData);
+            sessionStorage.setItem("data", JSON.stringify(values));
+          } catch (error) {
+            console.error(error);
+          } finally {
+            setSubmitting(false);
+          }
         }}
         validationSchema={loginSchema}
       >
         {({
           errors,
-          touched,
           handleChange,
           values,
           handleSubmit,
@@ -68,7 +82,7 @@ const InputForm: React.FC = () => {
           isSubmitting,
           dirty,
         }) => (
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <InputComponent
               title="Email Kamu"
               name="email"
@@ -83,13 +97,13 @@ const InputForm: React.FC = () => {
 
             <InputComponent
               title={"Nama Lengkap Kamu"}
-              name="nama"
+              name="fullname"
               type={"text"}
-              value={values.nama}
+              value={values.fullname}
               placeholder={"Masukkan nama lengkap kamu"}
               onChange={handleChange}
-              isInvalid={!!errors.nama}
-              errorText={errors.nama}
+              isInvalid={!!errors.fullname}
+              errorText={errors.fullname}
             />
 
             <InputComponent

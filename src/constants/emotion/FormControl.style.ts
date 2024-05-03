@@ -38,7 +38,7 @@ export const CustomButtonPrimary = css`
   line-height: normal;
   border-radius: 0.25rem;
   text-align: center;
-  width: 30rem;
+  width: 100%;
   height: 3.25rem;
   border: none;
 `;

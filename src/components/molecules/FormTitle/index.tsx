@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface Props {
   title: string;
-  wording: string;
+  wording?: string;
 }
 
 const FormTitle: React.FC<Props> = ({ title, wording }) => {

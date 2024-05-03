@@ -11,6 +11,7 @@ interface Props {
   buttonIcon?: string;
   type?: "button" | "reset" | "submit";
   disabled?: boolean;
+  onClick?: React.MouseEventHandler;
 }
 
 const PrimaryButton: React.FC<Props> = ({ buttonText, type, disabled }) => {
@@ -27,14 +28,18 @@ const PrimaryButton: React.FC<Props> = ({ buttonText, type, disabled }) => {
   );
 };
 
-const ButtonWithIcon: React.FC<Props> = ({ buttonText, buttonIcon }) => {
+const ButtonWithIcon: React.FC<Props> = ({
+  buttonText,
+  buttonIcon,
+  onClick,
+}) => {
   const StyledButtonWithIcon = css`
     ${CustomButtonWithIcon}
   `;
 
   return (
     <>
-      <Button className={`${StyledButtonWithIcon}`}>
+      <Button className={`${StyledButtonWithIcon}`} onClick={onClick}>
         <span>
           <Image
             src={`${buttonIcon}`}
