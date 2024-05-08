@@ -11,10 +11,12 @@ import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import axios from "axios";
 import { registerUser } from "binar/pages/api/v1/register";
+import { useRouter } from "next/router";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isVisible2, setIsVisible2] = useState(false);
+  const router = useRouter();
 
   const changeVisibility = () => {
     setIsVisible((prevVisible) => !prevVisible);
@@ -26,21 +28,21 @@ const InputForm: React.FC = () => {
 
   const loginSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email")
-      .min(10, "too short")
-      .required("Email address is required."),
+      .email("Maaf penulisan email belum tepat. Misal: name@email.com")
+      .min(10, "email minimal 10 karakter")
+      .required("Anda belum mengisi email"),
     password: Yup.string()
-      .required("This field is required")
-      .min(8, " password is at least 8 characters ")
+      .required("Anda belum mengisi password")
+      .min(8, "Minimal 8 karakter")
       .matches(
         /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
-        "Password must contain at least one special character"
+        "Password minimal mengandung satu karakter spesial"
       ),
     retypePassword: Yup.string()
-      .required("This field is required")
-      .oneOf([Yup.ref("password")], "Passwords must match"),
+      .required("Anda belum menulis ulang password")
+      .oneOf([Yup.ref("password")], "Passwords tidak sama"),
 
-    fullname: Yup.string().required("This field is required"),
+    fullname: Yup.string().required("Anda belum mengisi nama lengkap"),
     terms: Yup.bool().required().oneOf([true], " "),
   });
 
@@ -58,17 +60,18 @@ const InputForm: React.FC = () => {
           const { email, fullname, password } = values;
 
           try {
-            const responseData = await registerUser({
-              email,
-              fullname,
-              password,
-            });
-            console.log(responseData);
+            // const responseData = await registerUser({
+            //   email,
+            //   fullname,
+            //   password,
+            // });
+            // console.log(responseData);
             sessionStorage.setItem("data", JSON.stringify(values));
           } catch (error) {
             console.error(error);
           } finally {
             setSubmitting(false);
+            router.push("/auth/register/verification");
           }
         }}
         validationSchema={loginSchema}

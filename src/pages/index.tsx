@@ -1,9 +1,4 @@
-import Image from "next/image";
 import { Open_Sans } from "next/font/google";
-
-import styles from "binar/styles/Home.module.css";
-
-import LoginForm from "binar/components/organisms/LoginForm";
 import { causten } from "binar/helpers/fontTheme";
 import { Button } from "react-bootstrap";
 import { signOut } from "next-auth/react";

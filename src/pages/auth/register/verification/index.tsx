@@ -6,6 +6,7 @@ import {
   welcomeTextStyle,
 } from "binar/constants/emotion/register.style";
 import { styledFormLayout } from "binar/constants/emotion/FormControl.style";
+
 import VerificationForm from "binar/components/organisms/VerificationForm";
 
 const verification = () => {

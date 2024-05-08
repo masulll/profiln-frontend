@@ -2,7 +2,7 @@ import { css } from "@emotion/css";
 import theme from "binar/constants/index";
 
 export const styledInput = css`
-  font-family: "Causten-Bold";
+  font-family: ${theme.fonts.heading};
   flex-shrink: 0;
   width: 56px;
   height: 56px;
@@ -41,4 +41,8 @@ export const timerLayout = css({
 export const resendButton = css({
   fontFamily: "var(--font-Causten)",
   fontWeight: "600",
+  background: "none",
+  border: "none",
+  outline: "none",
+  boxShadow: "none",
 });

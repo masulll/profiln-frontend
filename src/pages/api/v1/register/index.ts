@@ -13,7 +13,7 @@ export const registerUser = async (userData: userData) => {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "/api/v1/register?oauth=true",
+      url: "/api/v1/register?oauth=false",
       headers: {},
       data: data,
     };
