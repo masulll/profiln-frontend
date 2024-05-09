@@ -95,9 +95,32 @@ const VerificationForm: React.FC = () => {
       }
     }
   };
-
+  // timer component
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(0);
+
+  const resendOTP = () => {
+    setMinutes(1);
+    setSeconds(0);
+  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(interval);
+        } else {
+          setSeconds(59);
+          setMinutes(minutes - 1);
+        }
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [seconds]);
 
   return (
     <>
@@ -138,6 +161,7 @@ const VerificationForm: React.FC = () => {
               type="button"
               disabled={seconds > 0 || minutes > 0}
               className={`${resendButton}`}
+              onClick={resendOTP}
             >
               <p>kirim ulang?</p>
             </button>
