@@ -6,4 +6,8 @@ export const styledLink = css({
   color: `${theme.text_colors.dark}`,
   fontSize: "16px",
   marginTop: "-30px",
+  background: "none",
+  border: "none",
+  outline: "none",
+  boxShadow: "none",
 });

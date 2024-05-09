@@ -1,10 +1,11 @@
 "use client";
-import { useRef, useState, useEffect, ClipboardEvent } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import FormTitle from "binar/components/molecules/FormTitle";
 import { styledForm } from "binar/constants/emotion/FormControl.style";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { styledLink } from "binar/constants/emotion/Link.style";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
@@ -17,6 +18,7 @@ import {
 } from "binar/constants/emotion/Verification.style";
 
 const VerificationForm: React.FC = () => {
+  const router = useRouter();
   const otpSchema = Yup.object().shape({
     otp: Yup.array()
       .of(Yup.string().required("Required"))
@@ -30,7 +32,7 @@ const VerificationForm: React.FC = () => {
     },
     validationSchema: otpSchema,
     onSubmit: (values) => {
-      const joinedOTP = values.otp.join(""); // Gabungkan nilai dalam array otp
+      const joinedOTP = values.otp.join("");
       sessionStorage.setItem(
         "data",
         JSON.stringify({ ...values, otp: joinedOTP })
@@ -39,15 +41,11 @@ const VerificationForm: React.FC = () => {
   });
 
   //   use ref
-  const inputRef = useRef<HTMLInputElement[]>([]);
+  const inputRef = useRef<(HTMLInputElement | null)[]>([]);
   console.log(formik.values.otp);
   useEffect(() => {
     // Focus on the first input when the component mounts
-    inputRef.current[0].focus();
-    // paste event listener pasteText
-    inputRef.current[0].addEventListener("paste", pasteText);
-
-    return () => inputRef.current[0].removeEventListener("paste", pasteText);
+    inputRef.current[0]?.focus();
   }, []);
 
   const handleInputChange = (
@@ -67,11 +65,11 @@ const VerificationForm: React.FC = () => {
     }));
 
     if (value && index < 5) {
-      inputRef.current[index + 1].focus();
+      inputRef.current[index + 1]?.focus();
     }
   };
 
-  const pasteText = (event: ClipboardEvent<HTMLInputElement>) => {
+  const pasteText = (event: React.ClipboardEvent<HTMLInputElement>) => {
     const pastedText = event.clipboardData?.getData("text") || "";
     const numericPastedText = pastedText.replace(/\D/g, ""); // Filter out non-numeric characters
     const fieldValues: { [key: string]: string } = {};
@@ -82,7 +80,7 @@ const VerificationForm: React.FC = () => {
       ...prevValues,
       otp: Object.keys(prevValues.otp).map((index) => fieldValues[index] || ""),
     }));
-    inputRef.current[5].focus();
+    inputRef.current[5]?.focus();
   };
 
   const handleBackspace = (
@@ -91,7 +89,7 @@ const VerificationForm: React.FC = () => {
   ) => {
     if (event.key === "Backspace") {
       if (index > 0) {
-        inputRef.current[index - 1].focus();
+        inputRef.current[index - 1]?.focus();
       }
     }
   };
@@ -120,7 +118,7 @@ const VerificationForm: React.FC = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [seconds]);
+  }, [minutes, seconds]);
 
   return (
     <>
@@ -132,7 +130,7 @@ const VerificationForm: React.FC = () => {
               Masukkan kode verifikasi yang kami kirimkan melalui email: <br />
               email@binar.labs
             </p>
-            <Link href={"/"} className={`${styledLink}`}>
+            <Link href={"/auth/register"} className={`${styledLink}`}>
               Ubah Email
             </Link>
           </Form.Group>
@@ -145,9 +143,10 @@ const VerificationForm: React.FC = () => {
                 type="text"
                 maxLength={1}
                 value={value}
-                ref={(element) =>
-                  (inputRef.current[index] = element as HTMLInputElement)
-                }
+                ref={(element: HTMLInputElement | null) => {
+                  if (element) inputRef.current[index] = element;
+                }}
+                onPaste={(event) => pasteText(event)}
                 onChange={(event) => handleInputChange(event, index)}
                 onKeyUp={(event) => handleBackspace(event, index)}
               />

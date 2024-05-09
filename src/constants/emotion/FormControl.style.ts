@@ -133,8 +133,6 @@ export const StyledCheckboxInput = css`
 
 export const styledErrorText = css`
   font-size: 14px;
-  font-weight: 600;
-  z-index: 100;
 `;
 
 export const OrWithLineStyle = css`
