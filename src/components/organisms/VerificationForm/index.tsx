@@ -54,7 +54,7 @@ const VerificationForm: React.FC = () => {
   ) => {
     const { value } = event.target;
 
-    if (/[a-z]/gi.test(value)) return;
+    if (!/^[0-9]*$/.test(value)) return;
 
     const currentOTP = [...formik.values.otp];
     currentOTP[index] = value.slice(-1);
@@ -71,7 +71,7 @@ const VerificationForm: React.FC = () => {
 
   const pasteText = (event: React.ClipboardEvent<HTMLInputElement>) => {
     const pastedText = event.clipboardData?.getData("text") || "";
-    const numericPastedText = pastedText.replace(/\D/g, ""); // Filter out non-numeric characters
+    const numericPastedText = pastedText.replace(/\D/g, "");
     const fieldValues: { [key: string]: string } = {};
     Object.keys(formik.values.otp).forEach((key, index) => {
       fieldValues[key] = numericPastedText[index] || "";
@@ -87,10 +87,16 @@ const VerificationForm: React.FC = () => {
     event: React.KeyboardEvent<HTMLInputElement>,
     index: number
   ) => {
-    if (event.key === "Backspace") {
+    if (event.key === "Backspace" || event.key === "Delete") {
       if (index > 0) {
-        inputRef.current[index - 1]?.focus();
+        const currentOTP = [...formik.values.otp];
+        currentOTP[index - 1] = "";
+        formik.setValues((prev) => ({
+          ...prev,
+          otp: currentOTP,
+        }));
       }
+      inputRef.current[index - 1]?.focus();
     }
   };
   // timer component
