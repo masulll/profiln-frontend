@@ -9,9 +9,9 @@ import {
 } from "binar/constants/emotion/FormControl.style";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
-import axios from "axios";
-import { registerUser } from "binar/pages/api/v1/register";
 import { useRouter } from "next/router";
+import API from "binar/pages/api/v1";
+import { registerUser } from "binar/pages/api/v1/register";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -57,21 +57,21 @@ const InputForm: React.FC = () => {
           terms: false,
         }}
         onSubmit={async (values, { setSubmitting }) => {
-          const { email, fullname, password } = values;
-
           try {
-            // const responseData = await registerUser({
-            //   email,
-            //   fullname,
-            //   password,
-            // });
-            // console.log(responseData);
-            sessionStorage.setItem("data", JSON.stringify(values));
+            // Destructure email, fullname, and password from values
+            const { email, fullname, password } = values;
+            const response = await registerUser({ email, fullname, password });
+            console.log("response", response);
+            if (response.status.is_success === true) {
+              router.push({
+                pathname: "/auth/register/verification",
+                query: { email: values.email },
+              });
+            }
           } catch (error) {
             console.error(error);
           } finally {
             setSubmitting(false);
-            router.push("/auth/register/verification");
           }
         }}
         validationSchema={loginSchema}
@@ -160,6 +160,7 @@ const InputForm: React.FC = () => {
                 buttonText="Buat Akun"
                 type="submit"
                 disabled={!isValid || !dirty}
+                isSubmitting={isSubmitting}
               />
             </Form.Group>
             <div className="mb-3">

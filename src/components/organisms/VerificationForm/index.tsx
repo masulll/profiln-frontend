@@ -19,6 +19,8 @@ import {
 
 const VerificationForm: React.FC = () => {
   const router = useRouter();
+  const { email } = router.query;
+  console.log(email);
   const otpSchema = Yup.object().shape({
     otp: Yup.array()
       .of(Yup.string().required("Required"))
@@ -134,7 +136,7 @@ const VerificationForm: React.FC = () => {
           <Form.Group>
             <p className={`${verifText}`}>
               Masukkan kode verifikasi yang kami kirimkan melalui email: <br />
-              email@binar.labs
+              {email}
             </p>
             <Link href={"/auth/register"} className={`${styledLink}`}>
               Ubah Email

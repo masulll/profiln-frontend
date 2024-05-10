@@ -5,16 +5,23 @@ import {
 } from "binar/constants/emotion/FormControl.style";
 import Image from "next/image";
 import { Button } from "react-bootstrap";
+import { ThreeDots } from "react-loader-spinner";
 
 interface Props {
   buttonText: string;
   buttonIcon?: string;
   type?: "button" | "reset" | "submit";
   disabled?: boolean;
+  isSubmitting?: boolean;
   onClick?: React.MouseEventHandler;
 }
 
-const PrimaryButton: React.FC<Props> = ({ buttonText, type, disabled }) => {
+const PrimaryButton: React.FC<Props> = ({
+  buttonText,
+  type,
+  disabled,
+  isSubmitting = false,
+}) => {
   const StyledButton = css`
     ${CustomButtonPrimary}
   `;
@@ -22,7 +29,22 @@ const PrimaryButton: React.FC<Props> = ({ buttonText, type, disabled }) => {
   return (
     <>
       <Button className={`${StyledButton}`} type={type} disabled={disabled}>
-        {buttonText}
+        {isSubmitting ? (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <ThreeDots
+              visible={true}
+              height="50"
+              width="50"
+              color="#fff"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        ) : (
+          buttonText
+        )}
       </Button>
     </>
   );
