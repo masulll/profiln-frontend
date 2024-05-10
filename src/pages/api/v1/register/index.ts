@@ -5,17 +5,13 @@ import FormData from "form-data";
 
 export const registerUser = async (userData: userData) => {
   try {
-    const data = new FormData();
-    data.append("Email", userData.email);
-    data.append("Password", userData.password);
-    data.append("Fullname", userData.fullname);
-
     const config = {
       method: "post",
       maxBodyLength: Infinity,
       url: "/api/v1/register?oauth=false",
-      headers: {},
-      data: data,
+      headers: {
+      },
+      data: userData,
     };
 
     const response = await axiosInstance(config);
