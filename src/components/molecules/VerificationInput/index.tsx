@@ -67,7 +67,7 @@ const VerificationInput: React.FC = () => {
               value={values.email}
               placeholder={"Masukkan email kamu"}
               onChange={handleChange}
-              isInvalid={!!errors.email}
+              isInvalid={!!errors.email || !!touched.email}
               viewEyeIcon={false}
               errorText={errors.email}
             />

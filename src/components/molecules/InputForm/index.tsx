@@ -12,6 +12,7 @@ import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";
 import API from "binar/pages/api/v1";
 import { registerUser } from "binar/pages/api/v1/register";
+import { error } from "console";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -37,7 +38,8 @@ const InputForm: React.FC = () => {
       .matches(
         /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
         "Password minimal mengandung satu karakter spesial"
-      ),
+      )
+      .matches(/[0-9]/, "Password minimal mengandung satu angka"),
     retypePassword: Yup.string()
       .required("Anda belum menulis ulang password")
       .oneOf([Yup.ref("password")], "Passwords tidak sama"),
@@ -81,7 +83,10 @@ const InputForm: React.FC = () => {
           handleChange,
           values,
           handleSubmit,
+          touched,
           isValid,
+
+          handleBlur,
           isSubmitting,
           dirty,
         }) => (
@@ -93,7 +98,8 @@ const InputForm: React.FC = () => {
               value={values.email}
               placeholder={"Masukkan email kamu"}
               onChange={handleChange}
-              isInvalid={!!errors.email}
+              onBlur={handleBlur}
+              isInvalid={!!errors.email && !!touched.email}
               viewEyeIcon={false}
               errorText={errors.email}
             />
@@ -105,7 +111,8 @@ const InputForm: React.FC = () => {
               value={values.fullname}
               placeholder={"Masukkan nama lengkap kamu"}
               onChange={handleChange}
-              isInvalid={!!errors.fullname}
+              onBlur={handleBlur}
+              isInvalid={!!errors.fullname && !!touched.fullname}
               errorText={errors.fullname}
             />
 
@@ -116,7 +123,8 @@ const InputForm: React.FC = () => {
               value={values.password}
               placeholder={"Masukkan kata sandi kamu"}
               onChange={handleChange}
-              isInvalid={!!errors.password}
+              onBlur={handleBlur}
+              isInvalid={!!errors.password && !!touched.password}
               viewEyeIcon={true}
               eyeIcon={isVisible}
               errorText={errors.password}
@@ -130,7 +138,8 @@ const InputForm: React.FC = () => {
               value={values.retypePassword}
               placeholder={"Masukkan kembali kata sandi"}
               onChange={handleChange}
-              isInvalid={!!errors.retypePassword}
+              onBlur={handleBlur}
+              isInvalid={!!errors.retypePassword && !!touched.retypePassword}
               viewEyeIcon={true}
               eyeIcon={isVisible2}
               errorText={errors.retypePassword}
@@ -142,7 +151,7 @@ const InputForm: React.FC = () => {
                 required
                 name="terms"
                 onChange={handleChange}
-                isInvalid={!!errors.terms}
+                isInvalid={!!errors.terms && !!touched.terms}
                 className={` ${StyledCheckboxInput} `}
               />
               <Form.Check.Label className={`${styledErrorText} mx-2`}>

@@ -1,3 +1,4 @@
+import React, { FocusEventHandler } from "react";
 import { css } from "@emotion/css";
 import { InputGroup, Form, Button } from "react-bootstrap";
 import {
@@ -15,6 +16,9 @@ interface Props {
   value: string;
   placeholder: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
+  onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
+
   viewEyeIcon?: boolean;
   isInvalid?: boolean;
   togglePasswordVisibility?: () => void;
@@ -28,6 +32,7 @@ const InputComponent: React.FC<Props> = ({
   type,
   placeholder,
   onChange,
+  onBlur,
   value,
   viewEyeIcon,
   isInvalid,
@@ -47,6 +52,7 @@ const InputComponent: React.FC<Props> = ({
               type={type}
               placeholder={placeholder}
               onChange={onChange}
+              onBlur={onBlur}
               value={value}
               isInvalid={isInvalid}
               className={`${StyledInputGroup} `}
