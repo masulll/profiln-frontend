@@ -43,25 +43,25 @@ export const CustomButtonPrimary = css`
   border: none;
 `;
 
-export const StyledResetLink = css`\
-background-color: ${theme.colors.primary};
-font-family: ${theme.fonts.heading};
-
-&:disabled {
-  background-color: ${theme.neutral_colors.grayscale_50};
-}
-&:hover {
+export const StyledResetLink = css`
   background-color: ${theme.colors.primary};
-}
-  display:flex;
+  font-family: ${theme.fonts.heading};
+
+  &:disabled {
+    background-color: ${theme.neutral_colors.grayscale_50};
+  }
+  &:hover {
+    background-color: ${theme.colors.primary};
+  }
+  display: flex;
   color: white;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   border-radius: 0.25rem;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 3.25rem;
   border: none;
@@ -69,7 +69,7 @@ font-family: ${theme.fonts.heading};
 
 export const CustomButtonWithIcon = css`
   background: #4285f4;
-  width: 30rem;
+  width: 100%;
   height: 3.25rem;
   border: none;
   border-radius: 0.25rem;
@@ -86,11 +86,7 @@ export const CustomButtonWithIcon = css`
   align-items: center;
   gap: 0.5rem;
 `;
-// export const styledWrappercheckbox = css`
-//   display: flex;
 
-//   align-items: center;
-// `;
 export const styledWrappercheckbox = css({
   display: "flex",
   alignItems: "center",
@@ -126,6 +122,7 @@ export const FooterLinkForm = css`
 export const styledForm = css({
   padding: "20px 20px",
   maxWidth: "560px",
+  minWidth: "560px",
   maxHeight: "600px",
   borderRadius: "1.3125rem",
   background: "#fff",
@@ -192,7 +189,7 @@ export const OrTextStyle = css`
   font-size: 0.875rem;
   font-weight: 400;
   line-height: normal;
-  padding: 0 25px;
+  padding: 0 3em;
   margin: 0 200px;
   background-color: #fff;
 `;

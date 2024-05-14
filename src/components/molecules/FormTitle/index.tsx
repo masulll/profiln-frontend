@@ -18,7 +18,6 @@ const FormTitle: React.FC<Props> = ({ title, wording }) => {
   `;
   const Title = styled.p`
     color: ${theme.text_colors.dark};
-
     text-align: center;
     font-size: 24px;
     font-style: normal;
