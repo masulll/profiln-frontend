@@ -16,19 +16,19 @@ export const authOptions: NextAuthOptions = {
       type: "credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        fullName: { label: "Fullname", type: "text" },
+        fullname: { label: "Fullname", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         const { email, password } = credentials as {
           email: string;
-          fullName: string;
+          fullname: string;
           password: string;
         };
         const user: any = {
-          id: 1,
           email: "email@example.com",
-          password: "gM123_bh",
+          fullname: "test2303",
+          password: "gM123@bh",
         };
         if (user) {
           console.log(user);

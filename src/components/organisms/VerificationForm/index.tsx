@@ -16,6 +16,7 @@ import {
   timerLayout,
   verifText,
 } from "binar/constants/emotion/Verification.style";
+import { verificationUser } from "binar/pages/api/v1/verification";
 
 const VerificationForm: React.FC = () => {
   const router = useRouter();
@@ -29,16 +30,25 @@ const VerificationForm: React.FC = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "sultan123@gmail.com",
+      email: { email },
       otp: Array.from({ length: 6 }).fill(""),
     },
     validationSchema: otpSchema,
-    onSubmit: (values) => {
-      const joinedOTP = values.otp.join("");
-      sessionStorage.setItem(
-        "data",
-        JSON.stringify({ ...values, otp: joinedOTP })
-      );
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+        const joinedOTP = values.otp.join("");
+        const response = await verificationUser({ email, otp: joinedOTP });
+        console.log("response", response);
+        if (response.status.is_success === true) {
+          router.push({
+            pathname: "/",
+          });
+        }
+      } catch (error) {
+        console.error();
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 

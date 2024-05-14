@@ -6,7 +6,10 @@ import InputComponent from "binar/components/atoms/InputComponent";
 import {
   StyledCheckboxInput,
   styledErrorText,
+  forgotPasswordStyle,
+  styledWrappercheckbox,
 } from "binar/constants/emotion/FormControl.style";
+import Link from "next/link";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";
@@ -14,20 +17,16 @@ import { useRouter } from "next/router";
 import { registerUser } from "binar/pages/api/v1/register";
 import { error } from "console";
 
-const InputForm: React.FC = () => {
+const InputLoginForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isVisible2, setIsVisible2] = useState(false);
+
   const router = useRouter();
 
   const changeVisibility = () => {
     setIsVisible((prevVisible) => !prevVisible);
   };
 
-  const changeVisibility2 = () => {
-    setIsVisible2((prevVisible) => !prevVisible);
-  };
-
-  const registerSchema = Yup.object().shape({
+  const loginSchema = Yup.object().shape({
     email: Yup.string()
       .email("Maaf penulisan email belum tepat. Misal: name@email.com")
       .min(10, "email minimal 10 karakter")
@@ -42,12 +41,6 @@ const InputForm: React.FC = () => {
       .matches(/^(?=.*[A-Z])/, "Minimal berisi satu karakter huruf besar")
       .matches(/^(?=.*[a-z])/, "Minimal berisi satu karakter huruf")
       .matches(/^(?=.*[0-9])/, "Minimal berisi satu angka"),
-    retypePassword: Yup.string()
-      .required("Anda belum menulis ulang password")
-      .oneOf([Yup.ref("password")], "Passwords tidak sama"),
-
-    fullname: Yup.string().required("Anda belum mengisi nama lengkap"),
-    terms: Yup.bool().required().oneOf([true], " "),
   });
 
   return (
@@ -55,30 +48,28 @@ const InputForm: React.FC = () => {
       <Formik
         initialValues={{
           email: "",
-          fullname: "",
           password: "",
-          retypePassword: "",
-          terms: false,
+          rememberUser: false,
         }}
         onSubmit={async (values, { setSubmitting }) => {
           try {
             // Destructure email, fullname, and password from values
-            const { email, fullname, password } = values;
-            const response = await registerUser({ email, fullname, password });
-            console.log("response", response);
-            if (response.status.is_success === true) {
-              router.push({
-                pathname: "/auth/register/verification",
-                query: { email: values.email },
-              });
-            }
+            const { email, password } = values;
+            // const response = await registerUser({ email, password });
+            // console.log("response", response);
+            // if (response.status.is_success === true) {
+            //   router.push({
+            //     pathname: "/auth/register/verification",
+            //     query: { email: values.email },
+            //   });
+            // }
           } catch (error) {
             console.error(error);
           } finally {
             setSubmitting(false);
           }
         }}
-        validationSchema={registerSchema}
+        validationSchema={loginSchema}
       >
         {({
           errors,
@@ -107,23 +98,11 @@ const InputForm: React.FC = () => {
             />
 
             <InputComponent
-              title={"Nama Lengkap Anda"}
-              name="fullname"
-              type={"text"}
-              value={values.fullname}
-              placeholder={"Masukkan nama lengkap anda"}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              isInvalid={!!errors.fullname && !!touched.fullname}
-              errorText={errors.fullname}
-            />
-
-            <InputComponent
-              title={"Kata Sandi"}
+              title={"Password"}
               name="password"
               type={isVisible ? "text" : "password"}
               value={values.password}
-              placeholder={"Masukkan kata sandi anda"}
+              placeholder={"Masukkan password anda"}
               onChange={handleChange}
               onBlur={handleBlur}
               isInvalid={!!errors.password && !!touched.password}
@@ -133,42 +112,25 @@ const InputForm: React.FC = () => {
               togglePasswordVisibility={changeVisibility}
             />
 
-            <InputComponent
-              title={"Ulangi Kata Sandi"}
-              name="retypePassword"
-              type={isVisible2 ? "text" : "password"}
-              value={values.retypePassword}
-              placeholder={"Masukkan kembali kata sandi"}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              isInvalid={!!errors.retypePassword && !!touched.retypePassword}
-              viewEyeIcon={true}
-              eyeIcon={isVisible2}
-              errorText={errors.retypePassword}
-              togglePasswordVisibility={changeVisibility2}
-            />
+            <div className={`${styledWrappercheckbox}`}>
+              <Form.Group className={`mb-3 `}>
+                <Form.Check.Input
+                  name="rememberUser"
+                  onChange={handleChange}
+                  className={` ${StyledCheckboxInput} `}
+                />
+                <Form.Check.Label className={`${styledErrorText} mx-2`}>
+                  Ingat saya
+                </Form.Check.Label>
+              </Form.Group>
+              <Link href={"/auth/forget"} className={`${forgotPasswordStyle}`}>
+                <p>Lupa Password</p>
+              </Link>
+            </div>
 
-            <Form.Group className={`mb-3 `}>
-              <Form.Check.Input
-                required
-                name="terms"
-                onChange={handleChange}
-                isInvalid={!!errors.terms && !!touched.terms}
-                className={` ${StyledCheckboxInput} `}
-              />
-              <Form.Check.Label className={`${styledErrorText} mx-2`}>
-                Saya setuju dengan syarat dan ketentuan
-              </Form.Check.Label>
-              <Form.Control.Feedback
-                type="invalid"
-                className={`${styledErrorText}`}
-              >
-                {errors.terms}
-              </Form.Control.Feedback>
-            </Form.Group>
             <Form.Group>
               <PrimaryButton
-                buttonText="Buat Akun"
+                buttonText="Login"
                 type="submit"
                 disabled={!isValid || !dirty}
                 isSubmitting={isSubmitting}
@@ -176,9 +138,9 @@ const InputForm: React.FC = () => {
             </Form.Group>
             <div className="mb-3">
               <HaveAccount
-                href={"/auth/login"}
-                text="Sudah memiliki akun?"
-                linkText="Masuk di sini"
+                href={"/auth/register"}
+                text="Belum memiliki akun?"
+                linkText="Daftar di sini"
               />
             </div>
           </Form>
@@ -188,4 +150,4 @@ const InputForm: React.FC = () => {
   );
 };
 
-export default InputForm;
+export default InputLoginForm;

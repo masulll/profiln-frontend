@@ -1,15 +1,14 @@
 import axios from "axios";
-import userData from "binar/types/userData";
 import axiosInstance from "..";
 
-export const registerUser = async (userData: userData) => {
+export const verificationUser = async (otpData: otpData) => {
   try {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "/api/v1/register?oauth=false",
+      url: "/api/v1/user-otp",
       headers: {},
-      data: userData,
+      data: otpData,
     };
 
     const response = await axiosInstance(config);

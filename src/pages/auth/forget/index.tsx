@@ -5,10 +5,9 @@ import {
   welcomeTextStyle,
 } from "binar/constants/emotion/register.style";
 import { styledFormLayout } from "binar/constants/emotion/FormControl.style";
+import ForgetForm from "binar/components/organisms/forgotForm";
 
-import LoginForm from "binar/components/organisms/LoginForm";
-
-const login = () => {
+const forget = () => {
   return (
     <>
       <div className="container">
@@ -32,7 +31,7 @@ const login = () => {
             </div>
           </div>
           <div className={`${styledFormLayout} col-5 mx-auto`}>
-            <LoginForm />
+            <ForgetForm />
           </div>
         </div>
       </div>
@@ -40,4 +39,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default forget;

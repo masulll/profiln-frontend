@@ -43,6 +43,30 @@ export const CustomButtonPrimary = css`
   border: none;
 `;
 
+export const StyledResetLink = css`\
+background-color: ${theme.colors.primary};
+font-family: ${theme.fonts.heading};
+
+&:disabled {
+  background-color: ${theme.neutral_colors.grayscale_50};
+}
+&:hover {
+  background-color: ${theme.colors.primary};
+}
+  display:flex;
+  color: white;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 0.25rem;
+  justify-content:center;
+  align-items:center;
+  width: 100%;
+  height: 3.25rem;
+  border: none;
+`;
+
 export const CustomButtonWithIcon = css`
   background: #4285f4;
   width: 30rem;
@@ -62,10 +86,27 @@ export const CustomButtonWithIcon = css`
   align-items: center;
   gap: 0.5rem;
 `;
+// export const styledWrappercheckbox = css`
+//   display: flex;
+
+//   align-items: center;
+// `;
+export const styledWrappercheckbox = css({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+});
+export const forgotPasswordStyle = css`
+  color: ${theme.text_colors.primary};
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+`;
 
 export const TextFooterForm = css`
   color: ${theme.neutral_colors.grayscale_80};
-  font-family: ${theme.fonts.body};
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -75,7 +116,6 @@ export const TextFooterForm = css`
 `;
 export const FooterLinkForm = css`
   color: ${theme.text_colors.primary};
-  font-family: ${theme.fonts.body};
   font-size: 14px;
   font-style: normal;
   font-weight: 700;

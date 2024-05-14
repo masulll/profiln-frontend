@@ -13,17 +13,23 @@ const TextFooter = css`
   ${TextFooterForm}
 `;
 
-export const HaveAccount = () => {
+interface Props {
+  href: string;
+  text: string;
+  linkText: string;
+}
+
+export const HaveAccount: React.FC<Props> = ({ href, linkText, text }) => {
   return (
     <>
       <p className={`${TextFooter}`}>
-        Sudah memiliki akun?
+        {text}
         <Link
-          href={"/login"}
+          href={href}
           className={`${FooterLink}`}
           style={{ textDecoration: "none" }}
         >
-          Masuk di sini
+          {linkText}
         </Link>
       </p>
     </>
