@@ -1,11 +1,11 @@
 import axiosInstance from "..";
 
-export const loginUser = async (userData: loginData) => {
+export const resetUserPass = async (userData: resetPassData) => {
   try {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "/api/v1/login?type=app",
+      url: "/api/v1/reset-password",
       headers: {},
       data: userData,
     };

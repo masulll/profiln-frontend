@@ -1,4 +1,3 @@
-import axios from "axios";
 import userData from "binar/types/userData";
 import axiosInstance from "..";
 

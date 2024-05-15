@@ -14,10 +14,12 @@ import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";
 // import API from "binar/pages/api/v1";
-import { registerUser } from "binar/pages/api/v1/register";
+import { loginUser } from "binar/pages/api/v1/login";
 import { error } from "console";
+import { AxiosError } from "axios";
 
 const InputLoginForm: React.FC = () => {
+  const [loginError, setLoginError] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
   const router = useRouter();
@@ -53,18 +55,21 @@ const InputLoginForm: React.FC = () => {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // Destructure email, fullname, and password from values
             const { email, password } = values;
-            // const response = await registerUser({ email, password });
-            // console.log("response", response);
-            // if (response.status.is_success === true) {
-            //   router.push({
-            //     pathname: "/auth/register/verification",
-            //     query: { email: values.email },
-            //   });
-            // }
+            const response = await loginUser({ email, password });
+            console.log("response", response);
+            if (response.status.is_success === true) {
+              router.push({
+                pathname: "/",
+              });
+            }
           } catch (error) {
             console.error(error);
+            if ((error as AxiosError).response?.status === 401) {
+              setLoginError("Email atau password salah");
+            } else {
+              setLoginError("Registrasi gagal");
+            }
           } finally {
             setSubmitting(false);
           }
@@ -111,7 +116,7 @@ const InputLoginForm: React.FC = () => {
               errorText={errors.password}
               togglePasswordVisibility={changeVisibility}
             />
-
+            {loginError && <p className={`${styledErrorText}`}>{loginError}</p>}
             <div className={`${styledWrappercheckbox}`}>
               <Form.Group className={`mb-3 `}>
                 <Form.Check.Input
@@ -119,7 +124,10 @@ const InputLoginForm: React.FC = () => {
                   onChange={handleChange}
                   className={` ${StyledCheckboxInput} `}
                 />
-                <Form.Check.Label className={`${styledErrorText} mx-2`}>
+                <Form.Check.Label
+                  className={`mx-2`}
+                  style={{ fontSize: "14px" }}
+                >
                   Ingat saya
                 </Form.Check.Label>
               </Form.Group>

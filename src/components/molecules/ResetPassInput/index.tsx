@@ -19,11 +19,14 @@ import {
   Wrapper,
   styledErrorText,
 } from "binar/constants/emotion/FormControl.style";
+import { resetUserPass } from "binar/pages/api/v1/resetUserPass";
+import { AxiosError } from "axios";
 
 const ResetPassInput: React.FC = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isVisible2, setIsVisible2] = useState(false);
+  const [sendErrorText, setSendErrorText] = useState("");
   const router = useRouter();
 
   const changeVisibility = () => {
@@ -54,29 +57,22 @@ const ResetPassInput: React.FC = () => {
     <>
       <Formik
         initialValues={{
-          email: "",
+          email: "sultanbackup08@gmail.com",
           password: "",
           retypePassword: "",
         }}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // const response = await registerUser({ email, password });
-            // console.log("response", response);
-            // if (response.status.is_success === true) {
-            //   router.push({
-            //     pathname: "/auth/register/forget",
-            //     query: { email: values.email },
-            //   });
-            // }
-            // if (values.email !== "") {
-            //   router.push({
-            //     pathname: "/auth/register/forget",
-            //     query: { email: values.email },
-            //   });
-            // }
+            const { email, password } = values;
+            const response = await resetUserPass({ email, password });
+            console.log("response", response);
+
             setIsSubmit(true);
           } catch (error) {
             console.error(error);
+            if ((error as AxiosError).response?.status === 422) {
+              setSendErrorText("Gagal menyimpan password");
+            }
           } finally {
             setSubmitting(false);
           }
@@ -202,6 +198,9 @@ const ResetPassInput: React.FC = () => {
                   errorText={errors.retypePassword}
                   togglePasswordVisibility={changeVisibility2}
                 />
+                {sendErrorText && (
+                  <p className={`${styledErrorText}`}>{sendErrorText}</p>
+                )}
                 <Form.Group>
                   <PrimaryButton
                     buttonText="Reset Password"

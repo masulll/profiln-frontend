@@ -8,13 +8,18 @@ import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";
 // import API from "binar/pages/api/v1";
-import { registerUser } from "binar/pages/api/v1/register";
+import { sendForgetEmail } from "binar/pages/api/v1/forget";
 import { error } from "console";
 import Link from "next/link";
-import { StyledResetLink } from "binar/constants/emotion/FormControl.style";
+import {
+  StyledResetLink,
+  styledErrorText,
+} from "binar/constants/emotion/FormControl.style";
+import { AxiosError } from "axios";
 
 const ForgetInput: React.FC = () => {
   const [isSubmit, setIsSubmit] = useState(false);
+  const [sendErrorText, setSendErrorText] = useState("");
   const router = useRouter();
 
   const forgetSchema = Yup.object().shape({
@@ -32,23 +37,17 @@ const ForgetInput: React.FC = () => {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // const response = await registerUser({ email, password });
-            // console.log("response", response);
-            // if (response.status.is_success === true) {
-            //   router.push({
-            //     pathname: "/auth/register/forget",
-            //     query: { email: values.email },
-            //   });
-            // }
-            // if (values.email !== "") {
-            //   router.push({
-            //     pathname: "/auth/register/forget",
-            //     query: { email: values.email },
-            //   });
-            // }
+            const response = await sendForgetEmail({ email: values.email });
+            console.log("response", response);
+
             setIsSubmit(true);
           } catch (error) {
             console.error(error);
+            if ((error as AxiosError).response?.status === 404) {
+              setSendErrorText("Email tidak ditemukan");
+            } else {
+              setSendErrorText("Gagal mengirimkan email");
+            }
           } finally {
             setSubmitting(false);
           }
@@ -110,6 +109,9 @@ const ForgetInput: React.FC = () => {
                   viewEyeIcon={false}
                   errorText={errors.email}
                 />
+                {sendErrorText && (
+                  <p className={`${styledErrorText}`}>{sendErrorText}</p>
+                )}
                 <Form.Group>
                   <PrimaryButton
                     buttonText="Reset Password"
