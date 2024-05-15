@@ -79,7 +79,7 @@ const InputForm: React.FC = () => {
             if ((error as AxiosError).response?.status === 401) {
               setRegisterError("Email sudah terdaftar");
             } else {
-              setRegisterError("Registration failed. Please try again.");
+              setRegisterError("Registrasi gagal");
             }
           } finally {
             setSubmitting(false);
@@ -163,15 +163,15 @@ const InputForm: React.FC = () => {
                 required
                 name="terms"
                 onChange={handleChange}
-                isInvalid={!!errors.terms && !!touched.terms}
+                isInvalid={!!errors.terms}
                 className={` ${StyledCheckboxInput} `}
               />
-              <Form.Check.Label className={` mx-2`}>
+              <Form.Check.Label className={`mx-2`} style={{ fontSize: "14px" }}>
                 Saya setuju dengan syarat dan ketentuan
               </Form.Check.Label>
               <Form.Control.Feedback
                 type="invalid"
-                className={`${styledErrorText}`}
+                style={{ fontSize: "14px" }}
               >
                 {errors.terms}
               </Form.Control.Feedback>
