@@ -1,17 +1,24 @@
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import InputComponent from "binar/components/atoms/InputComponent";
 import FormTitle from "binar/components/molecules/FormTitle";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
-import { HaveAccount } from "binar/components/atoms/FormFooter";
+import Labels from "binar/components/atoms/labels";
+import Image from "next/image";
 import { useRouter } from "next/router";
 // import API from "binar/pages/api/v1";
 import { registerUser } from "binar/pages/api/v1/register";
 import { error } from "console";
 import Link from "next/link";
-import { StyledResetLink } from "binar/constants/emotion/FormControl.style";
+import {
+  IconStyling,
+  StyledInputGroup,
+  StyledResetLink,
+  Wrapper,
+  styledErrorText,
+} from "binar/constants/emotion/FormControl.style";
 
 const ResetPassInput: React.FC = () => {
   const [isSubmit, setIsSubmit] = useState(false);
@@ -74,7 +81,21 @@ const ResetPassInput: React.FC = () => {
             setSubmitting(false);
           }
         }}
-        validationSchema={resetSchema}
+        validate={(values) => {
+          return resetSchema
+            .validate(values, { abortEarly: false })
+            .then(() => {})
+            .catch((err) => {
+              const errors: { [key: string]: string[] } = {};
+              err.inner.forEach((error: any) => {
+                if (!errors[error.path]) {
+                  errors[error.path] = [];
+                }
+                errors[error.path].push(error.message);
+              });
+              return errors;
+            });
+        }}
       >
         {({
           errors,
@@ -115,21 +136,56 @@ const ResetPassInput: React.FC = () => {
                   title="Masukan Password Baru"
                   wording="Tentukan Password Baru Anda"
                 />
-                <InputComponent
-                  title={"Masukkan Password Baru Anda"}
-                  name="password"
-                  type={isVisible ? "text" : "password"}
-                  value={values.password}
-                  placeholder={"Masukkan password baru anda"}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  isInvalid={!!errors.password && !!touched.password}
-                  viewEyeIcon={true}
-                  eyeIcon={isVisible}
-                  errorText={errors.password}
-                  togglePasswordVisibility={changeVisibility}
-                />
 
+                <Form.Group className="mb-3  ">
+                  <Labels title={"Masukkan password baru anda"} />
+
+                  <div className={`${Wrapper}`}>
+                    <InputGroup hasValidation>
+                      <Form.Control
+                        name="password"
+                        type={isVisible ? "text" : "password"}
+                        placeholder={"Masukkan password baru anda"}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                        isInvalid={!!errors.password && !!touched.password}
+                        className={`${StyledInputGroup} `}
+                      />
+
+                      <div role="button" onClick={changeVisibility}>
+                        <Image
+                          src={
+                            isVisible
+                              ? `/assets/icons/Eye-visible.svg`
+                              : `/assets/icons/Eye-invisible.svg`
+                          }
+                          width={24}
+                          height={24}
+                          alt=""
+                          className={`${IconStyling}`}
+                        />
+                      </div>
+
+                      <Form.Control.Feedback
+                        type="invalid"
+                        className={` ${styledErrorText} background-image-none`}
+                      >
+                        {errors.password && touched.password && (
+                          <div>
+                            {Array.isArray(errors.password) ? (
+                              errors.password.map((error: any, index: any) => (
+                                <div key={index}>{error}</div>
+                              ))
+                            ) : (
+                              <div>{errors.password}</div>
+                            )}
+                          </div>
+                        )}
+                      </Form.Control.Feedback>
+                    </InputGroup>
+                  </div>
+                </Form.Group>
                 <InputComponent
                   title={"Konfirmasi Password Baru Anda"}
                   name="retypePassword"

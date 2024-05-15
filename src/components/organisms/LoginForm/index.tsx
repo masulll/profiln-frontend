@@ -12,7 +12,7 @@ const LoginForm: React.FC = () => {
   const { push, query } = useRouter();
   const callbackUrl: any = query.callbackUrl || "";
   return (
-    <div className={`${styledForm} `}>
+    <div className={`${styledForm} overflow-auto`}>
       <FormTitle
         title="Selamat Datang"
         wording="Segera buka pintu ke pengalaman lengkap! Masuk sekarang."

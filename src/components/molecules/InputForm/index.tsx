@@ -13,9 +13,11 @@ import { useRouter } from "next/router";
 // import API from "binar/pages/api/v1";
 import { registerUser } from "binar/pages/api/v1/register";
 import { error } from "console";
+import { AxiosError } from "axios";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [registerError, setRegisterError] = useState("");
   const [isVisible2, setIsVisible2] = useState(false);
   const router = useRouter();
 
@@ -74,6 +76,11 @@ const InputForm: React.FC = () => {
             }
           } catch (error) {
             console.error(error);
+            if ((error as AxiosError).response?.status === 401) {
+              setRegisterError("Email sudah terdaftar");
+            } else {
+              setRegisterError("Registration failed. Please try again.");
+            }
           } finally {
             setSubmitting(false);
           }
@@ -105,6 +112,9 @@ const InputForm: React.FC = () => {
               viewEyeIcon={false}
               errorText={errors.email}
             />
+            {registerError && (
+              <p className={`${styledErrorText}`}>{registerError}</p>
+            )}
 
             <InputComponent
               title={"Nama Lengkap Anda"}
@@ -156,7 +166,7 @@ const InputForm: React.FC = () => {
                 isInvalid={!!errors.terms && !!touched.terms}
                 className={` ${StyledCheckboxInput} `}
               />
-              <Form.Check.Label className={`${styledErrorText} mx-2`}>
+              <Form.Check.Label className={` mx-2`}>
                 Saya setuju dengan syarat dan ketentuan
               </Form.Check.Label>
               <Form.Control.Feedback

@@ -121,9 +121,9 @@ export const FooterLinkForm = css`
 
 export const styledForm = css({
   padding: "20px 20px",
-  maxWidth: "560px",
+
   minWidth: "560px",
-  maxHeight: "600px",
+  maxHeight: "700px",
   borderRadius: "1.3125rem",
   background: "#fff",
   boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.25)",
@@ -168,9 +168,10 @@ export const StyledCheckboxInput = css`
   }
 `;
 
-export const styledErrorText = css`
-  font-size: 14px;
-`;
+export const styledErrorText = css({
+  fontSize: "14px",
+  color: `${theme.colors.error}`,
+});
 
 export const OrWithLineStyle = css`
   display: flex;
