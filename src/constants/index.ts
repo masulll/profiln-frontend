@@ -8,6 +8,7 @@ const theme = {
   fonts: {
     heading: "Causten-Bold, sans-serif",
     body: "Causten, sans-serif",
+    utility: "Open Sans, sans-serif",
   },
   text_colors: {
     dark: "#121212",

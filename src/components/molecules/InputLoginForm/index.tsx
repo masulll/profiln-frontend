@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { loginUser } from "binar/pages/api/v1/login";
 import { error } from "console";
 import { AxiosError } from "axios";
+import { signIn } from "next-auth/react";
 
 const InputLoginForm: React.FC = () => {
   const [loginError, setLoginError] = useState("");
@@ -53,23 +54,29 @@ const InputLoginForm: React.FC = () => {
           password: "",
           rememberUser: false,
         }}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             const { email, password } = values;
-            const response = await loginUser({ email, password });
+            const response = await signIn("credentials", {
+              redirect: false,
+              email,
+              password,
+            });
             console.log("response", response);
-            if (response.status.is_success === true) {
+
+            if (response?.status === 401) {
+              resetForm();
+              setLoginError("Email atau password salah");
+            } else {
+              setLoginError("Login gagal");
+            }
+            if (response?.ok) {
               router.push({
                 pathname: "/",
               });
             }
           } catch (error) {
             console.error(error);
-            if ((error as AxiosError).response?.status === 401) {
-              setLoginError("Email atau password salah");
-            } else {
-              setLoginError("Registrasi gagal");
-            }
           } finally {
             setSubmitting(false);
           }

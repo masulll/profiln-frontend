@@ -1,4 +1,3 @@
-import RegisterForm from "binar/components/organisms/registerForm";
 import Image from "next/image";
 import {
   BgAuth,

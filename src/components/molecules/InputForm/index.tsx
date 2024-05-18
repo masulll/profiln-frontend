@@ -62,7 +62,7 @@ const InputForm: React.FC = () => {
           retypePassword: "",
           terms: false,
         }}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             // Destructure email, fullname, and password from values
             const { email, fullname, password } = values;
@@ -77,6 +77,7 @@ const InputForm: React.FC = () => {
           } catch (error) {
             console.error(error);
             if ((error as AxiosError).response?.status === 401) {
+              resetForm();
               setRegisterError("Email sudah terdaftar");
             } else {
               setRegisterError("Registrasi gagal");

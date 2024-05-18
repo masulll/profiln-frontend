@@ -15,10 +15,11 @@ export default function withAuth(
     if (requireAuth.includes(pathname)) {
       const token = await getToken({
         req,
-        secret: process.env.NEXT_AUTH_SECRET,
+        secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
       });
       if (!token) {
-        const url = new URL("/auth/register", req.url);
+        const url = req.nextUrl.clone();
+        url.pathname = "/auth/login";
         return NextResponse.redirect(url);
       }
     }

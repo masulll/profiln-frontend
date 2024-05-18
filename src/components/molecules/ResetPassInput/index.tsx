@@ -57,7 +57,7 @@ const ResetPassInput: React.FC = () => {
     <>
       <Formik
         initialValues={{
-          email: "sultanbackup08@gmail.com",
+          email: "",
           password: "",
           retypePassword: "",
         }}

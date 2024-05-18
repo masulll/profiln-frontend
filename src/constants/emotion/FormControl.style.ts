@@ -1,5 +1,6 @@
 import { css } from "@emotion/css";
 import theme from "binar/constants";
+import { Open_Sans } from "next/font/google";
 
 export const StyledInputGroup = css`
   font-family: ${theme.fonts.body};
@@ -23,13 +24,17 @@ export const StyledInputGroup = css`
 
 export const CustomButtonPrimary = css`
   background-color: ${theme.colors.primary};
-  font-family: ${theme.fonts.heading};
+  font-family: ${theme.fonts.utility};
 
   &:disabled {
     background-color: ${theme.neutral_colors.grayscale_50};
   }
   &:hover {
     background-color: ${theme.colors.primary};
+  }
+  &:active {
+    background-color: ${theme.colors.primary} !important;
+    opacity: 0.8;
   }
   color: white;
   font-size: 1rem;
@@ -74,7 +79,7 @@ export const CustomButtonWithIcon = css`
   border: none;
   border-radius: 0.25rem;
   border: none;
-  font-family: ${theme.fonts.heading};
+  font-family: ${theme.fonts.utility};
   color: ${theme.text_colors.white};
   font-size: 1rem;
   font-style: normal;

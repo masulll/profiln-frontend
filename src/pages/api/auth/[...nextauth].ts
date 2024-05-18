@@ -2,6 +2,8 @@ import NextAuth from "next-auth/next";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import { loginUser } from "../v1/login";
+import { loginGoogle } from "../v1/loginGoogle";
 
 //
 
@@ -10,31 +12,35 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXT_AUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   providers: [
     CredentialsProvider({
       type: "credentials",
+      name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         fullname: { label: "Fullname", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const { email, password } = credentials as {
+        const { email, fullname, password } = credentials as {
           email: string;
           fullname: string;
           password: string;
         };
-        const user: any = {
-          email: "email@example.com",
-          fullname: "test2303",
-          password: "gM123@bh",
-        };
-        if (user) {
-          console.log(user);
-
-          return user;
-        } else {
+        try {
+          const user = await loginUser({
+            email: email,
+            password: password,
+          });
+          if (user) {
+            console.log(user);
+            return user;
+          } else {
+            return null;
+          }
+        } catch (error) {
+          console.error("Authorization error:", error);
           return null;
         }
       },
@@ -46,21 +52,23 @@ export const authOptions: NextAuthOptions = {
     // ...add more providers here
   ],
   callbacks: {
-    jwt({ token, account, profile, user }) {
+    async jwt({ token, account, profile, user }) {
       if (account?.providers === "credentials") {
         token.email = user.email;
       }
       if (account?.provider === "google") {
-        const data = {
-          name: user.name,
-          email: user.email,
-          image: user.image,
-          type: "google",
-        };
-        token.email = data.email;
-        token.name = data.name;
-        token.image = data.image;
-        token.type = data.type;
+        try {
+          const userData = await loginGoogle({
+            email: profile?.email,
+          });
+          token.email = userData.email;
+          token.name = userData.name;
+          token.image = userData.image;
+          token.type = "google";
+          token.accessToken = userData.token; // token dari backend Anda
+        } catch (error) {
+          console.error("Google login error:", error);
+        }
       }
       console.log({ token, account, user });
 

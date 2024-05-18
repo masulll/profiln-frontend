@@ -4,8 +4,8 @@ interface otpData {
 }
 
 interface loginData {
-  email: string;
-  password: string;
+  email: string | undefined;
+  password?: string;
 }
 
 interface emailData {
