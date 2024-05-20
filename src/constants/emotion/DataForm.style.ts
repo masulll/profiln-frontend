@@ -85,3 +85,18 @@ export const StyledInputGroup = css({
     boxShadow: `0 0 0 1px ${theme.colors.primary}`,
   },
 });
+
+export const StyledTitle = css({
+  fontSize: "24px",
+  fontStyle: "normal",
+  fontWeight: "600",
+  lineHeight: "normal",
+});
+
+export const StyledDescription = css({
+  fontSize: "16px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "normal",
+  color: `${theme.neutral_colors.grayscale_70}`,
+});

@@ -1,16 +1,24 @@
 import React from "react";
 import { styledForm } from "binar/constants/emotion/DataForm.style";
-import InputComponent from "binar/components/atoms/InputComponent";
+import TitleForm from "binar/components/atoms/InformationForm";
+import InputField from "binar/components/atoms/InformationForm/InputField";
 
 const PersonalData = () => {
   return (
     <>
       <div className={`${styledForm}`}>
-        <h2>Pengisian Data Diri</h2>
-        <p>
-          Yuk, mari isi formulir pengisian data diri untuk memulai pengalamanmu
-          dengan kami.
-        </p>
+        <TitleForm
+          title={"Pengisian Data Diri"}
+          description="Yuk, mari isi formulir pengisian data diri untuk memulai pengalamanmu
+        dengan kami."
+        />
+        <InputField
+          title="Nama Lengkap"
+          name="fullname"
+          type="text"
+          value=""
+          placeholder=" "
+        />
       </div>
     </>
   );
