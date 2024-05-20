@@ -1,8 +1,8 @@
 import React, { FocusEventHandler } from "react";
 import { css } from "@emotion/css";
 import { InputGroup, Form, Button } from "react-bootstrap";
+import { StyledInputGroup } from "binar/constants/emotion/DataForm.style";
 import {
-  StyledInputGroup,
   Wrapper,
   styledErrorText,
   IconStyling,
@@ -43,49 +43,26 @@ const InputField: React.FC<Props> = ({
   return (
     <>
       <Form.Group className="mb-3  ">
-        <Labels title={title} />
+        <Form.Label style={{ fontSize: "12px" }}>{title}</Form.Label>
+        <InputGroup hasValidation>
+          <Form.Control
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            onChange={onChange}
+            onBlur={onBlur}
+            value={value}
+            isInvalid={isInvalid}
+            className={`${StyledInputGroup} `}
+          />
 
-        <div className={`${Wrapper}`}>
-          <InputGroup hasValidation>
-            <Form.Control
-              name={name}
-              type={type}
-              placeholder={placeholder}
-              onChange={onChange}
-              onBlur={onBlur}
-              value={value}
-              isInvalid={isInvalid}
-              className={`${StyledInputGroup} `}
-            />
-
-            {viewEyeIcon && (
-              <div
-                role="button"
-                className={``}
-                onClick={togglePasswordVisibility}
-              >
-                <Image
-                  src={
-                    eyeIcon
-                      ? `/assets/icons/Eye-visible.svg`
-                      : `/assets/icons/Eye-invisible.svg`
-                  }
-                  width={24}
-                  height={24}
-                  alt=""
-                  className={`${IconStyling}`}
-                />
-              </div>
-            )}
-
-            <Form.Control.Feedback
-              type="invalid"
-              className={` ${styledErrorText} background-image-none`}
-            >
-              {errorText}
-            </Form.Control.Feedback>
-          </InputGroup>
-        </div>
+          <Form.Control.Feedback
+            type="invalid"
+            className={` ${styledErrorText} background-image-none`}
+          >
+            {errorText}
+          </Form.Control.Feedback>
+        </InputGroup>
       </Form.Group>
     </>
   );

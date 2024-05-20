@@ -17,7 +17,14 @@ const PersonalData = () => {
           name="fullname"
           type="text"
           value=""
-          placeholder=" "
+          placeholder=""
+        />
+        <InputField
+          title="Email"
+          name="email"
+          type="text"
+          value=""
+          placeholder=""
         />
       </div>
     </>
