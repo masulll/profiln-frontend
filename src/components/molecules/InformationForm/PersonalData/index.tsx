@@ -1,7 +1,13 @@
-import React from "react";
-import { styledForm } from "binar/constants/emotion/DataForm.style";
+import React, { useState } from "react";
+import {
+  boldDescription,
+  styledForm,
+} from "binar/constants/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
 import InputField from "binar/components/atoms/InformationForm/InputField";
+import PhoneNumInput from "binar/components/atoms/InformationForm/PhoneNumber";
+import SelectField from "binar/components/atoms/InformationForm/SelectField";
+import { PrimaryButton } from "binar/components/atoms/Buttons";
 
 const PersonalData = () => {
   return (
@@ -26,6 +32,27 @@ const PersonalData = () => {
           value=""
           placeholder=""
         />
+        <PhoneNumInput />
+        <SelectField
+          title="Jenis Kelamin"
+          name="gender"
+          placeholder="Pilih jenis kelamin"
+          value=" "
+        />
+        <p className={`${boldDescription}`}>
+          Ayo, tambahkan foto profil Anda untuk membuat profil Anda lebih
+          menarik! Foto profil yang jelas dan representatif akan membantu
+          pengguna lain mengenali Anda dengan lebih baik.
+        </p>
+        <div className="d-flex">
+          <InputField
+            title="Upload Foto Profile"
+            name="profile_photo"
+            value=""
+            type="file"
+            placeholder="Masukkan file anda"
+          />
+        </div>
       </div>
     </>
   );

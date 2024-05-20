@@ -67,8 +67,6 @@ const InputLoginForm: React.FC = () => {
             if (response?.status === 401) {
               resetForm();
               setLoginError("Email atau password salah");
-            } else {
-              setLoginError("Login gagal");
             }
             if (response?.ok) {
               router.push({

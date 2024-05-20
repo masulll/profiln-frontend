@@ -1,12 +1,11 @@
 import React, { FocusEventHandler } from "react";
 import { InputGroup, Form } from "react-bootstrap";
-import { StyledInputGroup } from "binar/constants/emotion/DataForm.style";
+import { StyledSelectInput } from "binar/constants/emotion/DataForm.style";
 import { styledErrorText } from "binar/constants/emotion/FormControl.style";
 
 interface Props {
   title: string;
   name: string;
-  type: string;
   value: string;
   placeholder: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,10 +14,9 @@ interface Props {
   errorText?: string;
 }
 
-const InputField: React.FC<Props> = ({
+const SelectField: React.FC<Props> = ({
   title,
   name,
-  type,
   placeholder,
   onChange,
   onBlur,
@@ -30,20 +28,18 @@ const InputField: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Form.Group className="mb-3  ">
+      <Form.Group className="my-3">
         <Form.Label style={{ fontSize: "12px" }}>{title}</Form.Label>
         <InputGroup hasValidation>
-          <Form.Control
+          <Form.Select
+            aria-label="Default select example"
             name={name}
-            type={type}
-            placeholder={placeholder}
-            onChange={onChange}
-            onBlur={onBlur}
-            value={value}
-            isInvalid={isInvalid}
-            className={`${StyledInputGroup} `}
-          />
-
+            className={`${StyledSelectInput}`}
+          >
+            <option>{placeholder}</option>
+            <option value="1">Pria</option>
+            <option value="2">Wanita</option>
+          </Form.Select>
           <Form.Control.Feedback
             type="invalid"
             className={` ${styledErrorText} background-image-none`}
@@ -56,4 +52,4 @@ const InputField: React.FC<Props> = ({
   );
 };
 
-export default InputField;
+export default SelectField;

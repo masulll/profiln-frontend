@@ -3,9 +3,7 @@ import theme from "binar/constants";
 
 export const styledForm = css({
   padding: "20px 20px",
-
   maxWidth: "730px",
-  maxHeight: "700px",
   borderRadius: "1.3125rem",
   background: "#fff",
   boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.25)",
@@ -52,12 +50,31 @@ export const styledUnderlineText = css({
 export const StyledInputGroup = css({
   fontFamily: `${theme.fonts.body}`,
   backgroundImage: "none !important",
-  fontSize: "16px",
+  fontSize: "14px",
   lineHeight: "20px",
   padding: "10px",
   borderRadius: "4px",
   background: "#fff",
   "&.form-control:focus": {
+    border: "none",
+    outline: 0,
+    borderColor: `${theme.colors.primary}`,
+    boxShadow: `0 0 0 1px ${theme.colors.primary}`,
+  },
+});
+export const StyledPhoneInput = css({
+  fontFamily: `${theme.fonts.body}`,
+  fontSize: "14px",
+  lineHeight: "20px",
+  padding: "10px",
+  width: "100% !important",
+  height: "42px !important",
+  borderRadius: "4px",
+  background: "#fff",
+  border: `1px solid ${theme.neutral_colors.grayscale_60}`,
+  outline: "none",
+
+  "&:focus": {
     border: "none",
     outline: 0,
     borderColor: `${theme.colors.primary}`,
@@ -78,4 +95,28 @@ export const StyledDescription = css({
   fontWeight: "400",
   lineHeight: "normal",
   color: `${theme.neutral_colors.grayscale_70}`,
+});
+
+export const StyledSelectInput = css({
+  fontSize: "14px",
+  lineHeight: "20px",
+  padding: "10px",
+  borderRadius: "4px",
+
+  "&:focus": {
+    border: "none",
+    outline: 0,
+    borderColor: `${theme.colors.primary}`,
+    boxShadow: `0 0 0 1px ${theme.colors.primary}`,
+  },
+  "&option:hover": {
+    backgroundColor: `${theme.colors.primary}`,
+    color: "#fff",
+  },
+});
+
+export const boldDescription = css({
+  fontSize: `14px`,
+  fontWeight: "700",
+  lineHeight: "normal",
 });
