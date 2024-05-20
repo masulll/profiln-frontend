@@ -1,3 +1,4 @@
+import PersonalData from "binar/components/molecules/InformationForm/PersonalData";
 import theme from "binar/constants";
 import {
   styledForm,
@@ -9,14 +10,7 @@ import React from "react";
 const InfoDataForm = () => {
   return (
     <div className="">
-      <div className={`${styledForm}`}>
-        <h1>Pengalaman kerja</h1>
-        <p>
-          Mari ceritakan tentang pekerjaan Anda! Bagikan pengalaman, pencapaian,
-          dan tanggung jawab Anda di posisi tersebut. Semua informasi ini akan
-          membantu membuat profil Anda lebih menarik dan informatif.
-        </p>
-      </div>
+      <PersonalData />
       <button className={`${styledUnderlineText}`}>
         Lewati langkah ini
         <Image

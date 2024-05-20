@@ -48,3 +48,40 @@ export const styledUnderlineText = css({
   outline: "none",
   boxShadow: "none",
 });
+
+// export const StyledInputGroup = css`
+//   font-family: ${theme.fonts.body};
+
+//   background-image: none !important;
+
+//   .form-control&:focus {
+//     border: none;
+//     outline: 0;
+//     border-color: ${theme.colors.primary};
+//     box-shadow: 0 0 0 1px ${theme.colors.primary};
+//   }
+
+//   font-size: 16px;
+//   line-height: 20px;
+//   padding: 10px;
+//   border-radius: 4px;
+//   background: #fff;
+//   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+// `;
+
+export const StyledInputGroup = css({
+  fontFamily: `${theme.fonts.body}`,
+  backgroundImage: "none !important",
+  fontSize: "16px",
+  lineHeight: "20px",
+  padding: "10px",
+  borderRadius: "4px",
+  background: "#fff",
+  boxShadow: " 0px 0px 4px 1px rgba(0, 0, 0, 0.25);",
+  "& .form-control:focus": {
+    border: "none",
+    outline: 0,
+    borderColor: `${theme.colors.primary}`,
+    boxShadow: `0 0 0 1px ${theme.colors.primary}`,
+  },
+});
