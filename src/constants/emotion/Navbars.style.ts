@@ -46,9 +46,18 @@ export const LinkStyling = css({
     textDecoration: "none",
     color: `${theme.colors.primary}`, // Or specify a hover color
   },
-  "&:active": { textDecoration: "none", color: `${theme.colors.primary}` },
+
+  "&.dropdown-item:active": {
+    backgroundColor: "transparent ",
+  },
 });
 
 export const activeLink = css({
   color: `${theme.colors.primary}`,
+});
+
+export const noCaret = css({
+  "::after": {
+    display: "none ",
+  },
 });
