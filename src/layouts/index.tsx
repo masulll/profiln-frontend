@@ -1,6 +1,7 @@
 import React from "react";
 import { causten } from "binar/helpers/fontTheme";
 import Head from "next/head";
+import Navbars from "binar/components/organisms/HomepageComponents/Navbars";
 type AppShellProps = {
   children: React.ReactNode;
 };
@@ -16,6 +17,7 @@ const Layouts = (props: AppShellProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/assets/logo/Icon Binar.svg" />
       </Head>
+      <Navbars />
       <main className={`${causten.className} `}>{children}</main>
     </>
   );

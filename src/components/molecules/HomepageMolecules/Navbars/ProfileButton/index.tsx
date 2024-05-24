@@ -7,6 +7,7 @@ import {
   noCaret,
 } from "binar/constants/emotion/Navbars.style";
 import { Dropdown, NavItem, NavLink } from "react-bootstrap";
+import { signOut, useSession } from "next-auth/react";
 const ProfileButton: React.FC = () => {
   const router = useRouter();
   return (
@@ -49,13 +50,31 @@ const ProfileButton: React.FC = () => {
         <Dropdown.Menu>
           <Dropdown.Item className={`${LinkStyling}`}>
             <Link href="/" className={`${LinkStyling}`}>
-              View Profile
+              <Image
+                src="/assets/icons/ph_user-bold.svg"
+                width="23"
+                height="23"
+                className="mx-2 rounded-circle"
+                alt="my post icons"
+              />
+              Profile
             </Link>
           </Dropdown.Item>
           <Dropdown.Item className={`${LinkStyling}`}>
-            <Link href="/" className={`${LinkStyling}`}>
+            <button
+              onClick={() => signOut()}
+              className={`${LinkStyling}`}
+              style={{ background: "transparent", border: "none" }}
+            >
+              <Image
+                src="/assets/icons/tabler_logout.svg"
+                width="24"
+                height="24"
+                className="mx-2 rounded-circle"
+                alt="my post icons"
+              />
               Logout
-            </Link>
+            </button>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

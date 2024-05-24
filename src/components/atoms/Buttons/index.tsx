@@ -1,4 +1,5 @@
 import { css } from "@emotion/css";
+import { StyledOutlineButton } from "binar/constants/emotion/Button.style";
 import {
   CustomButtonPrimary,
   CustomButtonWithIcon,
@@ -76,4 +77,42 @@ const ButtonWithIcon: React.FC<Props> = ({
   );
 };
 
-export { PrimaryButton, ButtonWithIcon };
+const OutlineButton: React.FC<Props> = ({
+  buttonText,
+  type,
+  disabled,
+  isSubmitting = false,
+}) => {
+  const StyledButton = css`
+    ${CustomButtonPrimary}
+  `;
+
+  return (
+    <>
+      <Button
+        className={`${StyledOutlineButton}`}
+        type={type}
+        disabled={disabled}
+      >
+        {isSubmitting ? (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <ThreeDots
+              visible={true}
+              height="50"
+              width="50"
+              color="#fff"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        ) : (
+          buttonText
+        )}
+      </Button>
+    </>
+  );
+};
+
+export { PrimaryButton, ButtonWithIcon, OutlineButton };
