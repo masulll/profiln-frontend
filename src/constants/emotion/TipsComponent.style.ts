@@ -2,9 +2,10 @@ import { css } from "@emotion/css";
 import theme from "binar/constants";
 
 export const styledForm = css({
-  padding: "20px 20px",
+  display: "flex",
+  flexDirection: "column",
+  padding: "20px 10px",
   textAlign: "center",
-  maxWidth: "831px",
   borderRadius: "20px",
   background: "#fff",
   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",

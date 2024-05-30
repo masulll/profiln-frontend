@@ -27,17 +27,83 @@ export const StyledOutlineButton = css({
     opacity: `0.8`,
     border: `2px solid ${theme.colors.primary} `,
   },
+  "&:focus": {
+    outline: "0",
+    boxShadow: `0 0 0 2px ${theme.colors.primary}`,
+    backgroundColor: `${theme.colors.primary} `,
+  },
 });
-//   background-color: ${theme.colors.primary};
-//   font-family: ${theme.fonts.utility};
 
-//   &:disabled {
-//     background-color: ${theme.neutral_colors.grayscale_50};
-//   }
-//   &:hover {
-//     background-color: ${theme.colors.primary};
-//   }
-//   &:active {
-// background-color: ${theme.colors.primary} !important;
-// opacity: 0.8;
-//   }
+export const StyledPillButton = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "transparent",
+  fontFamily: `${theme.fonts.body}`,
+  fontWeight: "600",
+  color: `${theme.neutral_colors.grayscale_70}`,
+  fontSize: "14px",
+  borderRadius: "20px",
+  height: "40px",
+  width: "116px",
+  textAlign: "center",
+  padding: "12px",
+  border: `1px solid ${theme.neutral_colors.grayscale_50} `,
+
+  "&:hover": {
+    backgroundColor: `${theme.colors.primary} !important`,
+    color: "white",
+    border: `2px solid ${theme.colors.primary} `,
+  },
+  "&:active": {
+    backgroundColor: `${theme.colors.primary} !important`,
+    border: `2px solid ${theme.colors.primary} `,
+  },
+  "&:focus": {
+    outline: "none",
+    boxShadow: `0 0 0 2px ${theme.colors.primary}`,
+    backgroundColor: `${theme.colors.primary} `,
+  },
+});
+
+export const activePillButton = css({
+  backgroundColor: `${theme.colors.primary} !important`,
+  color: "white",
+  border: `2px solid ${theme.colors.primary}`,
+  "&focus": {
+    backgroundColor: `${theme.colors.primary} `,
+    color: "white",
+    border: `2px solid ${theme.colors.primary}`,
+    outline: "0",
+  },
+});
+
+export const CustomButtonPrimary = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: theme.colors.primary,
+  fontFamily: theme.fonts.utility,
+  color: "white",
+  fontSize: "1rem",
+  fontWeight: "500",
+  borderRadius: "0.25rem",
+  textAlign: "center",
+  border: "none",
+  "&:disabled": {
+    backgroundColor: theme.neutral_colors.grayscale_50,
+  },
+  "&:hover": {
+    backgroundColor: theme.colors.primary,
+  },
+  "&:active": {
+    backgroundColor: `${theme.colors.primary} !important`,
+    opacity: "0.9",
+  },
+  "&:focus": {
+    backgroundColor: `${theme.colors.primary} `,
+    color: "white",
+    borderColor: theme.colors.primary,
+    outline: "0",
+  },
+});

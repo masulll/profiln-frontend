@@ -6,7 +6,7 @@ import {
 
 const PostFrame: React.FC = () => {
   return (
-    <div className={`${styledFrame} d-inline-flex`}>
+    <div className={`${styledFrame} d-inline-flex my-3`}>
       <Image
         src="/assets/icons/Profile_default.png"
         width="48"

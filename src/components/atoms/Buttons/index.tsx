@@ -1,20 +1,25 @@
-import { css } from "@emotion/css";
-import { StyledOutlineButton } from "binar/constants/emotion/Button.style";
+import { css, cx } from "@emotion/css";
+
+import styled from "@emotion/styled";
 import {
-  CustomButtonPrimary,
-  CustomButtonWithIcon,
-} from "binar/constants/emotion/FormControl.style";
+  StyledOutlineButton,
+  StyledPillButton,
+  activePillButton,
+} from "binar/constants/emotion/Button.style";
+import { CustomButtonPrimary } from "binar/constants/emotion/Button.style";
+import { CustomButtonWithIcon } from "binar/constants/emotion/FormControl.style";
 import Image from "next/image";
 import { Button } from "react-bootstrap";
 import { ThreeDots } from "react-loader-spinner";
-
+import theme from "binar/constants";
 interface Props {
   buttonText: string;
   buttonIcon?: string;
   type?: "button" | "reset" | "submit";
   disabled?: boolean;
+  active?: boolean;
   isSubmitting?: boolean;
-  onClick?: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const PrimaryButton: React.FC<Props> = ({
@@ -24,7 +29,9 @@ const PrimaryButton: React.FC<Props> = ({
   isSubmitting = false,
 }) => {
   const StyledButton = css`
-    ${CustomButtonPrimary}
+    ${CustomButtonPrimary};
+    width: 100%;
+    height: 3.25rem;
   `;
 
   return (
@@ -83,10 +90,6 @@ const OutlineButton: React.FC<Props> = ({
   disabled,
   isSubmitting = false,
 }) => {
-  const StyledButton = css`
-    ${CustomButtonPrimary}
-  `;
-
   return (
     <>
       <Button
@@ -115,4 +118,56 @@ const OutlineButton: React.FC<Props> = ({
   );
 };
 
-export { PrimaryButton, ButtonWithIcon, OutlineButton };
+const PillButton: React.FC<Props> = ({ buttonText, type, active, onClick }) => {
+  return (
+    <>
+      <Button
+        className={cx(StyledPillButton, { [activePillButton]: active })}
+        type={type}
+        active={active}
+        onClick={onClick}
+      >
+        {buttonText}
+      </Button>
+    </>
+  );
+};
+
+const SmallButton = styled(Button)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: theme.colors.primary,
+  fontFamily: theme.fonts.utility,
+  color: "white",
+  fontSize: "1rem",
+  fontWeight: "500",
+  borderRadius: "0.25rem",
+  textAlign: "center",
+
+  border: "none",
+  "&:disabled": {
+    backgroundColor: theme.neutral_colors.grayscale_50,
+  },
+  "&:hover": {
+    backgroundColor: theme.colors.primary,
+  },
+  "&:active": {
+    backgroundColor: `${theme.colors.primary} !important`,
+    opacity: "0.9",
+  },
+  "&:focus": {
+    backgroundColor: `${theme.colors.primary} `,
+    color: "white",
+    borderColor: theme.colors.primary,
+    outline: "0",
+  },
+});
+
+export {
+  PrimaryButton,
+  ButtonWithIcon,
+  OutlineButton,
+  PillButton,
+  SmallButton,
+};

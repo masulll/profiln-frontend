@@ -4,11 +4,9 @@ import {
   styledTextDisabled,
 } from "binar/constants/emotion/TipsComponent.style";
 import Image from "next/image";
-import { Button } from "react-bootstrap";
-
 const TipsComponent: React.FC = () => {
   return (
-    <div className={`${styledForm} d-flex flex-column align-items-center`}>
+    <div className={`${styledForm} d-flex flex-column align-items-center `}>
       <Image
         src="/assets/icons/contract.png"
         width="60"
