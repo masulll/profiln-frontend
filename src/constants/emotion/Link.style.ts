@@ -11,3 +11,13 @@ export const styledLink = css({
   outline: "none",
   boxShadow: "none",
 });
+
+export const styledIconDefault = css({
+  textDecoration: "none",
+  color: `${theme.neutral_colors.grayscale_70}`,
+  fontSize: "16px",
+  background: "none",
+  border: "none",
+  outline: "none",
+  boxShadow: "none",
+});

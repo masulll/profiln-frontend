@@ -1,6 +1,10 @@
+import { IconCountButton } from "binar/components/atoms/Buttons";
 import ProfileLink from "binar/components/molecules/HomepageMolecules/Navbars/ProfileLink";
 import theme from "binar/constants";
-import { styledLink } from "binar/constants/emotion/Link.style";
+import {
+  styledIconDefault,
+  styledLink,
+} from "binar/constants/emotion/Link.style";
 import {
   styledFeedFrame,
   styledFrame,
@@ -51,7 +55,28 @@ const FeedsFrame = () => {
             height: "1px",
           }}
         />
-        <div></div>
+        <div className="container d-flex justify-content-between">
+          <IconCountButton
+            buttonText="Suka"
+            isCount={true}
+            iconSrc="/assets/icons/iconamoon_like.svg"
+          />
+          <IconCountButton
+            buttonText="Komentar"
+            isCount={true}
+            iconSrc="/assets/icons/iconamoon_comment-bold.svg"
+          />
+          <IconCountButton
+            buttonText="Repost"
+            isCount={true}
+            iconSrc="/assets/icons/zondicons_repost.svg"
+          />
+          <IconCountButton
+            buttonText="Kirim"
+            isCount={false}
+            iconSrc="/assets/icons/uil_share.svg"
+          />
+        </div>
       </div>
     </div>
   );

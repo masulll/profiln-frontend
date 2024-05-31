@@ -12,6 +12,8 @@ import Image from "next/image";
 import { Button } from "react-bootstrap";
 import { ThreeDots } from "react-loader-spinner";
 import theme from "binar/constants";
+import { styledIconDefault } from "binar/constants/emotion/Link.style";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 interface Props {
   buttonText: string;
   buttonIcon?: string;
@@ -19,7 +21,10 @@ interface Props {
   disabled?: boolean;
   active?: boolean;
   isSubmitting?: boolean;
+  isCount?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  iconSrc?: string;
+  iconSrcActive?: string;
 }
 
 const PrimaryButton: React.FC<Props> = ({
@@ -164,10 +169,32 @@ const SmallButton = styled(Button)({
   },
 });
 
+const IconCountButton: React.FC<Props> = ({
+  isCount,
+  buttonText,
+  iconSrc,
+  iconSrcActive,
+}) => {
+  return (
+    <button className={`${styledIconDefault} d-inline-flex`}>
+      <Image src={`${iconSrc}`} width={28} height={28} alt="" />
+      <p
+        style={{
+          fontSize: "18px",
+          color: theme.neutral_colors.grayscale_70,
+        }}
+      >
+        {isCount ? "0" : `${buttonText}`}
+      </p>
+    </button>
+  );
+};
+
 export {
   PrimaryButton,
   ButtonWithIcon,
   OutlineButton,
   PillButton,
   SmallButton,
+  IconCountButton,
 };
