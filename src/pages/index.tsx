@@ -12,7 +12,7 @@ const opensans = Open_Sans({ subsets: ["latin"] });
 export default function Home() {
   const { data } = useSession();
   console.log(data);
-  const [active, setActive] = useState<null | number>(null);
+  const [active, setActive] = useState<null | number>(1);
 
   const handleClick = (index: number) => {
     setActive(index);

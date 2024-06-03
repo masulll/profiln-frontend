@@ -10,14 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  Nav,
-  Container,
-  Navbar,
-  Dropdown,
-  NavItem,
-  NavLink,
-} from "react-bootstrap";
+import { Nav, Container, Navbar } from "react-bootstrap";
 
 const Navbars: React.FC = () => {
   const router = useRouter();

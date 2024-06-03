@@ -176,7 +176,7 @@ const IconCountButton: React.FC<Props> = ({
   iconSrcActive,
 }) => {
   return (
-    <button className={`${styledIconDefault} d-inline-flex`}>
+    <button className={`${styledIconDefault} d-inline-flex `}>
       <Image src={`${iconSrc}`} width={28} height={28} alt="" />
       <p
         style={{

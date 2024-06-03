@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { styledTextDisabled } from "binar/constants/emotion/TipsComponent.style";
+import theme from "binar/constants";
 
 interface Props {
   showDate: boolean;
@@ -24,7 +25,13 @@ const ProfileLink: React.FC<Props> = ({ showDate }) => {
         <h5 style={{ fontSize: "18px", fontWeight: "600" }}>
           Christina Pauline
         </h5>
-        <p style={{ fontSize: "16px", marginTop: "-5px" }}>
+        <p
+          style={{
+            fontSize: "16px",
+            marginTop: "-5px",
+            color: theme.text_colors.body_copy_grey,
+          }}
+        >
           Product Designer at Tokopedia
         </p>
         {showDate && (

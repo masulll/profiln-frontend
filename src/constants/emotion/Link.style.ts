@@ -15,9 +15,19 @@ export const styledLink = css({
 export const styledIconDefault = css({
   textDecoration: "none",
   color: `${theme.neutral_colors.grayscale_70}`,
-  fontSize: "16px",
   background: "none",
   border: "none",
   outline: "none",
   boxShadow: "none",
+});
+
+export const styledNeutralLink = css({
+  textDecoration: "none",
+  color: theme.neutral_colors.grayscale_70,
+  fontSize: "14px",
+  paddingBlock: "4px",
+
+  "&:hover": {
+    color: theme.neutral_colors.grayscale_100,
+  },
 });

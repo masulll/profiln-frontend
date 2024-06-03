@@ -1,18 +1,25 @@
 import { IconCountButton } from "binar/components/atoms/Buttons";
 import ProfileLink from "binar/components/molecules/HomepageMolecules/Navbars/ProfileLink";
 import theme from "binar/constants";
-import {
-  styledIconDefault,
-  styledLink,
-} from "binar/constants/emotion/Link.style";
-import {
-  styledFeedFrame,
-  styledFrame,
-} from "binar/constants/emotion/PostFrame.style";
+import { styledLink } from "binar/constants/emotion/Link.style";
+import { styledFeedFrame } from "binar/constants/emotion/PostFrame.style";
 import { styledTextDisabled } from "binar/constants/emotion/TipsComponent.style";
 import Image from "next/image";
+import { useState } from "react";
 
 const FeedsFrame = () => {
+  const fullText = `
+  I find this flow particularly intriguing for redesign due to numerous improvement opportunities. Moreover, I believe that optimizing this pathway is crucial for marketing goals, given that the ‘Getting Started’ process significantly influences user engagement and retention. By refining this initial interaction, we can enhance user satisfaction, reduce churn rates, and ultimately drive higher conversion rates. This optimization is not just about aesthetics or user interface improvements, but also involves streamlining the steps, providing clear guidance, and ensuring that users immediately see the value our service offers. Thus, a well-thought-out redesign of this flow could have a profound impact on our overall business performance.`;
+
+  const truncatedLength = 200;
+  const truncatedText = fullText.substring(0, truncatedLength) + "...";
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div className={`${styledFeedFrame} my-3`}>
       <div className="d-flex justify-content-between">
@@ -31,9 +38,7 @@ const FeedsFrame = () => {
           Case Study: Redesign McD App
         </h3>
         <p style={{ fontSize: "18px" }}>
-          I find this flow particularly intriguing for redesign due to numerous
-          improvement opportunities. Moreover, I believe that optimizing this
-          pathway is crucial for marketing goals, given that the ‘Gett...
+          {isExpanded ? fullText : truncatedText}
         </p>
         <button
           className={styledTextDisabled}
@@ -44,8 +49,9 @@ const FeedsFrame = () => {
             textDecoration: "underline",
             textAlign: "left",
           }}
+          onClick={handleToggle}
         >
-          baca selengkapnya
+          {isExpanded ? "lihat lebih sedikit" : "baca selengkapnya"}
         </button>
 
         <hr
@@ -55,7 +61,7 @@ const FeedsFrame = () => {
             height: "1px",
           }}
         />
-        <div className="container d-flex justify-content-between">
+        <div className="container d-flex justify-content-between ">
           <IconCountButton
             buttonText="Suka"
             isCount={true}

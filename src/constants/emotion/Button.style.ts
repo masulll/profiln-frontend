@@ -24,12 +24,14 @@ export const StyledOutlineButton = css({
   },
   "&:active": {
     backgroundColor: `${theme.colors.primary} !important`,
+    color: "white",
     opacity: `0.8`,
     border: `2px solid ${theme.colors.primary} `,
   },
   "&:focus": {
     outline: "0",
     boxShadow: `0 0 0 2px ${theme.colors.primary}`,
+    color: "white",
     backgroundColor: `${theme.colors.primary} `,
   },
 });
@@ -49,19 +51,22 @@ export const StyledPillButton = css({
   textAlign: "center",
   padding: "12px",
   border: `1px solid ${theme.neutral_colors.grayscale_50} `,
-
+  outline: "none !important",
   "&:hover": {
     backgroundColor: `${theme.colors.primary} !important`,
     color: "white",
-    border: `2px solid ${theme.colors.primary} `,
+    border: `1px solid ${theme.colors.primary} !important `,
+    outline: "none !important",
   },
   "&:active": {
     backgroundColor: `${theme.colors.primary} !important`,
-    border: `2px solid ${theme.colors.primary} `,
+    border: `1px solid ${theme.colors.primary} !important `,
+    outline: "none !important",
   },
   "&:focus": {
-    outline: "none",
-    boxShadow: `0 0 0 2px ${theme.colors.primary}`,
+    border: "none !important",
+    outline: `1px solid ${theme.colors.primary} !important `,
+    boxShadow: `0 0 0 2px ${theme.colors.primary} !important`,
     backgroundColor: `${theme.colors.primary} `,
   },
 });
@@ -69,12 +74,18 @@ export const StyledPillButton = css({
 export const activePillButton = css({
   backgroundColor: `${theme.colors.primary} !important`,
   color: "white",
-  border: `2px solid ${theme.colors.primary}`,
+  border: `1px solid ${theme.colors.primary}`,
+  outline: "none !important",
+  "&:active": {
+    backgroundColor: `${theme.colors.primary} !important`,
+    border: `1px solid ${theme.colors.primary} !important `,
+    outline: "none !important",
+  },
   "&focus": {
-    backgroundColor: `${theme.colors.primary} `,
+    backgroundColor: `${theme.colors.primary} !important`,
     color: "white",
-    border: `2px solid ${theme.colors.primary}`,
-    outline: "0",
+    border: `none `,
+    outline: "none",
   },
 });
 
