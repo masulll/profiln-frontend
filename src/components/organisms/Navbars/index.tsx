@@ -36,7 +36,11 @@ const Navbars: React.FC = () => {
             } `}
           >
             <Image
-              src="/assets/icons/Home.svg"
+              src={
+                router.pathname === "/"
+                  ? "/assets/icons/Home-color.svg"
+                  : `/assets/icons/Home.svg`
+              }
               width="28"
               height="28"
               className="mx-2"

@@ -13,13 +13,17 @@ const ProfileButton: React.FC = () => {
   return (
     <>
       <Link
-        href={"/"}
+        href={"/my_post"}
         className={`${LinkStyling} ${
-          router.pathname === "/my-post" ? `${activeLink}` : ""
+          router.pathname === "/my_post" ? `${activeLink}` : ""
         }`}
       >
         <Image
-          src="/assets/icons/actions-edit.svg"
+          src={
+            router.pathname === "/my_post"
+              ? "/assets/icons/action-edit-color.svg"
+              : "/assets/icons/actions-edit.svg"
+          }
           width="21"
           height="21"
           className="mx-2"

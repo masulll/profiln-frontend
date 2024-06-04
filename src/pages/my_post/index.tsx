@@ -9,7 +9,7 @@ import FollowingFrame from "binar/components/organisms/HomepageComponents/Follow
 import FeedsFrame from "binar/components/organisms/HomepageComponents/FeedsFrame";
 const opensans = Open_Sans({ subsets: ["latin"] });
 
-export default function Home() {
+export default function my_Post() {
   const { data } = useSession();
   console.log(data);
   const [active, setActive] = useState<null | number>(1);
@@ -20,25 +20,6 @@ export default function Home() {
   return (
     <main className="d-flex justify-content-center my-3">
       <div style={{ margin: "0em 1.3em" }}>
-        <TipsComponent />
-        <PostFrame />
-        <div className="d-flex gap-2 ">
-          <PillButton
-            buttonText="Untuk Anda"
-            active={active === 1}
-            onClick={() => handleClick(1)}
-          />
-          <PillButton
-            buttonText="Mengikuti"
-            active={active === 2}
-            onClick={() => handleClick(2)}
-          />
-          <PillButton
-            buttonText="Terbaru"
-            active={active === 3}
-            onClick={() => handleClick(3)}
-          />
-        </div>
         <FeedsFrame />
       </div>
       <div className="">
