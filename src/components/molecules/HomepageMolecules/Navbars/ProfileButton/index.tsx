@@ -5,7 +5,7 @@ import {
   activeLink,
   LinkStyling,
   noCaret,
-} from "binar/constants/emotion/Navbars.style";
+} from "binar/styles/emotion/Navbars.style";
 import { Dropdown, NavItem, NavLink } from "react-bootstrap";
 import { signOut, useSession } from "next-auth/react";
 const ProfileButton: React.FC = () => {
@@ -21,7 +21,7 @@ const ProfileButton: React.FC = () => {
         <Image
           src={
             router.pathname === "/my_post"
-              ? "/assets/icons/action-edit-color.svg"
+              ? "/assets/icons/actions-edit-color.svg"
               : "/assets/icons/actions-edit.svg"
           }
           width="21"

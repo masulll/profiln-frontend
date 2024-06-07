@@ -36,8 +36,6 @@ export const styledFormLayout = css({
 });
 
 export const styledUnderlineText = css({
-  display: "flex",
-  alignItems: "center",
   textDecoration: "underline",
   color: `${theme.text_colors.primary}`,
   fontSize: "16px",

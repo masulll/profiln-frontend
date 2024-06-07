@@ -6,7 +6,7 @@ import InputComponent from "binar/components/atoms/InputComponent";
 import {
   StyledCheckboxInput,
   styledErrorText,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";

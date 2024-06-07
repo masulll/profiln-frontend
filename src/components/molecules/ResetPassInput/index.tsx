@@ -18,7 +18,7 @@ import {
   StyledResetLink,
   Wrapper,
   styledErrorText,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import { resetUserPass } from "binar/pages/api/v1/resetUserPass";
 import { AxiosError } from "axios";
 

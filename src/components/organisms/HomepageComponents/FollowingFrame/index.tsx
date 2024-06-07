@@ -1,8 +1,7 @@
 import { PrimaryButton, SmallButton } from "binar/components/atoms/Buttons";
-import { styledFollowingFrame } from "binar/constants/emotion/PostFrame.style";
+import { styledFollowingFrame } from "binar/styles/emotion/PostFrame.style";
 import ProfileLink from "binar/components/molecules/HomepageMolecules/Navbars/ProfileLink";
-import Image from "next/image";
-import Link from "next/link";
+
 const FollowingFrame = () => {
   return (
     <div className={`${styledFollowingFrame} `}>

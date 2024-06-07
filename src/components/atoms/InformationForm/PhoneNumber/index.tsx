@@ -2,7 +2,7 @@ import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Form, InputGroup } from "react-bootstrap";
-import { StyledPhoneInput } from "binar/constants/emotion/DataForm.style";
+import { StyledPhoneInput } from "binar/styles/emotion/DataForm.style";
 import { css } from "@emotion/css";
 
 const PhoneNumInput: React.FC = () => {

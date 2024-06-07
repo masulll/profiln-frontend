@@ -2,7 +2,7 @@ import Image from "next/image";
 import {
   styledFrame,
   styledPostInput,
-} from "binar/constants/emotion/PostFrame.style";
+} from "binar/styles/emotion/PostFrame.style";
 
 const PostFrame: React.FC = () => {
   return (

@@ -14,7 +14,7 @@ import Link from "next/link";
 import {
   StyledResetLink,
   styledErrorText,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import { AxiosError } from "axios";
 
 const ForgetInput: React.FC = () => {

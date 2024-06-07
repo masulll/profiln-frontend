@@ -1,9 +1,10 @@
 import { IconCountButton } from "binar/components/atoms/Buttons";
 import ProfileLink from "binar/components/molecules/HomepageMolecules/Navbars/ProfileLink";
 import theme from "binar/constants";
-import { styledLink } from "binar/constants/emotion/Link.style";
-import { styledFeedFrame } from "binar/constants/emotion/PostFrame.style";
-import { styledTextDisabled } from "binar/constants/emotion/TipsComponent.style";
+import { styledIconDefault, styledLink } from "binar/styles/emotion/Link.style";
+import { styledFeedFrame } from "binar/styles/emotion/PostFrame.style";
+import { styledTextDisabled } from "binar/styles/emotion/TipsComponent.style";
+import { IconComment, IconLike, IconRepost, IconShare } from "binar/helpers";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -21,7 +22,10 @@ const FeedsFrame = () => {
   };
 
   return (
-    <div className={`${styledFeedFrame} my-3`}>
+    <div
+      className={`${styledFeedFrame} my-3`}
+      style={{ fill: theme.neutral_colors.grayscale_70 }}
+    >
       <div className="d-flex justify-content-between">
         <ProfileLink showDate={true} />
         <button className={`${styledLink}`}>
@@ -62,26 +66,22 @@ const FeedsFrame = () => {
           }}
         />
         <div className="container d-flex justify-content-between ">
-          <IconCountButton
-            buttonText="Suka"
-            isCount={true}
-            iconSrc="/assets/icons/iconamoon_like.svg"
-          />
-          <IconCountButton
-            buttonText="Komentar"
-            isCount={true}
-            iconSrc="/assets/icons/iconamoon_comment-bold.svg"
-          />
-          <IconCountButton
-            buttonText="Repost"
-            isCount={true}
-            iconSrc="/assets/icons/zondicons_repost.svg"
-          />
-          <IconCountButton
-            buttonText="Kirim"
-            isCount={false}
-            iconSrc="/assets/icons/uil_share.svg"
-          />
+          <button className={`${styledIconDefault} d-inline-flex `}>
+            <IconLike className={styledIconDefault} />
+            <p>0</p>
+          </button>
+          <button className={`${styledIconDefault} d-inline-flex `}>
+            <IconComment className={styledIconDefault} />
+            <p>0</p>
+          </button>
+          <button className={`${styledIconDefault} d-inline-flex `}>
+            <IconRepost className={styledIconDefault} />
+            <p css={{}}>0</p>
+          </button>
+          <button className={`${styledIconDefault} d-inline-flex `}>
+            <IconShare className={styledIconDefault} />
+            <p>Bagikan</p>
+          </button>
         </div>
       </div>
     </div>

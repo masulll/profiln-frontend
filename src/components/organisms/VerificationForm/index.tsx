@@ -4,10 +4,10 @@ import { Button, Form } from "react-bootstrap";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import FormTitle from "binar/components/molecules/FormTitle";
-import { styledForm } from "binar/constants/emotion/FormControl.style";
+import { styledForm } from "binar/styles/emotion/FormControl.style";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { styledLink } from "binar/constants/emotion/Link.style";
+import { styledLink } from "binar/styles/emotion/Link.style";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import {
   resendButton,
@@ -15,7 +15,7 @@ import {
   styledOTPLayout,
   timerLayout,
   verifText,
-} from "binar/constants/emotion/Verification.style";
+} from "binar/styles/emotion/Verification.style";
 import { verificationUser } from "binar/pages/api/v1/verification";
 
 const VerificationForm: React.FC = () => {

@@ -1,11 +1,11 @@
 import theme from "binar/constants";
-import { forgotPasswordStyle } from "binar/constants/emotion/FormControl.style";
+import { forgotPasswordStyle } from "binar/styles/emotion/FormControl.style";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "react-bootstrap";
 import { footerData } from "binar/constants/footerData";
-import { styledNeutralLink } from "binar/constants/emotion/Link.style";
-import { StyledFooter } from "binar/constants/emotion/Footers.style";
+import { styledNeutralLink } from "binar/styles/emotion/Link.style";
+import { StyledFooter } from "binar/styles/emotion/Footers.style";
 const Footers = () => {
   const currentYear = new Date().getFullYear();
 

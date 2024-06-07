@@ -3,8 +3,8 @@ import {
   BgAuth,
   StyledRegister,
   welcomeTextStyle,
-} from "binar/constants/emotion/register.style";
-import { styledFormLayout } from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/register.style";
+import { styledFormLayout } from "binar/styles/emotion/FormControl.style";
 
 import LoginForm from "binar/components/organisms/LoginForm";
 
@@ -15,7 +15,7 @@ const login = () => {
         <Image
           src="/assets/images/auth-bg 1.svg"
           width={181}
-          height={1024}
+          height={700}
           alt="auth-bg 1"
           className={`${BgAuth} `}
         />

@@ -1,5 +1,6 @@
 import { css } from "@emotion/css";
 import theme from "binar/constants";
+import { BsPrefixComponent } from "react-bootstrap/esm/helpers";
 
 export const styledFrame = css({
   padding: "14px",
@@ -47,3 +48,16 @@ export const styledFeedFrame = css({
     maxWidth: "327px",
   },
 });
+
+export const styledMyPostFrame = css({
+  display: "flex",
+  flexDirection: "column",
+  padding: "20px",
+  borderRadius: "20px",
+  height: "auto",
+  width: "338px",
+  background: "#fff",
+  boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",
+});
+
+export const styledAccordionHeader = css({});

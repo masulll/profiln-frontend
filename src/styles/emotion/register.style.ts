@@ -4,6 +4,7 @@ import theme from "binar/constants";
 export const BgAuth = css({
   height: "100%",
   minHeight: "100vh",
+  overflowY: "hidden",
   objectFit: "cover",
   position: "absolute",
   left: 0,

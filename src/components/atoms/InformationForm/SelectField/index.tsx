@@ -1,7 +1,7 @@
 import React, { FocusEventHandler } from "react";
 import { InputGroup, Form } from "react-bootstrap";
-import { StyledSelectInput } from "binar/constants/emotion/DataForm.style";
-import { styledErrorText } from "binar/constants/emotion/FormControl.style";
+import { StyledSelectInput } from "binar/styles/emotion/DataForm.style";
+import { styledErrorText } from "binar/styles/emotion/FormControl.style";
 
 interface Props {
   title: string;

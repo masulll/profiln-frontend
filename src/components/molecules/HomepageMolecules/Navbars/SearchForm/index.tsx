@@ -1,10 +1,10 @@
 import { Nav, Form } from "react-bootstrap";
 import Image from "next/image";
-import { Wrapper } from "binar/constants/emotion/FormControl.style";
+import { Wrapper } from "binar/styles/emotion/FormControl.style";
 import {
   styledSearchInput,
   IconSearchStyling,
-} from "binar/constants/emotion/Navbars.style";
+} from "binar/styles/emotion/Navbars.style";
 const SearchForm: React.FC = () => {
   return (
     <Nav className={`mx-auto ${Wrapper} `}>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { styledTextDisabled } from "binar/constants/emotion/TipsComponent.style";
+import { styledTextDisabled } from "binar/styles/emotion/TipsComponent.style";
 import theme from "binar/constants";
 
 interface Props {

@@ -3,7 +3,7 @@ import {
   styledForm,
   OrWithLineStyle,
   OrTextStyle,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import FormTitle from "binar/components/molecules/FormTitle";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";

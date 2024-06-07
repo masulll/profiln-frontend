@@ -4,8 +4,8 @@ import {
   BgAuth,
   StyledRegister,
   welcomeTextStyle,
-} from "binar/constants/emotion/register.style";
-import { styledFormLayout } from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/register.style";
+import { styledFormLayout } from "binar/styles/emotion/FormControl.style";
 const register = () => {
   return (
     <>

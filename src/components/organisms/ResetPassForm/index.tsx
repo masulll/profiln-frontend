@@ -1,4 +1,4 @@
-import { styledForm } from "binar/constants/emotion/FormControl.style";
+import { styledForm } from "binar/styles/emotion/FormControl.style";
 
 import ResetPassInput from "binar/components/molecules/ResetPassInput";
 const ResetPassForm: React.FC = () => {

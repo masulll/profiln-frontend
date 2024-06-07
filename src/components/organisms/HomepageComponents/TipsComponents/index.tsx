@@ -2,7 +2,7 @@ import { OutlineButton } from "binar/components/atoms/Buttons";
 import {
   styledForm,
   styledTextDisabled,
-} from "binar/constants/emotion/TipsComponent.style";
+} from "binar/styles/emotion/TipsComponent.style";
 import Image from "next/image";
 const TipsComponent: React.FC = () => {
   return (

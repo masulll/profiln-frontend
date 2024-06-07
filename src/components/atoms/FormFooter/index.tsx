@@ -2,7 +2,7 @@ import { css } from "@emotion/css";
 import {
   FooterLinkForm,
   TextFooterForm,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import Link from "next/link";
 
 const FooterLink = css`

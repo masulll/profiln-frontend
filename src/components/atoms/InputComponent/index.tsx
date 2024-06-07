@@ -6,7 +6,7 @@ import {
   Wrapper,
   styledErrorText,
   IconStyling,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import Image from "next/image";
 import Labels from "../labels";
 interface Props {

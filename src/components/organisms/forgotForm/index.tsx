@@ -1,4 +1,4 @@
-import { styledForm } from "binar/constants/emotion/FormControl.style";
+import { styledForm } from "binar/styles/emotion/FormControl.style";
 import FormTitle from "binar/components/molecules/FormTitle";
 
 import ForgetInput from "binar/components/molecules/ForgetInput";

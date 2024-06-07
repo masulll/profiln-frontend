@@ -8,7 +8,7 @@ import {
   styledErrorText,
   forgotPasswordStyle,
   styledWrappercheckbox,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import Link from "next/link";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";

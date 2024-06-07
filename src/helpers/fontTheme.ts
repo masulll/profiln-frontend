@@ -21,4 +21,6 @@ const causten = localFont({
   variable: "--font-Causten",
 });
 
-export { causten };
+export const fontTheme = {
+  causten: causten,
+};

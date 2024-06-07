@@ -6,7 +6,7 @@ import {
   activeLink,
   noCaret,
   styledNavbar,
-} from "binar/constants/emotion/Navbars.style";
+} from "binar/styles/emotion/Navbars.style";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";

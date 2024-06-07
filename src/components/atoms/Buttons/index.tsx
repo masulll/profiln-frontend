@@ -5,14 +5,14 @@ import {
   StyledOutlineButton,
   StyledPillButton,
   activePillButton,
-} from "binar/constants/emotion/Button.style";
-import { CustomButtonPrimary } from "binar/constants/emotion/Button.style";
-import { CustomButtonWithIcon } from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/Button.style";
+import { CustomButtonPrimary } from "binar/styles/emotion/Button.style";
+import { CustomButtonWithIcon } from "binar/styles/emotion/FormControl.style";
 import Image from "next/image";
 import { Button } from "react-bootstrap";
 import { ThreeDots } from "react-loader-spinner";
 import theme from "binar/constants";
-import { styledIconDefault } from "binar/constants/emotion/Link.style";
+import { styledIconDefault } from "binar/styles/emotion/Link.style";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 interface Props {
   buttonText: string;
@@ -25,6 +25,9 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   iconSrc?: string;
   iconSrcActive?: string;
+  width?: string;
+  height?: string;
+  className?: string;
 }
 
 const PrimaryButton: React.FC<Props> = ({
@@ -32,16 +35,22 @@ const PrimaryButton: React.FC<Props> = ({
   type,
   disabled,
   isSubmitting = false,
+  width,
+  height,
+  className,
 }) => {
-  const StyledButton = css`
-    ${CustomButtonPrimary};
-    width: 100%;
-    height: 3.25rem;
-  `;
+  const ButtonLayout = css({
+    width: width ? width : "100%",
+    height: height ? height : "3.25rem",
+  });
 
   return (
     <>
-      <Button className={`${StyledButton}`} type={type} disabled={disabled}>
+      <Button
+        className={`${CustomButtonPrimary} ${ButtonLayout} ${className}`}
+        type={type}
+        disabled={disabled}
+      >
         {isSubmitting ? (
           <div style={{ display: "flex", justifyContent: "center" }}>
             <ThreeDots
@@ -176,8 +185,15 @@ const IconCountButton: React.FC<Props> = ({
   iconSrcActive,
 }) => {
   return (
-    <button className={`${styledIconDefault} d-inline-flex `}>
-      <Image src={`${iconSrc}`} width={28} height={28} alt="" />
+    <button className={`${styledIconDefault} `}>
+      <Image
+        src={`${iconSrc}`}
+        width={28}
+        height={28}
+        alt={buttonText}
+        style={{ fill: "#933393" }}
+      />
+
       <p
         style={{
           fontSize: "18px",

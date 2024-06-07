@@ -1,7 +1,7 @@
 import {
   StyledDescription,
   StyledTitle,
-} from "binar/constants/emotion/DataForm.style";
+} from "binar/styles/emotion/DataForm.style";
 
 interface Props {
   title: string;
