@@ -1,14 +1,28 @@
-import { IconCountButton } from "binar/components/atoms/Buttons";
+import { useState, useRef } from "react";
 import ProfileLink from "binar/components/molecules/HomepageMolecules/Navbars/ProfileLink";
 import theme from "binar/constants";
-import { styledIconDefault, styledLink } from "binar/styles/emotion/Link.style";
+import { styledIconDefault } from "binar/styles/emotion/Link.style";
 import { styledFeedFrame } from "binar/styles/emotion/PostFrame.style";
 import { styledTextDisabled } from "binar/styles/emotion/TipsComponent.style";
-import { IconComment, IconLike, IconRepost, IconShare } from "binar/helpers";
-import Image from "next/image";
-import { useState } from "react";
+import {
+  IconComment,
+  IconLike,
+  IconMore,
+  IconPencil,
+  IconRepost,
+  IconShare,
+  IconSocialShare,
+  IconTablerFlag,
+  IconTrash,
+} from "binar/helpers";
+import { useRouter } from "next/router";
+import { Popover, Overlay, Tooltip } from "react-bootstrap";
 
 const FeedsFrame = () => {
+  const router = useRouter();
+  const [show, setShow] = useState(false);
+  const [target, setTarget] = useState(null);
+  const ref = useRef(null);
   const fullText = `
   I find this flow particularly intriguing for redesign due to numerous improvement opportunities. Moreover, I believe that optimizing this pathway is crucial for marketing goals, given that the ‘Getting Started’ process significantly influences user engagement and retention. By refining this initial interaction, we can enhance user satisfaction, reduce churn rates, and ultimately drive higher conversion rates. This optimization is not just about aesthetics or user interface improvements, but also involves streamlining the steps, providing clear guidance, and ensuring that users immediately see the value our service offers. Thus, a well-thought-out redesign of this flow could have a profound impact on our overall business performance.`;
 
@@ -16,6 +30,10 @@ const FeedsFrame = () => {
   const truncatedText = fullText.substring(0, truncatedLength) + "...";
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const handleClick = (event: any) => {
+    setShow(!show);
+    setTarget(event.target);
+  };
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -28,14 +46,62 @@ const FeedsFrame = () => {
     >
       <div className="d-flex justify-content-between">
         <ProfileLink showDate={true} />
-        <button className={`${styledLink}`}>
-          <Image
-            src={"/assets/icons/ri_more-fill.svg"}
-            width={28}
-            height={28}
-            alt=""
-          />
-        </button>
+        <div ref={ref}>
+          <button
+            css={{
+              height: "24px",
+              backgroundColor: "transparent",
+              border: "none",
+            }}
+            ref={target}
+            onClick={handleClick}
+          >
+            <IconMore />
+          </button>
+
+          <Overlay
+            show={show}
+            target={target}
+            placement="bottom"
+            container={ref}
+            containerPadding={30}
+          >
+            <Popover id="popover-contained">
+              <Popover.Body className="d-flex flex-column justify-content-center">
+                {router.pathname === "/my_post" ? (
+                  <>
+                    <div
+                      role="button"
+                      css={{
+                        display: "inline-flex",
+
+                        paddingX: "30px",
+                      }}
+                    >
+                      <IconPencil css={{ marginRight: "5px" }} />
+                      <p>Edit Posting</p>
+                    </div>
+                    <div role="button" css={{ display: "flex" }}>
+                      <IconTrash css={{ marginRight: "5px" }} />
+                      <p>Hapus posting</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div role="button" css={{ display: "flex" }}>
+                      <IconSocialShare css={{ marginRight: "5px" }} />
+                      <p>Bagikan posting</p>
+                    </div>
+                    <div role="button" css={{ display: "flex" }}>
+                      <IconTablerFlag css={{ marginRight: "5px" }} />
+                      <p>Laporkan posting</p>
+                    </div>
+                  </>
+                )}
+              </Popover.Body>
+            </Popover>
+          </Overlay>
+        </div>
       </div>
       <div className="d-flex flex-column container text-wrap">
         <h3 style={{ fontSize: "24px", fontWeight: "700" }}>
