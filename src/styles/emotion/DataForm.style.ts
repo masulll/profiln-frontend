@@ -24,7 +24,7 @@ export const styledFormLayout = css({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  marginTop: "100px",
+  justifyContent: "center",
   paddingLeft: 0,
   paddingRight: 0,
   minHeight: "100vh",
@@ -60,7 +60,6 @@ export const StyledInputGroup = css({
     boxShadow: `0 0 0 1px ${theme.colors.primary}`,
   },
 });
-
 export const StyledPhoneInput = css({
   fontFamily: `${theme.fonts.body}`,
   fontSize: "14px",
