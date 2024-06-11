@@ -16,3 +16,5 @@ interface resetPassData {
   email: string;
   password: string;
 }
+
+interface PersonalDataProps {}
