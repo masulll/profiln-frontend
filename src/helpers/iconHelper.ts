@@ -13,6 +13,11 @@ import IconUser from "/public/assets/icons/ph_user-bold.svg";
 import IconMore from "/public/assets/icons/ri_more-fill.svg";
 import IconSearch from "/public/assets/icons/Search.svg";
 import IconShare from "/public/assets/icons/uil_share.svg";
+import IconPostIt from "/public/assets/icons/mdi_post-it-note.svg";
+import IconPencil from "/public/assets/icons/IconPencil.svg";
+import IconTrash from "/public/assets/icons/IconTrash.svg";
+import IconSocialShare from "/public/assets/icons/Share.svg";
+import IconTablerFlag from "/public/assets/icons/tabler_flag.svg";
 
 export {
   IconImage,
@@ -30,4 +35,9 @@ export {
   IconMore,
   IconSearch,
   IconShare,
+  IconPostIt,
+  IconPencil,
+  IconTrash,
+  IconSocialShare,
+  IconTablerFlag,
 };

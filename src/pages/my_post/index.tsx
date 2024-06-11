@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { LinkStyling } from "binar/styles/emotion/Navbars.style";
+
 import FeedsFrame from "binar/components/organisms/HomepageComponents/FeedsFrame";
 import { styledMyPostFrame } from "binar/styles/emotion/PostFrame.style";
-import Link from "next/link";
-import Image from "next/image";
+
 import { Accordion } from "react-bootstrap";
 import { accordionLink } from "binar/styles/emotion/Link.style";
+import { IconBook, IconPencil, IconPostIt, IconTrash } from "binar/helpers";
 export default function my_Post() {
   const router = useRouter();
   const { data } = useSession();
@@ -27,12 +27,7 @@ export default function my_Post() {
         >
           <Accordion.Item eventKey="0" style={{ border: "none" }}>
             <Accordion.Header style={{ fontSize: "18px" }}>
-              <Image
-                src={"/assets/icons/mdi_post-it-note.svg"}
-                width="28"
-                height="28"
-                alt="home"
-              />
+              <IconPostIt css={{ marginRight: "10px" }} />
               Postingan
             </Accordion.Header>
             <Accordion.Body className="d-flex flex-column align-items-start">
@@ -70,13 +65,7 @@ export default function my_Post() {
               }}
               className={`${accordionLink} mx-3 `}
             >
-              <Image
-                src={"/assets/icons/Book.svg"}
-                width="28"
-                height="28"
-                className="gap-2"
-                alt="home"
-              />
+              <IconBook css={{ marginLeft: "4px", marginRight: "10px" }} />
               Portofolio
             </button>
           </Accordion.Item>

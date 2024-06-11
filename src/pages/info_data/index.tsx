@@ -16,7 +16,6 @@ const tabStyles = css`
     font-weight: bold;
     background-color: transparent;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     margin-top: 10px;
   }
@@ -50,7 +49,7 @@ const progressBarStyles = css`
 const tabWrapperStyles = css`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
 `;
