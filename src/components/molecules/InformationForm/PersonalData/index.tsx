@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   boldDescription,
   styledForm,
@@ -10,14 +10,13 @@ import SelectField from "binar/components/atoms/InformationForm/SelectField";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form } from "react-bootstrap";
 
-const PersonalData = () => {
+const PersonalData: React.FC<PersonalDataProps> = () => {
   return (
     <>
       <div className={`${styledForm} `}>
         <TitleForm
           title={"Pengisian Data Diri"}
-          description="Yuk, mari isi formulir pengisian data diri untuk memulai pengalamanmu
-        dengan kami."
+          description="Yuk, mari isi formulir pengisian data diri untuk memulai pengalamanmu dengan kami."
         />
         <InputField
           title="Nama Lengkap"
@@ -65,6 +64,7 @@ const PersonalData = () => {
           width="20%"
           height="39px"
           css={{ marginRight: "0px", marginLeft: "auto" }}
+          type="submit"
         />
       </div>
     </>
