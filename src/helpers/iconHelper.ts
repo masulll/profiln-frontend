@@ -13,6 +13,7 @@ import IconUser from "/public/assets/icons/ph_user-bold.svg";
 import IconMore from "/public/assets/icons/ri_more-fill.svg";
 import IconSearch from "/public/assets/icons/Search.svg";
 import IconShare from "/public/assets/icons/uil_share.svg";
+import IconPostIt from "/public/assets/icons/mdi_post-it-note.svg";
 
 export {
   IconImage,
@@ -30,4 +31,5 @@ export {
   IconMore,
   IconSearch,
   IconShare,
+  IconPostIt,
 };
