@@ -11,7 +11,7 @@ import SelectField from "binar/components/atoms/InformationForm/SelectField";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form } from "react-bootstrap";
 
-const PersonalData = () => {
+const WorkHistory = () => {
   return (
     <>
       <div className={`${styledForm} `}>
@@ -22,20 +22,13 @@ const PersonalData = () => {
         />
         <Form>
           <InputField
-            title="Nama Lengkap"
-            name="fullname"
+            title="Nama Perkerjaan Anda"
+            name="jobtitle"
             type="text"
             value=""
             placeholder=""
           />
-          <InputField
-            title="Email"
-            name="email"
-            type="text"
-            value=""
-            placeholder=""
-          />
-          <PhoneNumInput />
+
           <SelectField
             title="Jenis Kelamin"
             name="gender"
@@ -80,4 +73,4 @@ const PersonalData = () => {
   );
 };
 
-export default PersonalData;
+export default WorkHistory;

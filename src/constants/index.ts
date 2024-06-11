@@ -33,4 +33,20 @@ const theme = {
   },
 } as const;
 
+export enum WORK_TYPE {
+  ON_SITE = "On - Site",
+  REMOTE = "Remote",
+  HYBRID = "Hybrid",
+}
+
+export enum JOB_TYPE {
+  FULL_TIME = "Full-Time",
+  PART_TIME = "Part-Time",
+  CONTRACT = "Contract",
+  FREELANCE = "Freelance",
+  INTERNSHIP = "Internship",
+  APPRENTICESHIP = "Apprenticeship",
+  SEASONAL = "Seasonal",
+}
+
 export default theme;

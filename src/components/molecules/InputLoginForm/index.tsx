@@ -147,6 +147,9 @@ const InputLoginForm: React.FC = () => {
                 type="submit"
                 disabled={!isValid || !dirty}
                 isSubmitting={isSubmitting}
+                width=""
+                height=""
+                padding=""
               />
             </Form.Group>
             <div className="mb-3">

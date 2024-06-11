@@ -22,32 +22,6 @@ export const StyledInputGroup = css`
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
 `;
 
-export const CustomButtonPrimary = css`
-  background-color: ${theme.colors.primary};
-  font-family: ${theme.fonts.utility};
-
-  &:disabled {
-    background-color: ${theme.neutral_colors.grayscale_50};
-  }
-  &:hover {
-    background-color: ${theme.colors.primary};
-  }
-  &:active {
-    background-color: ${theme.colors.primary} !important;
-    opacity: 0.8;
-  }
-  color: white;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border-radius: 0.25rem;
-  text-align: center;
-  width: 100%;
-  height: 3.25rem;
-  border: none;
-`;
-
 export const StyledResetLink = css`
   background-color: ${theme.colors.primary};
   font-family: ${theme.fonts.heading};
@@ -70,26 +44,6 @@ export const StyledResetLink = css`
   width: 100%;
   height: 3.25rem;
   border: none;
-`;
-
-export const CustomButtonWithIcon = css`
-  background: #4285f4;
-  width: 100%;
-  height: 3.25rem;
-  border: none;
-  border-radius: 0.25rem;
-  border: none;
-  font-family: ${theme.fonts.utility};
-  color: ${theme.text_colors.white};
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-align: center;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
 `;
 
 export const styledWrappercheckbox = css({

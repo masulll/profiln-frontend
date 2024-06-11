@@ -1,5 +1,5 @@
-import { css, cx } from "@emotion/css";
-
+import { css } from "@emotion/react";
+import { cx } from "@emotion/css";
 import styled from "@emotion/styled";
 import {
   StyledOutlineButton,
@@ -7,13 +7,12 @@ import {
   activePillButton,
 } from "binar/styles/emotion/Button.style";
 import { CustomButtonPrimary } from "binar/styles/emotion/Button.style";
-import { CustomButtonWithIcon } from "binar/styles/emotion/FormControl.style";
+import { CustomButtonWithIcon } from "binar/styles/emotion/Button.style";
 import Image from "next/image";
 import { Button } from "react-bootstrap";
 import { ThreeDots } from "react-loader-spinner";
 import theme from "binar/constants";
 import { styledIconDefault } from "binar/styles/emotion/Link.style";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 interface Props {
   buttonText: string;
   buttonIcon?: string;
@@ -25,8 +24,9 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   iconSrc?: string;
   iconSrcActive?: string;
-  width?: string;
-  height?: string;
+  width?: string | undefined;
+  height?: string | undefined;
+  padding?: string | undefined;
   className?: string;
 }
 
@@ -37,17 +37,14 @@ const PrimaryButton: React.FC<Props> = ({
   isSubmitting = false,
   width,
   height,
+  padding,
   className,
 }) => {
-  const ButtonLayout = css({
-    width: width ? width : "100%",
-    height: height ? height : "3.25rem",
-  });
-
   return (
     <>
       <Button
-        className={`${CustomButtonPrimary} ${ButtonLayout} ${className}`}
+        className={` ${className}`}
+        css={CustomButtonPrimary({ padding, width, height })}
         type={type}
         disabled={disabled}
       >
@@ -77,13 +74,9 @@ const ButtonWithIcon: React.FC<Props> = ({
   buttonIcon,
   onClick,
 }) => {
-  const StyledButtonWithIcon = css`
-    ${CustomButtonWithIcon}
-  `;
-
   return (
     <>
-      <Button className={`${StyledButtonWithIcon}`} onClick={onClick}>
+      <Button css={CustomButtonWithIcon} onClick={onClick}>
         <span>
           <Image
             src={`${buttonIcon}`}
@@ -103,30 +96,18 @@ const OutlineButton: React.FC<Props> = ({
   type,
   disabled,
   isSubmitting = false,
+  padding,
+  width,
+  height,
 }) => {
   return (
     <>
       <Button
-        className={`${StyledOutlineButton}`}
+        css={StyledOutlineButton({ padding, width, height })}
         type={type}
         disabled={disabled}
       >
-        {isSubmitting ? (
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <ThreeDots
-              visible={true}
-              height="50"
-              width="50"
-              color="#fff"
-              radius="9"
-              ariaLabel="three-dots-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-            />
-          </div>
-        ) : (
-          buttonText
-        )}
+        {buttonText}
       </Button>
     </>
   );
@@ -136,7 +117,8 @@ const PillButton: React.FC<Props> = ({ buttonText, type, active, onClick }) => {
   return (
     <>
       <Button
-        className={cx(StyledPillButton, { [activePillButton]: active })}
+        // className={cx(StyledPillButton, { [activePillButton]: active })}
+        css={[StyledPillButton, active && activePillButton]}
         type={type}
         active={active}
         onClick={onClick}
