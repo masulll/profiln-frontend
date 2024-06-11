@@ -6,7 +6,7 @@ import {
 } from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
 import InputField from "binar/components/atoms/InformationForm/InputField";
-import PhoneNumInput from "binar/components/atoms/InformationForm/PhoneNumber";
+
 import SelectField from "binar/components/atoms/InformationForm/SelectField";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form } from "react-bootstrap";
