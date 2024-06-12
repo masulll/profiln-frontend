@@ -49,7 +49,7 @@ const AboutMe = () => {
               width="111px"
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}
-              disabled={countWord === 2500 ? false : true}
+              disabled={countWord > 0 ? false : true}
             />
           </div>
         </Form>

@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { styledForm } from "binar/styles/emotion/DataForm.style";
+import React, { useState } from "react";
+import {
+  StyledInputGroup,
+  boldDescription,
+  styledForm,
+} from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
 import InputField from "binar/components/atoms/InformationForm/InputField";
-import { customDatePickerStyles } from "binar/styles/emotion/DataForm.style";
+import { css } from "@emotion/react";
 import SelectField from "binar/components/atoms/InformationForm/SelectField";
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form, InputGroup } from "react-bootstrap";
@@ -10,11 +14,12 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import theme from "binar/constants";
+import { customDatePickerStyles } from "binar/styles/emotion/DataForm.style";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const WorkHistory = () => {
+const Education: React.FC = () => {
   const [value, onChange] = useState<Value>(null);
   const [value2, onChange2] = useState<Value>(null);
   const [value3, onChange3] = useState<Value>(null);
@@ -24,37 +29,37 @@ const WorkHistory = () => {
     <>
       <div className={`${styledForm} my-3 `}>
         <TitleForm
-          title={"Pengalaman Kerja"}
-          description="Mari ceritakan tentang pekerjaan Anda! Bagikan pengalaman, pencapaian, dan tanggung jawab Anda di posisi tersebut. Semua informasi ini akan membantu membuat profil Anda lebih menarik dan informatif."
+          title={"Pendidikan"}
+          description="Beritahu latar pendidikan terakhir Anda dengan kami untuk mengetahui lebih jauh tentang Institusi sampai dengan lamanya anda menempuh pendidikan."
         />
         <Form>
           <InputField
-            title="Nama Perkerjaan Anda"
-            name="jobtitle"
+            title="Nama Institusi"
+            name="institution"
             type="text"
             value=""
-            placeholder="Masukan nama pekerjaan anda"
-          />
-          <InputField
-            title="Nama Perusahaan Anda"
-            name="company"
-            type="text"
-            value=""
-            placeholder="Masukkan Nama Perusahaan Anda"
+            placeholder="cth: Harvard University"
           />
 
           <SelectField
-            title="Jenis Pekerjaan Anda"
-            name="work-type"
-            placeholder="Jenis Pekerjaan Anda"
+            title="Tingkat Pendidikan"
+            name="education_level"
+            placeholder="cth: Sarjana"
             value=" "
           />
           <InputField
-            title="Lokasi Perusahaan Anda"
-            name="location"
+            title="Bidang Studi"
+            name="education_major"
             type="text"
             value=""
-            placeholder="Masukan lokasi anda bekerja"
+            placeholder="cth: Ilmu Komputer"
+          />
+          <InputField
+            title="Nilai/ IPK"
+            name="education_gpa"
+            type="number"
+            value={3.5}
+            placeholder="cth: 3.50"
           />
 
           <div>
@@ -99,7 +104,7 @@ const WorkHistory = () => {
               <Form.Check
                 type="checkbox"
                 id={`default-checkbox`}
-                label={`Saat ini saya sedang mengerjakan pekerjaan ini`}
+                label={`Saat ini saya sedang menempuh pendidikan ini`}
                 css={{
                   label: { fontSize: "14px" },
                   ".form-check-input:checked": {
@@ -143,8 +148,8 @@ const WorkHistory = () => {
             </Form.Group>
           </div>
           <p css={{ fontSize: "14px", fontWeight: "600", textAlign: "center" }}>
-            Anda dapat melengkapi informasi Pengalaman Kerja tersebut nanti di
-            halaman Profile.
+            Anda dapat melengkapi informasi Pendidikan tersebut nanti di halaman
+            Profile.
           </p>
           <div className="d-flex justify-content-end">
             <OutlineButton buttonText="Kembali" width="111px" height="39px" />
@@ -162,4 +167,4 @@ const WorkHistory = () => {
   );
 };
 
-export default WorkHistory;
+export default Education;

@@ -7,7 +7,7 @@ interface Props {
   title: string;
   name: string;
   type: string;
-  value: string;
+  value: string | number;
   placeholder: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
@@ -24,9 +24,7 @@ const InputField: React.FC<Props> = ({
   onChange,
   onBlur,
   value,
-
   isInvalid,
-
   errorText,
   className,
 }) => {

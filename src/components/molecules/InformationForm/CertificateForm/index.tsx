@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { styledForm } from "binar/styles/emotion/DataForm.style";
+import React, { useState } from "react";
+import {
+  StyledInputGroup,
+  boldDescription,
+  styledForm,
+} from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
 import InputField from "binar/components/atoms/InformationForm/InputField";
-import { customDatePickerStyles } from "binar/styles/emotion/DataForm.style";
+import { css } from "@emotion/react";
 import SelectField from "binar/components/atoms/InformationForm/SelectField";
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form, InputGroup } from "react-bootstrap";
@@ -10,11 +14,12 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import theme from "binar/constants";
+import { customDatePickerStyles } from "binar/styles/emotion/DataForm.style";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const WorkHistory = () => {
+const CertificateForm: React.FC = () => {
   const [value, onChange] = useState<Value>(null);
   const [value2, onChange2] = useState<Value>(null);
   const [value3, onChange3] = useState<Value>(null);
@@ -24,43 +29,37 @@ const WorkHistory = () => {
     <>
       <div className={`${styledForm} my-3 `}>
         <TitleForm
-          title={"Pengalaman Kerja"}
-          description="Mari ceritakan tentang pekerjaan Anda! Bagikan pengalaman, pencapaian, dan tanggung jawab Anda di posisi tersebut. Semua informasi ini akan membantu membuat profil Anda lebih menarik dan informatif."
+          title={"Sertifikat"}
+          description="Tunjukkan sertifikat yang anda miliki sesuai dengan bidang yang Anda kuasai untuk meyakinkan anda memiliki kemampuan di bidang tersebut"
         />
         <Form>
           <InputField
-            title="Nama Perkerjaan Anda"
-            name="jobtitle"
+            title="Nama Sertifikat"
+            name="certificate_name"
             type="text"
             value=""
-            placeholder="Masukan nama pekerjaan anda"
+            placeholder="cth: Fundamental of Digital Marketing"
           />
           <InputField
-            title="Nama Perusahaan Anda"
-            name="company"
+            title="Organisasi Penerbit"
+            name="certificate_publisher"
             type="text"
             value=""
-            placeholder="Masukkan Nama Perusahaan Anda"
+            placeholder="cth: Google"
           />
 
-          <SelectField
-            title="Jenis Pekerjaan Anda"
-            name="work-type"
-            placeholder="Jenis Pekerjaan Anda"
-            value=" "
-          />
           <InputField
-            title="Lokasi Perusahaan Anda"
-            name="location"
+            title="ID Kredensial (opsional)"
+            name="certificate_credentials_id"
             type="text"
             value=""
-            placeholder="Masukan lokasi anda bekerja"
+            placeholder=""
           />
 
           <div>
             <Form.Group className="my-3">
               <Form.Label style={{ fontSize: "12px" }}>
-                Tanggal Mulai
+                Tanggal Diterbitkan
               </Form.Label>
               <div className={customDatePickerStyles}>
                 <DatePicker
@@ -99,7 +98,7 @@ const WorkHistory = () => {
               <Form.Check
                 type="checkbox"
                 id={`default-checkbox`}
-                label={`Saat ini saya sedang mengerjakan pekerjaan ini`}
+                label={`Sertifikat tidak memiliki tanggal kadaluwarsa`}
                 css={{
                   label: { fontSize: "14px" },
                   ".form-check-input:checked": {
@@ -108,7 +107,7 @@ const WorkHistory = () => {
                 }}
               />
               <Form.Label style={{ fontSize: "12px" }}>
-                Tanggal Berakhir
+                Tanggal Kadaluwarsa (opsional)
               </Form.Label>
 
               <div className={customDatePickerStyles}>
@@ -142,10 +141,14 @@ const WorkHistory = () => {
               </InputGroup>
             </Form.Group>
           </div>
-          <p css={{ fontSize: "14px", fontWeight: "600", textAlign: "center" }}>
-            Anda dapat melengkapi informasi Pengalaman Kerja tersebut nanti di
-            halaman Profile.
-          </p>
+          <InputField
+            title="Link Sertifikat (opsional)"
+            name="certificate_url"
+            type="text"
+            value=""
+            placeholder=""
+          />
+
           <div className="d-flex justify-content-end">
             <OutlineButton buttonText="Kembali" width="111px" height="39px" />
 
@@ -162,4 +165,4 @@ const WorkHistory = () => {
   );
 };
 
-export default WorkHistory;
+export default CertificateForm;

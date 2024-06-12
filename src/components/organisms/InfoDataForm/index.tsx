@@ -1,4 +1,6 @@
 import AboutMe from "binar/components/molecules/InformationForm/AboutMe";
+import CertificateForm from "binar/components/molecules/InformationForm/CertificateForm";
+import Education from "binar/components/molecules/InformationForm/Education";
 import PersonalData from "binar/components/molecules/InformationForm/PersonalData";
 import WorkHistory from "binar/components/molecules/InformationForm/WorkHistory";
 import theme from "binar/constants";
@@ -10,7 +12,9 @@ const InfoDataForm = () => {
     <div className="">
       {/* <PersonalData /> */}
       {/* <AboutMe /> */}
-      <WorkHistory />
+      {/* <WorkHistory /> */}
+      {/* <Education /> */}
+      <CertificateForm />
     </div>
   );
 };
