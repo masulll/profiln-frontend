@@ -31,6 +31,9 @@ const theme = {
     grayscale_90: "#404040",
     grayscale_100: "#0A0A0A",
   },
+  hover_color: {
+    primary: "#f2a0f2",
+  },
 } as const;
 
 export enum WORK_TYPE {
