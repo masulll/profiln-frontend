@@ -9,11 +9,12 @@ import PhoneNumInput from "binar/components/atoms/InformationForm/PhoneNumber";
 import SelectField from "binar/components/atoms/InformationForm/SelectField";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form } from "react-bootstrap";
+import { GENDER } from "binar/constants";
 
 const PersonalData: React.FC<PersonalDataProps> = () => {
   return (
     <>
-      <div className={`${styledForm} `}>
+      <div className={`${styledForm} my-3 `}>
         <TitleForm
           title={"Pengisian Data Diri"}
           description="Yuk, mari isi formulir pengisian data diri untuk memulai pengalamanmu dengan kami."
@@ -36,6 +37,7 @@ const PersonalData: React.FC<PersonalDataProps> = () => {
         <SelectField
           title="Jenis Kelamin"
           name="gender"
+          options={GENDER}
           placeholder="Pilih jenis kelamin"
           value=" "
         />

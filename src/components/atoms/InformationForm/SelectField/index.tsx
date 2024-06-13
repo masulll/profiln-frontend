@@ -2,12 +2,13 @@ import React, { FocusEventHandler } from "react";
 import { InputGroup, Form } from "react-bootstrap";
 import { StyledSelectInput } from "binar/styles/emotion/DataForm.style";
 import { styledErrorText } from "binar/styles/emotion/FormControl.style";
-
+import { GENDER } from "binar/constants";
 interface Props {
   title: string;
   name: string;
   value: string;
   placeholder: string;
+  options: { [key: string]: string };
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
   isInvalid?: boolean;
@@ -21,9 +22,8 @@ const SelectField: React.FC<Props> = ({
   onChange,
   onBlur,
   value,
-
+  options,
   isInvalid,
-
   errorText,
 }) => {
   return (
@@ -37,8 +37,11 @@ const SelectField: React.FC<Props> = ({
             className={`${StyledSelectInput}`}
           >
             <option>{placeholder}</option>
-            <option value="1">Pria</option>
-            <option value="2">Wanita</option>
+            {Object.values(options).map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </Form.Select>
           <Form.Control.Feedback
             type="invalid"

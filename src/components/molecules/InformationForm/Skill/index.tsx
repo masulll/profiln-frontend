@@ -80,7 +80,6 @@ const Skill = () => {
           />
           <div className="d-flex">
             <OutlineButton buttonText="Kembali" width="111px" height="39px" />
-
             <PrimaryButton
               buttonText="Lanjut"
               width="111px"

@@ -13,7 +13,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import theme from "binar/constants";
+import theme, { EDUCATION_LEVEL } from "binar/constants";
 import { customDatePickerStyles } from "binar/styles/emotion/DataForm.style";
 type ValuePiece = Date | null;
 
@@ -46,6 +46,7 @@ const Education: React.FC = () => {
             name="education_level"
             placeholder="cth: Sarjana"
             value=" "
+            options={EDUCATION_LEVEL}
           />
           <InputField
             title="Bidang Studi"

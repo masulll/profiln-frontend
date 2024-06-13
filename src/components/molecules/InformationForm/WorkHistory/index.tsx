@@ -9,7 +9,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import theme from "binar/constants";
+import theme, { JOB_TYPE, LOCATION_TYPE } from "binar/constants";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -48,6 +48,7 @@ const WorkHistory = () => {
             name="work-type"
             placeholder="Jenis Pekerjaan Anda"
             value=" "
+            options={JOB_TYPE}
           />
           <InputField
             title="Lokasi Perusahaan Anda"
@@ -57,6 +58,13 @@ const WorkHistory = () => {
             placeholder="Masukan lokasi anda bekerja"
           />
 
+          <SelectField
+            title="Masukan Type Lokasi Perkerjaan"
+            name="work-type"
+            placeholder="Masukan type lokasi perkerjaan anda"
+            value=" "
+            options={LOCATION_TYPE}
+          />
           <div>
             <Form.Group className="my-3">
               <Form.Label style={{ fontSize: "12px" }}>

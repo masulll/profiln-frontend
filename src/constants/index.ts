@@ -36,7 +36,7 @@ const theme = {
   },
 } as const;
 
-export enum WORK_TYPE {
+export enum LOCATION_TYPE {
   ON_SITE = "On - Site",
   REMOTE = "Remote",
   HYBRID = "Hybrid",
@@ -50,6 +50,25 @@ export enum JOB_TYPE {
   INTERNSHIP = "Internship",
   APPRENTICESHIP = "Apprenticeship",
   SEASONAL = "Seasonal",
+}
+
+export enum GENDER {
+  PRIA = "Pria",
+  WANITA = "Wanita",
+}
+
+export enum EDUCATION_LEVEL {
+  SARJANA = "Sarjana S-1",
+  MAGISTER = "Magister S-2",
+  DOKTOR = "Doktor S-3",
+  DIPLOMA4 = "Diploma IV",
+  DIPLOMA3 = "Diploma III",
+  DIPLOMA2 = "Diploma II",
+  DIPLOMA1 = "Diploma I",
+  SMA = "SMA",
+  SMK = "SMK",
+  SMP = "SMP",
+  SD = "SD",
 }
 
 export default theme;

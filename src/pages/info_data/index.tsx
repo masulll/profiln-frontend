@@ -155,7 +155,7 @@ const DataInformation: React.FC = () => {
           </div>
           <button
             className={`${styledUnderlineText} position-absolute`}
-            style={{ top: "100px", right: "100px" }}
+            style={{ top: "100px", right: 0 }}
             onClick={() => setActiveTab("tab2")}
             disabled={!formSubmitted.tab1} // Disable button if form not submitted
           >
