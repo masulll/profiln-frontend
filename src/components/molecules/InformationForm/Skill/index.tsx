@@ -81,7 +81,7 @@ const Skill = () => {
           <div className="d-flex">
             <OutlineButton buttonText="Kembali" width="111px" height="39px" />
             <PrimaryButton
-              buttonText="Lanjut"
+              buttonText="Selesai"
               width="111px"
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}

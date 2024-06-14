@@ -9,16 +9,7 @@ import { IconArrowRight } from "binar/helpers";
 import { styledUnderlineText } from "binar/styles/emotion/DataForm.style";
 
 const InfoDataForm = () => {
-  return (
-    <div className="">
-      {/* <PersonalData /> */}
-      {/* <AboutMe /> */}
-      {/* <WorkHistory /> */}
-      {/* <Education /> */}
-      {/* <CertificateForm /> */}
-      <Skill />
-    </div>
-  );
+  return <div className=""></div>;
 };
 
 export default InfoDataForm;

@@ -17,4 +17,19 @@ interface resetPassData {
   password: string;
 }
 
-interface PersonalDataProps {}
+interface TabContextProps {
+  activeTab: string;
+  formSubmitted: { [key: string]: boolean };
+  handleTabChange: (tab: string | null) => void;
+  handleFormSubmit: (tab: string) => void;
+  changeTab: (currentTab: string, direction: "next" | "back") => void;
+}
+
+type FormSubmittedState = {
+  tab1: boolean;
+  tab2: boolean;
+  tab3: boolean;
+  tab4: boolean;
+  tab5: boolean;
+  tab6: boolean;
+};
