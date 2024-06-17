@@ -39,6 +39,7 @@ const PrimaryButton: React.FC<Props> = ({
   height,
   padding,
   className,
+  onClick,
 }) => {
   return (
     <>
@@ -47,6 +48,7 @@ const PrimaryButton: React.FC<Props> = ({
         css={CustomButtonPrimary({ padding, width, height })}
         type={type}
         disabled={disabled}
+        onClick={onClick}
       >
         {isSubmitting ? (
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -99,6 +101,7 @@ const OutlineButton: React.FC<Props> = ({
   padding,
   width,
   height,
+  onClick,
 }) => {
   return (
     <>
@@ -106,6 +109,7 @@ const OutlineButton: React.FC<Props> = ({
         css={StyledOutlineButton({ padding, width, height })}
         type={type}
         disabled={disabled}
+        onClick={onClick}
       >
         {buttonText}
       </Button>

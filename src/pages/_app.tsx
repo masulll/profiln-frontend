@@ -1,3 +1,4 @@
+import { TabProvider } from "binar/contexts/TabContext";
 import Layouts from "binar/layouts";
 import "binar/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,9 +11,11 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Layouts>
-        <Component {...pageProps} />
-      </Layouts>
+      <TabProvider>
+        <Layouts>
+          <Component {...pageProps} />
+        </Layouts>
+      </TabProvider>
     </SessionProvider>
   );
 }

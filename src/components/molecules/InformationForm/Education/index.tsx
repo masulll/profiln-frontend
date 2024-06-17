@@ -19,7 +19,19 @@ type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const Education: React.FC = () => {
+interface Props {
+  handleBack: (tab: string) => void;
+  handleNext: (tab: string) => void;
+}
+const Education: React.FC<Props> = ({ handleBack, handleNext }) => {
+  const handleGoBack = () => {
+    handleBack("tab3");
+  };
+
+  const handleNextForm = () => {
+    handleNext("tab4");
+  };
+
   const [value, onChange] = useState<Value>(null);
   const [value2, onChange2] = useState<Value>(null);
   const [value3, onChange3] = useState<Value>(null);
@@ -153,13 +165,21 @@ const Education: React.FC = () => {
             Profile.
           </p>
           <div className="d-flex justify-content-end">
-            <OutlineButton buttonText="Kembali" width="111px" height="39px" />
+            <OutlineButton
+              type="button"
+              buttonText="Kembali"
+              width="111px"
+              height="39px"
+              onClick={handleGoBack}
+            />
 
             <PrimaryButton
               buttonText="Lanjut"
               width="111px"
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}
+              type="button"
+              onClick={handleNextForm}
             />
           </div>
         </Form>

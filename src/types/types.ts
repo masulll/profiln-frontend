@@ -25,11 +25,15 @@ interface TabContextProps {
   changeTab: (currentTab: string, direction: "next" | "back") => void;
 }
 
-type FormSubmittedState = {
+interface FormSubmittedState {
   tab1: boolean;
   tab2: boolean;
   tab3: boolean;
   tab4: boolean;
   tab5: boolean;
   tab6: boolean;
-};
+}
+
+interface PersonalDataProps {
+  handleNext: (tab: string) => void;
+}

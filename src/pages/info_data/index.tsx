@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Tab, Tabs, ProgressBar } from "react-bootstrap";
-
+import { useTabContext } from "binar/contexts/TabContext";
 import theme from "binar/constants";
 import { IconArrowRight } from "binar/helpers";
 import {
@@ -20,23 +20,14 @@ import CertificateForm from "binar/components/molecules/InformationForm/Certific
 import Skill from "binar/components/molecules/InformationForm/Skill";
 
 const DataInformation: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("tab2");
-  const tabs = [
-    { key: "tab1", title: "Pengisian Data Diri", component: <PersonalData /> },
-    { key: "tab2", title: "Tentang Saya", component: <AboutMe /> },
-    { key: "tab3", title: "Pengalaman Kerja", component: <WorkHistory /> },
-    { key: "tab4", title: "Pendidikan", component: <Education /> },
-    { key: "tab5", title: "Sertifikat", component: <CertificateForm /> },
-    { key: "tab6", title: "Skill", component: <Skill /> },
-  ];
-  const [formSubmitted, setFormSubmitted] = useState({
-    tab1: false,
-    tab2: false,
-    tab3: false,
-    tab4: false,
-    tab5: false,
-    tab6: false,
-  });
+  const {
+    activeTab,
+    setActiveTab,
+    formSubmitted,
+    setFormSubmitted,
+    handleBack,
+    handleNextTab,
+  } = useTabContext();
 
   const getProgress = (activeTab: string) => {
     const tabIndex = tabs.findIndex((tab) => tab.key === activeTab) + 1;
@@ -54,14 +45,66 @@ const DataInformation: React.FC = () => {
     }));
 
     // Switch to the next tab
-    const nextTabIndex = parseInt(tab.substr(3)) + 1;
-    setActiveTab(`tab${nextTabIndex} `);
+    handleNextTab(tab);
   };
 
-  const handleBack = (tab: string) => {
-    const backTabIndex = parseInt(tab.substr(3)) - 1;
-    setActiveTab(`tab${backTabIndex}`);
-  };
+  const tabs = [
+    {
+      key: "tab1",
+      title: "Pengisian Data Diri",
+      component: <PersonalData handleNext={() => handleFormSubmit("tab1")} />,
+    },
+    {
+      key: "tab2",
+      title: "Tentang Saya",
+      component: (
+        <AboutMe
+          handleBack={handleBack}
+          handleNext={() => handleFormSubmit("tab2")}
+        />
+      ),
+    },
+    {
+      key: "tab3",
+      title: "Pengalaman Kerja",
+      component: (
+        <WorkHistory
+          handleBack={handleBack}
+          handleNext={() => handleFormSubmit("tab3")}
+        />
+      ),
+    },
+    {
+      key: "tab4",
+      title: "Pendidikan",
+      component: (
+        <Education
+          handleBack={handleBack}
+          handleNext={() => handleFormSubmit("tab4")}
+        />
+      ),
+    },
+    {
+      key: "tab5",
+      title: "Sertifikat",
+      component: (
+        <CertificateForm
+          handleBack={handleBack}
+          handleNext={() => handleFormSubmit("tab5")}
+        />
+      ),
+    },
+    {
+      key: "tab6",
+      title: "Skill",
+      component: (
+        <Skill
+          handleBack={handleBack}
+          handleNext={() => handleFormSubmit("tab5")}
+        />
+      ),
+    },
+  ];
 
   const renderTabTitle = (title: string, isActive: boolean) => (
     <div css={{ display: "flex", alignItems: "center" }}>

@@ -11,7 +11,11 @@ import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form } from "react-bootstrap";
 import { GENDER } from "binar/constants";
 
-const PersonalData: React.FC<PersonalDataProps> = () => {
+const PersonalData: React.FC<PersonalDataProps> = ({ handleNext }) => {
+  const handleNextForm = () => {
+    handleNext("tab1");
+  };
+
   return (
     <>
       <div className={`${styledForm} my-3 `}>
@@ -66,7 +70,8 @@ const PersonalData: React.FC<PersonalDataProps> = () => {
           width="20%"
           height="39px"
           css={{ marginRight: "0px", marginLeft: "auto" }}
-          type="submit"
+          type="button"
+          onClick={handleNextForm}
         />
       </div>
     </>

@@ -10,7 +10,20 @@ import { Form } from "react-bootstrap";
 import CreatableSelect from "react-select/creatable";
 import theme from "binar/constants";
 
-const Skill = () => {
+interface Props {
+  handleBack: (tab: string) => void;
+  handleNext: (tab: string) => void;
+}
+
+const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
+  const handleGoBack = () => {
+    handleBack("tab5");
+  };
+
+  const handleNextForm = () => {
+    handleNext("tab5");
+  };
+
   const options = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -79,12 +92,20 @@ const Skill = () => {
             css={{ marginBottom: "2em" }}
           />
           <div className="d-flex">
-            <OutlineButton buttonText="Kembali" width="111px" height="39px" />
+            <OutlineButton
+              type="button"
+              buttonText="Kembali"
+              width="111px"
+              height="39px"
+              onClick={handleGoBack}
+            />
             <PrimaryButton
               buttonText="Selesai"
+              type="button"
               width="111px"
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}
+              onClick={handleNextForm}
             />
           </div>
         </Form>

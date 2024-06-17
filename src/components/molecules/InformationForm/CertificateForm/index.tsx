@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import {
-  StyledInputGroup,
-  boldDescription,
-  styledForm,
-} from "binar/styles/emotion/DataForm.style";
+import { styledForm } from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
 import InputField from "binar/components/atoms/InformationForm/InputField";
 import { css } from "@emotion/react";
-import SelectField from "binar/components/atoms/InformationForm/SelectField";
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form, InputGroup } from "react-bootstrap";
 import DatePicker from "react-date-picker";
@@ -19,7 +14,20 @@ type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const CertificateForm: React.FC = () => {
+interface Props {
+  handleBack: (tab: string) => void;
+  handleNext: (tab: string) => void;
+}
+
+const CertificateForm: React.FC<Props> = ({ handleBack, handleNext }) => {
+  const handleGoBack = () => {
+    handleBack("tab4");
+  };
+
+  const handleNextForm = () => {
+    handleNext("tab4");
+  };
+
   const [value, onChange] = useState<Value>(null);
   const [value2, onChange2] = useState<Value>(null);
   const [value3, onChange3] = useState<Value>(null);
@@ -150,13 +158,21 @@ const CertificateForm: React.FC = () => {
           />
 
           <div className="d-flex justify-content-end">
-            <OutlineButton buttonText="Kembali" width="111px" height="39px" />
+            <OutlineButton
+              buttonText="Kembali"
+              type="button"
+              width="111px"
+              height="39px"
+              onClick={handleGoBack}
+            />
 
             <PrimaryButton
               buttonText="Lanjut"
               width="111px"
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}
+              type="button"
+              onClick={handleNextForm}
             />
           </div>
         </Form>

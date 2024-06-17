@@ -1,19 +1,29 @@
 import React, { ChangeEvent, useState } from "react";
 import {
   StyledInputGroup,
-  boldDescription,
   styledForm,
 } from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
-import InputField from "binar/components/atoms/InformationForm/InputField";
-import PhoneNumInput from "binar/components/atoms/InformationForm/PhoneNumber";
-import SelectField from "binar/components/atoms/InformationForm/SelectField";
+
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form } from "react-bootstrap";
 import { StyledPillButton } from "binar/styles/emotion/Button.style";
 
-const AboutMe = () => {
+interface Props {
+  handleBack: (tab: string) => void;
+  handleNext: (tab: string) => void;
+}
+
+const AboutMe: React.FC<Props> = ({ handleBack, handleNext }) => {
   const [countWord, setCountWord] = useState(0);
+
+  const handleGoBack = () => {
+    handleBack("tab1");
+  };
+
+  const handleNextForm = () => {
+    handleNext("tab2");
+  };
 
   const handleTextAreaChange = (
     event: ChangeEvent<HTMLTextAreaElement>
@@ -42,7 +52,13 @@ const AboutMe = () => {
             <p css={{ textAlign: "right" }}>{countWord}/2500</p>
           </Form.Group>
           <div className="d-flex">
-            <OutlineButton buttonText="Kembali" width="111px" height="39px" />
+            <OutlineButton
+              buttonText="Kembali"
+              type="button"
+              width="111px"
+              height="39px"
+              onClick={handleGoBack}
+            />
 
             <PrimaryButton
               buttonText="Lanjut"
@@ -50,6 +66,8 @@ const AboutMe = () => {
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}
               disabled={countWord > 0 ? false : true}
+              type="button"
+              onClick={handleNextForm}
             />
           </div>
         </Form>

@@ -13,8 +13,20 @@ import theme, { JOB_TYPE, LOCATION_TYPE } from "binar/constants";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
+interface Props {
+  handleBack: (tab: string) => void;
+  handleNext: (tab: string) => void;
+}
 
-const WorkHistory = () => {
+const WorkHistory: React.FC<Props> = ({ handleBack, handleNext }) => {
+  const handleGoBack = () => {
+    handleBack("tab2");
+  };
+
+  const handleNextForm = () => {
+    handleNext("tab3");
+  };
+
   const [value, onChange] = useState<Value>(null);
   const [value2, onChange2] = useState<Value>(null);
   const [value3, onChange3] = useState<Value>(null);
@@ -155,13 +167,21 @@ const WorkHistory = () => {
             halaman Profile.
           </p>
           <div className="d-flex justify-content-end">
-            <OutlineButton buttonText="Kembali" width="111px" height="39px" />
+            <OutlineButton
+              buttonText="Kembali"
+              width="111px"
+              height="39px"
+              onClick={handleGoBack}
+              type="button"
+            />
 
             <PrimaryButton
               buttonText="Lanjut"
               width="111px"
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}
+              type="button"
+              onClick={handleNextForm}
             />
           </div>
         </Form>
