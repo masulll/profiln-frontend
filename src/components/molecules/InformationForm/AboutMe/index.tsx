@@ -4,10 +4,8 @@ import {
   styledForm,
 } from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
-
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
 import { Form } from "react-bootstrap";
-import { StyledPillButton } from "binar/styles/emotion/Button.style";
 
 interface Props {
   handleBack: (tab: string) => void;
@@ -65,7 +63,7 @@ const AboutMe: React.FC<Props> = ({ handleBack, handleNext }) => {
               width="111px"
               height="39px"
               css={{ marginRight: "0px", marginLeft: "24px" }}
-              disabled={countWord > 0 ? false : true}
+              disabled={countWord > 0 && countWord < 2500 ? false : true}
               type="button"
               onClick={handleNextForm}
             />

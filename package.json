@@ -23,6 +23,7 @@
     "react-calendar": "^5.0.0",
     "react-date-picker": "^11.0.0",
     "react-dom": "^18",
+    "react-input-emoji": "^5.9.0",
     "react-loader-spinner": "^6.1.6",
     "react-phone-input-2": "^2.15.1",
     "react-select": "^5.8.0",

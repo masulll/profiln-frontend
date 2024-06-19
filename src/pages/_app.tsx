@@ -1,3 +1,4 @@
+import { ModalProvider } from "binar/contexts/ModalsContext";
 import { TabProvider } from "binar/contexts/TabContext";
 import Layouts from "binar/layouts";
 import "binar/styles/globals.css";
@@ -12,9 +13,11 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <TabProvider>
-        <Layouts>
-          <Component {...pageProps} />
-        </Layouts>
+        <ModalProvider>
+          <Layouts>
+            <Component {...pageProps} />
+          </Layouts>
+        </ModalProvider>
       </TabProvider>
     </SessionProvider>
   );

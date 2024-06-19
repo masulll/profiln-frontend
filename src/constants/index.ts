@@ -71,4 +71,11 @@ export enum EDUCATION_LEVEL {
   SD = "SD",
 }
 
+export enum REPORT_TYPE {
+  KEBENCIAN = "Kebencian",
+  PENGHINAAN = "Penghinaan",
+  KEKERASAN = "Kekerasan",
+  SPAM = "Spam",
+}
+
 export default theme;
