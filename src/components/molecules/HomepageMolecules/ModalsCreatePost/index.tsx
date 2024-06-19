@@ -54,7 +54,7 @@ const ModalsCreatePost: React.FC = () => {
               dirty,
             }) => (
               <Form onSubmit={handleSubmit}>
-                <p>Pilih alasan untuk melaporkan postingan ini</p>
+                <p></p>
                 <div className="d-flex gap-2"></div>
 
                 <Form.Control

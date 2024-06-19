@@ -8,7 +8,7 @@ import { styledMyPostFrame } from "binar/styles/emotion/PostFrame.style";
 import { Accordion } from "react-bootstrap";
 import { accordionLink } from "binar/styles/emotion/Link.style";
 import { IconBook, IconPencil, IconPostIt, IconTrash } from "binar/helpers";
-export default function my_Post() {
+export default function My_Post() {
   const router = useRouter();
   const { data } = useSession();
   console.log(data);
