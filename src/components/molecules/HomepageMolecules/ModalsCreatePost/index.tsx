@@ -1,36 +1,18 @@
+import React from "react";
 import { useModals } from "binar/contexts/ModalsContext";
 import { Form, Modal } from "react-bootstrap";
-
-import { IconMore } from "binar/helpers";
-import { PillButton, PrimaryButton } from "binar/components/atoms/Buttons";
-import theme from "binar/constants";
-import { REPORT_TYPE } from "binar/constants";
 import { useState } from "react";
 import { StyledInputGroup } from "binar/styles/emotion/DataForm.style";
 import { Formik } from "formik";
-const ModalsReport = () => {
-  const { showReportModal, openReportModal, closeReportModal } = useModals();
-  const [active, setActive] = useState<null | number>(null);
-
-  const handleClick = (index: number) => {
-    setActive(index);
-  };
-
+import theme from "binar/constants";
+import { PrimaryButton } from "binar/components/atoms/Buttons";
+const ModalsCreatePost: React.FC = () => {
+  const { showCreatePostModal, closeCreatePostModal } = useModals();
   return (
-    <>
-      <button
-        css={{
-          height: "24px",
-          backgroundColor: "transparent",
-          border: "none",
-        }}
-        onClick={openReportModal}
-      >
-        <IconMore />
-      </button>
+    <div>
       <Modal
-        show={showReportModal}
-        onHide={closeReportModal}
+        show={showCreatePostModal}
+        onHide={closeCreatePostModal}
         backdrop="static"
         keyboard={false}
         centered
@@ -73,17 +55,7 @@ const ModalsReport = () => {
             }) => (
               <Form onSubmit={handleSubmit}>
                 <p>Pilih alasan untuk melaporkan postingan ini</p>
-                <div className="d-flex gap-2">
-                  {Object.values(REPORT_TYPE).map((value, index) => (
-                    <PillButton
-                      key={index}
-                      buttonText={value}
-                      active={active === index}
-                      onClick={() => handleClick(index)}
-                    />
-                  ))}
-                </div>
-                <p>Mengapa anda memilih laporan tersebut?</p>
+                <div className="d-flex gap-2"></div>
 
                 <Form.Control
                   name="report_desc"
@@ -108,8 +80,8 @@ const ModalsReport = () => {
           </Formik>
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 };
 
-export default ModalsReport;
+export default ModalsCreatePost;

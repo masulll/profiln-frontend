@@ -4,7 +4,10 @@ import {
   styledPostInput,
 } from "binar/styles/emotion/PostFrame.style";
 
+import { useModals } from "binar/contexts/ModalsContext";
+import ModalsCreatePost from "binar/components/molecules/HomepageMolecules/ModalsCreatePost";
 const PostFrame: React.FC = () => {
+  const { openCreatePostModal } = useModals();
   return (
     <div className={`${styledFrame} d-inline-flex my-3`}>
       <Image
@@ -14,9 +17,14 @@ const PostFrame: React.FC = () => {
         className="mx-2 rounded-circle"
         alt="my post icons"
       />
-      <div role="button" className={`${styledPostInput}`}>
+      <div
+        role="button"
+        className={`${styledPostInput}`}
+        onClick={openCreatePostModal}
+      >
         Mulai buat posting
       </div>
+      <ModalsCreatePost />
     </div>
   );
 };

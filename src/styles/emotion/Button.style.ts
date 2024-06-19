@@ -18,10 +18,11 @@ export const StyledOutlineButton = ({ padding, width, height }: Props) =>
     padding: padding ? padding : "10px 14px",
 
     backgroundColor: "transparent",
-    fontFamily: `${theme.fonts.body}`,
-    fontWeight: "600",
+    fontFamily: `var(--font-causten)`,
+    fontStyle: "",
+    fontWeight: "700",
     color: `${theme.colors.primary}`,
-    fontSize: "14px",
+    fontSize: "16px",
     borderRadius: "4px",
     textAlign: "center",
 
@@ -55,7 +56,7 @@ export const StyledPillButton = css({
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: "transparent",
-  fontFamily: `${theme.fonts.body}`,
+  fontFamily: `var(--font-causten)`,
   fontWeight: "600",
   color: `${theme.neutral_colors.grayscale_70}`,
   fontSize: "14px",
