@@ -1,9 +1,8 @@
 import { useModals } from "binar/contexts/ModalsContext";
 import { Form, Modal } from "react-bootstrap";
-
 import { IconMore } from "binar/helpers";
 import { PillButton, PrimaryButton } from "binar/components/atoms/Buttons";
-import theme from "binar/constants";
+
 import { REPORT_TYPE } from "binar/constants";
 import { useState } from "react";
 import { StyledInputGroup } from "binar/styles/emotion/DataForm.style";
@@ -31,28 +30,20 @@ const ModalsReport = () => {
       <Modal
         show={showReportModal}
         onHide={closeReportModal}
-        backdrop="static"
-        keyboard={false}
         centered
+        css={{ fontWeight: "600" }}
       >
         <Modal.Header closeButton>
           <Modal.Title
             css={{
-              fontFamily: "inherit",
               fontSize: "24px",
-              fontWeight: "600",
+              fontWeight: "700",
             }}
           >
             Laporkan postingan
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body
-          css={{
-            fontFamily: theme.fonts.body,
-            fontSize: "18px",
-            fontWeight: "600",
-          }}
-        >
+        <Modal.Body>
           <Formik
             initialValues={{ reportType: "", report_desc: "" }}
             onSubmit={async (values, { setSubmitting, resetForm }) => {

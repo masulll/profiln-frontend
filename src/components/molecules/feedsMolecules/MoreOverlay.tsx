@@ -1,19 +1,8 @@
-import { Popover, Overlay, Modal, Button } from "react-bootstrap";
-import { useState, useRef } from "react";
-import { ModalProvider, useModals } from "binar/contexts/ModalsContext";
+import { Popover, Overlay } from "react-bootstrap";
+import { useModals } from "binar/contexts/ModalsContext";
 import { IconPencil, IconTrash } from "binar/helpers";
 const MoreOverlay: React.FC = () => {
-  const {
-    showReportModal,
-    openReportModal,
-    closeReportModal,
-    showMore,
-    openMore,
-    refMore,
-    targetMore,
-    showCommentModal,
-    closeCommentModal,
-  } = useModals();
+  const { showMore, refMore, targetMore } = useModals();
 
   return (
     <Overlay

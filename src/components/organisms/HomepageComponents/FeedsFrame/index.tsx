@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import ProfileLink from "binar/components/molecules/HomepageMolecules/Navbars/ProfileLink";
 import theme from "binar/constants";
 import { styledIconDefault } from "binar/styles/emotion/Link.style";
@@ -8,28 +8,20 @@ import {
   IconComment,
   IconLike,
   IconMore,
-  IconPencil,
   IconRepost,
   IconShare,
-  IconSocialShare,
-  IconTablerFlag,
-  IconTrash,
 } from "binar/helpers";
 import { useRouter } from "next/router";
 
 import { useModals } from "binar/contexts/ModalsContext";
 import MoreOverlay from "binar/components/molecules/feedsMolecules/MoreOverlay";
 import ModalsReport from "binar/components/molecules/feedsMolecules/ModalsReport";
+import { Form } from "react-bootstrap";
+import { StyledInputGroup } from "binar/styles/emotion/createPost.style";
+import CommentInput from "binar/components/molecules/HomepageMolecules/CommentInput";
 const FeedsFrame = () => {
   const router = useRouter();
-  const {
-    showMore,
-    openMore,
-    targetMore,
-    refMore,
-    showCommentModal,
-    closeCommentModal,
-  } = useModals();
+  const { openMore, targetMore, refMore } = useModals();
 
   const fullText = `
   I find this flow particularly intriguing for redesign due to numerous improvement opportunities. Moreover, I believe that optimizing this pathway is crucial for marketing goals, given that the ‘Getting Started’ process significantly influences user engagement and retention. By refining this initial interaction, we can enhance user satisfaction, reduce churn rates, and ultimately drive higher conversion rates. This optimization is not just about aesthetics or user interface improvements, but also involves streamlining the steps, providing clear guidance, and ensuring that users immediately see the value our service offers. Thus, a well-thought-out redesign of this flow could have a profound impact on our overall business performance.`;
@@ -116,6 +108,7 @@ const FeedsFrame = () => {
             <p>Bagikan</p>
           </button>
         </div>
+        {router.query.id && <CommentInput width={"751px"} height={"130px"} />}
       </div>
     </div>
   );
