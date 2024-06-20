@@ -1,11 +1,11 @@
 import { Form } from "react-bootstrap";
 import { Formik } from "formik";
-import { IconShare, IconImage, IconEmoji, IconSend } from "binar/helpers";
+import { IconImage, IconEmoji, IconSend } from "binar/helpers";
 import { StyledInputGroup } from "binar/styles/emotion/createPost.style";
 
 interface CommentProps {
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
 }
 
 const CommentInput: React.FC<CommentProps> = ({ width, height }) => {
