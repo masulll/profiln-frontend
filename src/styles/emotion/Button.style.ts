@@ -16,7 +16,6 @@ export const StyledOutlineButton = ({ padding, width, height }: Props) =>
     width: width ? width : "140px",
     height: height ? height : "",
     padding: padding ? padding : "10px 14px",
-
     backgroundColor: "transparent",
     fontFamily: `var(--font-causten)`,
     fontStyle: "",

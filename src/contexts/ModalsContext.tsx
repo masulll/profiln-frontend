@@ -5,6 +5,10 @@ interface ModalContextType {
   showCreatePostModal: boolean;
   showCommentModal: boolean;
   showMore: boolean;
+  showPostVisibility: boolean;
+  visibilityPost: string;
+  refPostVisibility: any;
+  targetPostVisibility: any;
   targetMore: any;
   refMore: any;
   openMore: (event: any) => void;
@@ -14,16 +18,23 @@ interface ModalContextType {
   closeCreatePostModal: () => void;
   openCommentModal: () => void;
   closeCommentModal: () => void;
+  openPostVisibility: (event: any) => void;
+  handlePostVisibility: (event: string | null) => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [showReportModal, setShowReportModal] = useState(false);
+  const [visibilityPost, setVisibilityPost] = useState<string>("Publik");
 
-  const [showMore, setShowMore] = useState(true);
+  const [showMore, setShowMore] = useState(false);
   const refMore = useRef(null);
   const [targetMore, setTargetMore] = useState(null);
+
+  const [showPostVisibility, setShowPostVisibility] = useState(false);
+  const refPostVisibility = useRef(null);
+  const [targetPostVisibility, setTargetPostVisibility] = useState(null);
 
   const [showCreatePostModal, setShowCreatePostModal] = useState(false);
   const [showCommentModal, setShowCommentModal] = useState(false);
@@ -34,6 +45,17 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const openMore = (event: any) => {
     setShowMore(!showMore);
     setTargetMore(event.target);
+  };
+
+  const openPostVisibility = (event: any) => {
+    setShowPostVisibility(!showPostVisibility);
+    setTargetPostVisibility(event.target);
+  };
+
+  const handlePostVisibility = (value: string | null) => {
+    if (value) {
+      setVisibilityPost(value);
+    }
   };
 
   const openCommentModal = () => setShowCommentModal(true);
@@ -48,8 +70,12 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         showCreatePostModal,
         showCommentModal,
         showMore,
+        showPostVisibility,
+        visibilityPost,
         targetMore,
         refMore,
+        refPostVisibility,
+        targetPostVisibility,
         openMore,
         openReportModal,
         closeReportModal,
@@ -57,6 +83,8 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         closeCreatePostModal,
         openCommentModal,
         closeCommentModal,
+        openPostVisibility,
+        handlePostVisibility,
       }}
     >
       {children}

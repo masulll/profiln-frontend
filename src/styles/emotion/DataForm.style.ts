@@ -46,7 +46,7 @@ export const styledUnderlineText = css({
 });
 
 export const StyledInputGroup = css({
-  fontFamily: "inherit",
+  fontFamily: "var(--font-causten)",
   backgroundImage: "none !important",
   fontSize: "14px",
   lineHeight: "20px",
