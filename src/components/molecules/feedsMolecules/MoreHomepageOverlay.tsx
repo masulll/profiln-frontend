@@ -1,9 +1,9 @@
 import { Popover, Overlay, Button } from "react-bootstrap";
 import { useModals } from "binar/contexts/ModalsContext";
-import { IconPencil, IconTrash } from "binar/helpers";
+import { IconSocialShare, IconTablerFlag } from "binar/helpers";
 
-const MoreOverlay: React.FC = () => {
-  const { showMore, refMore, targetMore, openMore, openDeleteModal } =
+const MoreHomepageOverlay: React.FC = () => {
+  const { showMore, refMore, targetMore, openReportModal, openMore } =
     useModals();
 
   return (
@@ -23,8 +23,8 @@ const MoreOverlay: React.FC = () => {
             padding: "10px",
           }}
         >
-          <IconPencil css={{ marginRight: "5px" }} />
-          <p>Edit Posting</p>
+          <IconSocialShare css={{ marginRight: "5px" }} />
+          Bagikan Posting
         </Button>
 
         <Button
@@ -35,16 +35,16 @@ const MoreOverlay: React.FC = () => {
             padding: "5px",
           }}
           onClick={(event) => {
-            openDeleteModal();
+            openReportModal();
             openMore(event);
           }}
         >
-          <IconTrash css={{ marginRight: "5px" }} />
-          <p>Hapus posting</p>
+          <IconTablerFlag />
+          Laporkan posting
         </Button>
       </Popover>
     </Overlay>
   );
 };
 
-export default MoreOverlay;
+export default MoreHomepageOverlay;

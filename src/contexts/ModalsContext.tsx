@@ -6,6 +6,7 @@ interface ModalContextType {
   showCommentModal: boolean;
   showMore: boolean;
   showPostVisibility: boolean;
+  showDeletePostModal: boolean;
   visibilityPost: string;
   refPostVisibility: any;
   targetPostVisibility: any;
@@ -20,6 +21,8 @@ interface ModalContextType {
   closeCommentModal: () => void;
   openPostVisibility: (event: any) => void;
   handlePostVisibility: (event: string | null) => void;
+  openDeleteModal: () => void;
+  closeDeleteModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -38,6 +41,10 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
 
   const [showCreatePostModal, setShowCreatePostModal] = useState(false);
   const [showCommentModal, setShowCommentModal] = useState(false);
+  const [showDeletePostModal, setShowDeletePostModal] = useState(false);
+
+  const openDeleteModal = () => setShowDeletePostModal(true);
+  const closeDeleteModal = () => setShowDeletePostModal(false);
 
   const openReportModal = () => setShowReportModal(true);
   const closeReportModal = () => setShowReportModal(false);
@@ -71,6 +78,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         showCommentModal,
         showMore,
         showPostVisibility,
+        showDeletePostModal,
         visibilityPost,
         targetMore,
         refMore,
@@ -85,6 +93,8 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         closeCommentModal,
         openPostVisibility,
         handlePostVisibility,
+        openDeleteModal,
+        closeDeleteModal,
       }}
     >
       {children}
