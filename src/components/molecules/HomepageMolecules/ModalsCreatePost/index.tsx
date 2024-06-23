@@ -1,7 +1,6 @@
 import React from "react";
 import { useModals } from "binar/contexts/ModalsContext";
 import { Form, Modal } from "react-bootstrap";
-
 import { StyledInputGroup } from "binar/styles/emotion/createPost.style";
 import { Formik } from "formik";
 
@@ -15,6 +14,8 @@ import {
   IconFriends,
 } from "binar/helpers";
 import PostVisibilityOverlay from "../../feedsMolecules/PostVisibilityOverlay";
+import EmojiPickerComponent from "binar/components/atoms/Buttons/EmojiPickerComponent";
+
 const ModalsCreatePost: React.FC = () => {
   const {
     showCreatePostModal,
@@ -22,7 +23,10 @@ const ModalsCreatePost: React.FC = () => {
     visibilityPost,
     refPostVisibility,
     targetPostVisibility,
+    refEmoji,
+    targetEmoji,
     openPostVisibility,
+    openEmoji,
   } = useModals();
   return (
     <div>
@@ -73,7 +77,18 @@ const ModalsCreatePost: React.FC = () => {
               >
                 <div className="d-flex gap-3">
                   <div className="d-flex flex-column gap-2 mt-4">
-                    <IconEmoji />
+                    <div ref={refEmoji}>
+                      <IconEmoji
+                        role="button"
+                        onClick={(event) => openEmoji(event)}
+                        ref={targetEmoji}
+                      />
+                    </div>
+
+                    <EmojiPickerComponent />
+
+                    {/* {showEmoji && 
+                    <EmojiPickerComponent />} */}
                     <IconImage />
                   </div>
                   <Form.Group css={StyledInputGroup}>

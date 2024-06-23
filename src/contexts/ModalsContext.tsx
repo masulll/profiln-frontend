@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState, useRef } from "react";
-
+import { EmojiClickData } from "emoji-picker-react";
 interface ModalContextType {
   showReportModal: boolean;
   showCreatePostModal: boolean;
@@ -7,11 +7,15 @@ interface ModalContextType {
   showMore: boolean;
   showPostVisibility: boolean;
   showDeletePostModal: boolean;
+  showEmoji: boolean;
+  chosenEmoji: string | null;
   visibilityPost: string;
   refPostVisibility: any;
   targetPostVisibility: any;
   targetMore: any;
   refMore: any;
+  refEmoji: any;
+  targetEmoji: any;
   openMore: (event: any) => void;
   openReportModal: () => void;
   closeReportModal: () => void;
@@ -23,6 +27,8 @@ interface ModalContextType {
   handlePostVisibility: (event: string | null) => void;
   openDeleteModal: () => void;
   closeDeleteModal: () => void;
+  openEmoji: (event: any) => void;
+  onEmojiClick: (emojiObject: EmojiClickData) => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -39,9 +45,23 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const refPostVisibility = useRef(null);
   const [targetPostVisibility, setTargetPostVisibility] = useState(null);
 
+  const [showEmoji, setShowEmoji] = useState(false);
+  const refEmoji = useRef(null);
+  const [targetEmoji, setTargetEmoji] = useState(null);
+  const [chosenEmoji, setChosenEmoji] = useState<string | null>(null);
+
   const [showCreatePostModal, setShowCreatePostModal] = useState(false);
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [showDeletePostModal, setShowDeletePostModal] = useState(false);
+
+  const openEmoji = (event: any) => {
+    setShowEmoji(!showEmoji);
+    setTargetEmoji(event.target);
+  };
+
+  const onEmojiClick = (emojiObject: EmojiClickData) => {
+    setChosenEmoji(emojiObject.emoji);
+  };
 
   const openDeleteModal = () => setShowDeletePostModal(true);
   const closeDeleteModal = () => setShowDeletePostModal(false);
@@ -79,6 +99,10 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         showMore,
         showPostVisibility,
         showDeletePostModal,
+        showEmoji,
+        chosenEmoji,
+        refEmoji,
+        targetEmoji,
         visibilityPost,
         targetMore,
         refMore,
@@ -95,6 +119,8 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         handlePostVisibility,
         openDeleteModal,
         closeDeleteModal,
+        openEmoji,
+        onEmojiClick,
       }}
     >
       {children}
