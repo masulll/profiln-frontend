@@ -17,7 +17,7 @@ const login = () => {
           width={181}
           height={700}
           alt="auth-bg 1"
-          className={`${BgAuth} `}
+          className={`${BgAuth}`}
         />
         <div className="row">
           <div className={`${StyledRegister} col-7`}>

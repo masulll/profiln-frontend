@@ -1,5 +1,5 @@
 import axiosInstance from "..";
-
+import { loginData } from "binar/types/data";
 export const loginGoogle = async (userData: loginData) => {
   try {
     const config = {

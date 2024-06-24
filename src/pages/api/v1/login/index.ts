@@ -1,4 +1,5 @@
 import axiosInstance from "..";
+import { loginData } from "binar/types/data";
 
 export const loginUser = async (userData: loginData) => {
   try {
@@ -15,7 +16,6 @@ export const loginUser = async (userData: loginData) => {
 
     return response.data;
   } catch (error) {
-    // console.log(error);
     throw error;
   }
 };

@@ -1,7 +1,5 @@
-import { Open_Sans } from "next/font/google";
 import { useState } from "react";
 import { PillButton } from "binar/components/atoms/Buttons";
-import { useSession } from "next-auth/react";
 import TipsComponent from "binar/components/organisms/HomepageComponents/TipsComponents";
 import PostFrame from "binar/components/organisms/HomepageComponents/PostFrame";
 
@@ -9,8 +7,6 @@ import FollowingFrame from "binar/components/organisms/HomepageComponents/Follow
 import FeedsFrame from "binar/components/organisms/HomepageComponents/FeedsFrame";
 
 export default function Home() {
-  const { data } = useSession();
-  console.log(data);
   const [active, setActive] = useState<null | number>(1);
 
   const handleClick = (index: number) => {
