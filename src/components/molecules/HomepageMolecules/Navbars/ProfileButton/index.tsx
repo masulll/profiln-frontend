@@ -8,7 +8,9 @@ import {
 } from "binar/styles/emotion/Navbars.style";
 import { Dropdown, NavItem, NavLink } from "react-bootstrap";
 import { signOut, useSession } from "next-auth/react";
+import { useAuth } from "binar/contexts/AuthContext";
 const ProfileButton: React.FC = () => {
+  const { logout } = useAuth();
   const router = useRouter();
   return (
     <>
@@ -66,7 +68,7 @@ const ProfileButton: React.FC = () => {
           </Dropdown.Item>
           <Dropdown.Item className={`${LinkStyling}`}>
             <button
-              onClick={() => signOut()}
+              onClick={() => logout()}
               className={`${LinkStyling}`}
               style={{ background: "transparent", border: "none" }}
             >

@@ -5,10 +5,11 @@ import PostFrame from "binar/components/organisms/HomepageComponents/PostFrame";
 
 import FollowingFrame from "binar/components/organisms/HomepageComponents/FollowingFrame";
 import FeedsFrame from "binar/components/organisms/HomepageComponents/FeedsFrame";
-
+import { useAuth } from "binar/contexts/AuthContext";
 export default function Home() {
   const [active, setActive] = useState<null | number>(1);
-
+  const { user } = useAuth();
+  console.log(user);
   const handleClick = (index: number) => {
     setActive(index);
   };

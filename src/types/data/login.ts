@@ -4,8 +4,16 @@ export interface otpData {
 }
 
 export interface loginData {
-  email: string | undefined;
+  email: string;
+  fullname?: string;
   password?: string;
+}
+
+export interface registerData {
+  email: string;
+  fullname: string;
+  password: string;
+  agreement: boolean;
 }
 
 export interface emailData {

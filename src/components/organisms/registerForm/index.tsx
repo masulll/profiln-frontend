@@ -7,10 +7,11 @@ import {
   OrTextStyle,
   OrWithLineStyle,
 } from "binar/styles/emotion/FormControl.style";
-import { signIn } from "next-auth/react";
+import { useAuth } from "binar/contexts/AuthContext";
 
 const RegisterForm: React.FC = () => {
   const { push, query } = useRouter();
+  const { googleRegister } = useAuth();
 
   const callbackUrl: any = query.callbackUrl || "";
   return (
@@ -22,12 +23,7 @@ const RegisterForm: React.FC = () => {
       <ButtonWithIcon
         buttonText="Daftar dengan Google"
         buttonIcon="/assets/icons/Google.svg"
-        onClick={() =>
-          signIn("google", {
-            redirect: false,
-            callbackUrl,
-          })
-        }
+        onClick={() => googleRegister()}
       />
       <div>
         <div className={`${OrWithLineStyle}`}>
