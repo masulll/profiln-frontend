@@ -8,7 +8,7 @@ import { useState } from "react";
 import { StyledInputGroup } from "binar/styles/emotion/DataForm.style";
 import { Formik } from "formik";
 const ModalsReport = () => {
-  const { showReportModal, openReportModal, closeReportModal } = useModals();
+  const { showReportModal, closeReportModal } = useModals();
   const [active, setActive] = useState<null | number>(null);
 
   const handleClick = (index: number) => {
@@ -17,16 +17,6 @@ const ModalsReport = () => {
 
   return (
     <>
-      <button
-        css={{
-          height: "24px",
-          backgroundColor: "transparent",
-          border: "none",
-        }}
-        onClick={openReportModal}
-      >
-        <IconMore />
-      </button>
       <Modal
         show={showReportModal}
         onHide={closeReportModal}

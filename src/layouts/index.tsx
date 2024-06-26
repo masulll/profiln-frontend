@@ -14,7 +14,7 @@ const Layouts = (props: AppShellProps) => {
   const { children } = props;
   const router = useRouter();
 
-  const noLayoutPages = ["/info_data"];
+  const noLayoutPages = ["/info_data", "/404"];
 
   const noLayoutRegex = /^\/auth($|\/.*)/;
 

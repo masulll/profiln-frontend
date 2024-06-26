@@ -8,8 +8,10 @@ import FormTitle from "binar/components/molecules/FormTitle";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import InputLoginForm from "binar/components/molecules/InputLoginForm";
+import { useAuth } from "binar/contexts/AuthContext";
 const LoginForm: React.FC = () => {
   const { push, query } = useRouter();
+  const { googleLogin } = useAuth();
   const callbackUrl: any = query.callbackUrl || "";
   return (
     <div className={`${styledForm} overflow-auto`}>
@@ -26,12 +28,9 @@ const LoginForm: React.FC = () => {
       <ButtonWithIcon
         buttonText="Google"
         buttonIcon="/assets/icons/Google.svg"
-        onClick={() =>
-          signIn("google", {
-            redirect: false,
-            callbackUrl,
-          })
-        }
+        onClick={() => {
+          googleLogin();
+        }}
       />
     </div>
   );

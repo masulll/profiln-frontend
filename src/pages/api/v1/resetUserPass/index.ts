@@ -1,4 +1,5 @@
 import axiosInstance from "..";
+import { resetPassData } from "binar/types/data";
 
 export const resetUserPass = async (userData: resetPassData) => {
   try {

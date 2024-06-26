@@ -7,8 +7,9 @@ import {
   noCaret,
 } from "binar/styles/emotion/Navbars.style";
 import { Dropdown, NavItem, NavLink } from "react-bootstrap";
-import { signOut, useSession } from "next-auth/react";
+import { useAuth } from "binar/contexts/AuthContext";
 const ProfileButton: React.FC = () => {
+  const { logout, user } = useAuth();
   const router = useRouter();
   return (
     <>
@@ -49,11 +50,11 @@ const ProfileButton: React.FC = () => {
             className="mx-2 rounded-circle"
             alt="my post icons"
           />
-          Bella
+          {user?.firstname}
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item className={`${LinkStyling}`}>
-            <Link href="/" className={`${LinkStyling}`}>
+            <Link href={`/profile/${user?.id}`} className={`${LinkStyling}`}>
               <Image
                 src="/assets/icons/ph_user-bold.svg"
                 width="23"
@@ -66,7 +67,7 @@ const ProfileButton: React.FC = () => {
           </Dropdown.Item>
           <Dropdown.Item className={`${LinkStyling}`}>
             <button
-              onClick={() => signOut()}
+              onClick={() => logout()}
               className={`${LinkStyling}`}
               style={{ background: "transparent", border: "none" }}
             >

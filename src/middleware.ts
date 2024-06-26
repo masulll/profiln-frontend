@@ -1,21 +1,33 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import withAuth from "./helpers/middlewares/withAuth";
 
-// // const allowedOrigins = ['https://acme.com', 'https://my-app.org']
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get("token");
 
-// const corsOptions = {
-//   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-//   "Access-Control-Allow-Headers": "Content-Type, Authorization",
-// };
+  if (token && request.nextUrl.pathname.startsWith("/auth")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
-export function middleware(req: NextRequest) {
-  const res = NextResponse.next();
-  return res;
+  if (
+    !token &&
+    !request.nextUrl.pathname.startsWith("/auth") &&
+    !request.nextUrl.pathname.startsWith("/info_data") &&
+    !request.nextUrl.pathname.startsWith("/my_post")
+  ) {
+    return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
+  if (
+    !token &&
+    (request.nextUrl.pathname.startsWith("/info_data") ||
+      request.nextUrl.pathname.startsWith("/my_post"))
+  ) {
+    return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
+  return NextResponse.next();
 }
 
-export default withAuth(middleware, ["/"]);
-
-// export const config = {
-//   matcher: ["/"],
-// };
+export const config = {
+  matcher: ["/auth/:path*", "/", "/info_data", "/my_post/:path*"],
+};

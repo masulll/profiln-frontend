@@ -28,6 +28,14 @@ const nextConfig = {
 
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${process.env.NEXT_PUBLIC_URL}/api/:path*`, // Proxy to Backend
+      },
+    ];
+  },
 };
 
 export default nextConfig;

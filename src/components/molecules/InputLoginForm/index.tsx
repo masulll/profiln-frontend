@@ -13,13 +13,14 @@ import Link from "next/link";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";
-// import API from "binar/pages/api/v1";
-import { loginUser } from "binar/pages/api/v1/login";
+import { useAuth } from "binar/contexts/AuthContext";
 import { error } from "console";
 import { AxiosError } from "axios";
-import { signIn } from "next-auth/react";
+// import { signIn } from "next-auth/react";
 
 const InputLoginForm: React.FC = () => {
+  const { login, isLoading } = useAuth();
+
   const [loginError, setLoginError] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
@@ -57,24 +58,15 @@ const InputLoginForm: React.FC = () => {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             const { email, password } = values;
-            const response = await signIn("credentials", {
-              redirect: false,
-              email,
-              password,
-            });
-            console.log("response", response);
-
-            if (response?.status === 401) {
-              resetForm();
+            await login({ email, password });
+          } catch (error: any) {
+            if (error.response && error.response.status === 401) {
               setLoginError("Email atau password salah");
+              resetForm();
+            } else {
+              setLoginError("An unexpected error occurred");
+              resetForm();
             }
-            if (response?.ok) {
-              router.push({
-                pathname: "/",
-              });
-            }
-          } catch (error) {
-            console.error(error);
           } finally {
             setSubmitting(false);
           }

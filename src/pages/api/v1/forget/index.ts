@@ -1,5 +1,5 @@
 import axiosInstance from "..";
-
+import { emailData } from "binar/types/data";
 export const sendForgetEmail = async (userData: emailData) => {
   try {
     const config = {

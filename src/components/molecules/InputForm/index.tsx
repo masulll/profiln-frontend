@@ -11,14 +11,15 @@ import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";
 // import API from "binar/pages/api/v1";
-import { registerUser } from "binar/pages/api/v1/register";
-import { error } from "console";
+import { useAuth } from "binar/contexts/AuthContext";
+
 import { AxiosError } from "axios";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [registerError, setRegisterError] = useState("");
   const [isVisible2, setIsVisible2] = useState(false);
+  const { registerManual } = useAuth();
   const router = useRouter();
 
   const changeVisibility = () => {
@@ -66,20 +67,19 @@ const InputForm: React.FC = () => {
           try {
             // Destructure email, fullname, and password from values
             const { email, fullname, password } = values;
-            const response = await registerUser({ email, fullname, password });
+            const response = await registerManual({
+              email,
+              fullname,
+              password,
+            });
             console.log("response", response);
-            if (response.status.is_success === true) {
-              router.push({
-                pathname: "/auth/register/verification",
-                query: { email: values.email },
-              });
-            }
-          } catch (error) {
+          } catch (error: any) {
             console.error(error);
-            if ((error as AxiosError).response?.status === 401) {
+            if (error.response && error.response.status === 401) {
               resetForm();
               setRegisterError("Email sudah terdaftar");
             } else {
+              resetForm();
               setRegisterError("Registrasi gagal");
             }
           } finally {

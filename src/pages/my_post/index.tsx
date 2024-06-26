@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 
 import FeedsFrame from "binar/components/organisms/HomepageComponents/FeedsFrame";
 import { styledMyPostFrame } from "binar/styles/emotion/PostFrame.style";
 
 import { Accordion } from "react-bootstrap";
 import { accordionLink } from "binar/styles/emotion/Link.style";
-import { IconBook, IconPencil, IconPostIt, IconTrash } from "binar/helpers";
+import { IconBook, IconPostIt } from "binar/helpers";
 export default function My_Post() {
   const router = useRouter();
-  const { data } = useSession();
-  console.log(data);
+
   const [active, setActive] = useState<null | number>(1);
 
   const handleClick = (index: number) => {

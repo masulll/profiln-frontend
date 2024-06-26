@@ -14,11 +14,12 @@ import {
 import { useRouter } from "next/router";
 
 import { useModals } from "binar/contexts/ModalsContext";
-import MoreOverlay from "binar/components/molecules/feedsMolecules/MoreOverlay";
 import ModalsReport from "binar/components/molecules/feedsMolecules/ModalsReport";
-import { Form } from "react-bootstrap";
-import { StyledInputGroup } from "binar/styles/emotion/createPost.style";
+
 import CommentInput from "binar/components/molecules/HomepageMolecules/CommentInput";
+import MoreHomepageOverlay from "binar/components/molecules/feedsMolecules/MoreHomepageOverlay";
+import MoreOverlay from "binar/components/molecules/feedsMolecules/MoreOverlay";
+import ModalsDeletePost from "binar/components/molecules/feedsMolecules/ModalsDeletePost";
 const FeedsFrame = () => {
   const router = useRouter();
   const { openMore, targetMore, refMore } = useModals();
@@ -42,24 +43,30 @@ const FeedsFrame = () => {
     >
       <div className="d-flex justify-content-between">
         <ProfileLink showDate={true} />
-        {router.pathname === "/my_post" ? (
-          <div ref={refMore}>
-            <button
-              css={{
-                height: "24px",
-                backgroundColor: "transparent",
-                border: "none",
-              }}
-              ref={targetMore}
-              onClick={(event) => openMore(event)}
-            >
-              <IconMore />
-            </button>
 
+        <div ref={refMore}>
+          <button
+            css={{
+              height: "24px",
+              backgroundColor: "transparent",
+              border: "none",
+            }}
+            ref={targetMore}
+            onClick={(event) => openMore(event)}
+          >
+            <IconMore />
+          </button>
+        </div>
+        {router.pathname === "/my_post" ? (
+          <>
             <MoreOverlay />
-          </div>
+            <ModalsDeletePost />
+          </>
         ) : (
-          <ModalsReport />
+          <>
+            <MoreHomepageOverlay />
+            <ModalsReport />
+          </>
         )}
       </div>
       <div className="d-flex flex-column container text-wrap">

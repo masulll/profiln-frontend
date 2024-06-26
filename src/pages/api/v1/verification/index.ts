@@ -1,5 +1,6 @@
-import axios from "axios";
 import axiosInstance from "..";
+import { otpData } from "binar/types/data";
+import Cookies from "js-cookie";
 
 export const verificationUser = async (otpData: otpData) => {
   try {
@@ -12,7 +13,16 @@ export const verificationUser = async (otpData: otpData) => {
     };
 
     const response = await axiosInstance(config);
-    console.log(response.data);
+
+    if (response.data && response.data.token) {
+      const token = response.data.token;
+      Cookies.set("token", token, {
+        sameSite: "strict",
+        secure: true,
+        expires: 7,
+      });
+      console.log("Token saved:", token);
+    }
 
     return response.data;
   } catch (error) {

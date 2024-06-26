@@ -1,22 +1,3 @@
-interface otpData {
-  email: string | string[] | undefined;
-  otp: string;
-}
-
-interface loginData {
-  email: string | undefined;
-  password?: string;
-}
-
-interface emailData {
-  email: string;
-}
-
-interface resetPassData {
-  email: string;
-  password: string;
-}
-
 interface TabContextProps {
   activeTab: string;
   formSubmitted: { [key: string]: boolean };
@@ -36,4 +17,16 @@ interface FormSubmittedState {
 
 interface PersonalDataProps {
   handleNext: (tab: string) => void;
+}
+
+export interface ErrorResponse {
+  error: string;
+  message: string;
+  status: number;
+}
+
+export interface SuccessResponse<T> {
+  status: number;
+  message: string;
+  data: T;
 }
