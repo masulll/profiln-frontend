@@ -21,7 +21,7 @@ import { verificationUser } from "binar/pages/api/v1/verification";
 const VerificationForm: React.FC = () => {
   const router = useRouter();
   const { email } = router.query;
-  console.log(email);
+
   const otpSchema = Yup.object().shape({
     otp: Yup.array()
       .of(Yup.string().required("Required"))
@@ -54,7 +54,7 @@ const VerificationForm: React.FC = () => {
 
   //   use ref
   const inputRef = useRef<(HTMLInputElement | null)[]>([]);
-  console.log(formik.values.otp);
+
   useEffect(() => {
     // Focus on the first input when the component mounts
     inputRef.current[0]?.focus();

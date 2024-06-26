@@ -1,7 +1,11 @@
 import InputForm from "binar/components/molecules/InputForm";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import FormTitle from "binar/components/molecules/FormTitle";
-import { styledForm } from "binar/styles/emotion/FormControl.style";
+import {
+  styledErrorText,
+  styledForm,
+} from "binar/styles/emotion/FormControl.style";
 import { ButtonWithIcon } from "binar/components/atoms/Buttons";
 import {
   OrTextStyle,
@@ -11,7 +15,7 @@ import { useAuth } from "binar/contexts/AuthContext";
 
 const RegisterForm: React.FC = () => {
   const { push, query } = useRouter();
-  const { googleRegister } = useAuth();
+  const { googleRegister, errorMessage } = useAuth();
 
   const callbackUrl: any = query.callbackUrl || "";
   return (
@@ -23,8 +27,15 @@ const RegisterForm: React.FC = () => {
       <ButtonWithIcon
         buttonText="Daftar dengan Google"
         buttonIcon="/assets/icons/Google.svg"
-        onClick={() => googleRegister()}
+        onClick={async () => {
+          try {
+            await googleRegister();
+          } catch (error: any) {
+            console.error(error);
+          }
+        }}
       />
+      {errorMessage && <p className={styledErrorText}>{errorMessage}</p>}
       <div>
         <div className={`${OrWithLineStyle}`}>
           <p className={`${OrTextStyle}`}>atau</p>

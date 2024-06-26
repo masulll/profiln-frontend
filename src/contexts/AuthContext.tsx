@@ -13,6 +13,7 @@ interface AuthContextType {
   user: any;
   token: string | null;
   login: (credentials: loginData) => Promise<void>;
+  errorMessage: string | null;
   logout: () => void;
   isLoading: boolean;
   googleLogin: () => void;
@@ -29,6 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(
     Cookies.get("token") || null
   );
+  const [errorMessage, setErrorMessage] = useState<string | null>("");
   const queryClient = useQueryClient();
 
   const fetchUser = async () => {
@@ -84,6 +86,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         });
         setToken(data.data?.token);
         queryClient.invalidateQueries("user");
+        router.push("/");
       },
     }
   );
@@ -132,7 +135,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         });
         setToken(data.token);
         queryClient.invalidateQueries("user");
-        router.push("/");
+        router.push("/info_data");
+      },
+      onError: (error: any) => {
+        if (error.response?.status === 401) {
+          console.error("Error 401: Unauthorized");
+        } else {
+          console.log(error);
+        }
       },
     }
   );
@@ -203,7 +213,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       const { email, name } = userInfo.data;
       if (userInfo) {
-        await registerGoogleMutation.mutateAsync({ email, fullname: name });
+        try {
+          await registerGoogleMutation.mutateAsync({ email, fullname: name });
+        } catch (error: any) {
+          if (error.response?.status === 401) {
+            // Tampilkan pesan kesalahan tetapi biarkan fungsi berlanjut
+            console.error("Error 401: Unauthorized");
+            setErrorMessage("Email telah terdaftar");
+          } else {
+            throw error;
+          }
+        }
       }
     },
     onError: (errorResponse) => console.log(errorResponse),
@@ -228,6 +248,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         googleRegister,
         registerManual,
         isLoading,
+        errorMessage,
       }}
     >
       {children}
