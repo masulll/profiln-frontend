@@ -24,7 +24,7 @@ export default function App({
             <ModalProvider>
               <Layouts>
                 <Component {...pageProps} />
-                {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+                <ReactQueryDevtools initialIsOpen={false} />
               </Layouts>
             </ModalProvider>
           </TabProvider>

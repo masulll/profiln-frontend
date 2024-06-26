@@ -7,7 +7,8 @@ import { loginData } from "binar/types/data";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useRouter } from "next/router";
-
+import { userData } from "binar/types/userData";
+import { registerData } from "binar/types/data";
 interface AuthContextType {
   user: any;
   token: string | null;
@@ -16,6 +17,7 @@ interface AuthContextType {
   isLoading: boolean;
   googleLogin: () => void;
   googleRegister: () => void;
+  registerManual: (userData: registerData) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -32,8 +34,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const fetchUser = async () => {
     try {
       const { data } = await axiosInstance.get("/api/v1/users/me");
-      console.log(data);
-      return data;
+
+      const { fullname } = data.data;
+      const [firstname, lastname] = fullname.split(" ");
+
+      const capitalizedFirstname =
+        firstname.charAt(0).toUpperCase() + firstname.slice(1).toLowerCase();
+      const capitalizedLastname =
+        lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
+
+      const updatedUserData: userData = {
+        ...data.data,
+        firstname: capitalizedFirstname,
+        lastname: capitalizedLastname,
+      };
+
+      return updatedUserData;
     } catch (error) {
       console.error("Error fetching user:", error);
       throw error;
@@ -116,7 +132,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         });
         setToken(data.token);
         queryClient.invalidateQueries("user");
-        router.push("/"); // Pindah halaman setelah register berhasil
+        router.push("/");
+      },
+    }
+  );
+
+  const registerManualMutation = useMutation(
+    async (userData: registerData) => {
+      const response = await axiosInstance.post(
+        "/api/v1/register?oauth=false",
+        userData
+      );
+      console.log(response);
+      return response.data;
+    },
+    {
+      onSuccess: (data) => {
+        router.push({
+          pathname: "/auth/register/verification",
+          query: { email: data?.data?.email },
+        });
       },
     }
   );
@@ -174,6 +209,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     onError: (errorResponse) => console.log(errorResponse),
   });
 
+  const registerManual = async (userData: registerData) => {
+    try {
+      await registerManualMutation.mutateAsync(userData);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -183,6 +226,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         logout,
         googleLogin,
         googleRegister,
+        registerManual,
         isLoading,
       }}
     >

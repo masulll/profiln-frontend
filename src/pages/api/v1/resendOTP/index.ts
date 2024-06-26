@@ -1,5 +1,6 @@
 import axios from "axios";
 import axiosInstance from "..";
+import { otpData } from "binar/types/data";
 
 export const resendOTP = async (otpData: otpData) => {
   try {

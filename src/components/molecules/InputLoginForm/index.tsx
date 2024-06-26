@@ -59,10 +59,9 @@ const InputLoginForm: React.FC = () => {
           try {
             const { email, password } = values;
             await login({ email, password });
-            router.push("/");
           } catch (error: any) {
             if (error.response && error.response.status === 401) {
-              setLoginError("Invalid email or password");
+              setLoginError("Email atau password salah");
               resetForm();
             } else {
               setLoginError("An unexpected error occurred");

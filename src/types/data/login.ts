@@ -13,7 +13,14 @@ export interface registerData {
   email: string;
   fullname: string;
   password: string;
-  agreement: boolean;
+}
+
+export interface registerResp {
+  id: number;
+  email: string;
+  fullname: string;
+  password: string;
+  verified_email: boolean;
 }
 
 export interface emailData {

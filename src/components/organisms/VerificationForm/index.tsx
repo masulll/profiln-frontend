@@ -41,7 +41,7 @@ const VerificationForm: React.FC = () => {
         console.log("response", response);
         if (response.status.is_success === true) {
           router.push({
-            pathname: "/",
+            pathname: "/info_data",
           });
         }
       } catch (error) {

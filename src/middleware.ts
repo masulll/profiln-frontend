@@ -8,7 +8,20 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  if (!token && !request.nextUrl.pathname.startsWith("/auth")) {
+  if (
+    !token &&
+    !request.nextUrl.pathname.startsWith("/auth") &&
+    !request.nextUrl.pathname.startsWith("/info_data") &&
+    !request.nextUrl.pathname.startsWith("/my_post")
+  ) {
+    return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
+  if (
+    !token &&
+    (request.nextUrl.pathname.startsWith("/info_data") ||
+      request.nextUrl.pathname.startsWith("/my_post"))
+  ) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 
@@ -16,5 +29,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/auth/:path*", "/"],
+  matcher: ["/auth/:path*", "/", "/info_data", "/my_post/:path*"],
 };

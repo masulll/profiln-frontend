@@ -10,6 +10,7 @@ export default function Home() {
   const [active, setActive] = useState<null | number>(1);
   const { user } = useAuth();
   console.log(user);
+
   const handleClick = (index: number) => {
     setActive(index);
   };
