@@ -4,18 +4,32 @@ import {
   styledForm,
 } from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
-
+import useSkills from "binar/endpoints/apiOthers";
+import { useMutation } from "react-query";
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
-import { Form } from "react-bootstrap";
+
 import CreatableSelect from "react-select/creatable";
 import theme from "binar/constants";
-
+import { Formik, FormikHelpers } from "formik";
+import { Form } from "react-bootstrap";
+import * as Yup from "yup";
 interface Props {
   handleBack: (tab: string) => void;
   handleNext: (tab: string) => void;
 }
 
+interface Skill {
+  value: string;
+  label: string;
+}
+
 const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
+  const { data: skillsData, isLoading, isError } = useSkills();
+
+  const initialValues = {
+    skills: [] as Skill[],
+  };
+
   const handleGoBack = () => {
     handleBack("tab5");
   };
@@ -24,11 +38,11 @@ const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
     handleNext("tab5");
   };
 
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  const options =
+    skillsData?.map((skill: any) => ({
+      value: skill.id,
+      label: skill.name,
+    })) || [];
 
   const styledSelect = {
     control: (provided: any, state: any) => ({
@@ -67,49 +81,72 @@ const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
     }),
   };
 
-  // const handleChange = (
-  //   option: readonly Option[],
-  //   actionMeta: ActionMeta<Option>
-  // ) => {};
-
+  const handleSubmit = (
+    values: typeof initialValues,
+    { setSubmitting }: FormikHelpers<typeof initialValues>
+  ) => {
+    console.log(values); // Untuk melihat data yang dikirim
+    setSubmitting(false);
+  };
   return (
     <>
-      <div className={`${styledForm} `}>
-        <TitleForm
-          title={"Skill"}
-          description="Beritahu kami kemampuan apa yang Anda kuasai agar profil Anda dapat menarik perhatian orang dengan beberapa kemampuan tersebut."
-        />
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        {({
+          handleSubmit,
+          setFieldValue,
+          values,
+          touched,
+          errors,
+          isValid,
+          dirty,
+          isSubmitting,
+        }) => (
+          <Form onSubmit={handleSubmit}>
+            <div className={`${styledForm} `}>
+              <TitleForm
+                title={"Skill"}
+                description="Beritahu kami kemampuan apa yang Anda kuasai agar profil Anda dapat menarik perhatian orang dengan beberapa kemampuan tersebut."
+              />
 
-        <Form>
-          <Form.Label css={{ fontSize: "12px" }}>
-            Tambahkan 3-10 skill yang Anda kuasai
-          </Form.Label>
-          <CreatableSelect
-            isMulti
-            options={options}
-            styles={styledSelect}
-            placeholder="Ketik skill"
-            css={{ marginBottom: "2em" }}
-          />
-          <div className="d-flex">
-            <OutlineButton
-              type="button"
-              buttonText="Kembali"
-              width="111px"
-              height="39px"
-              onClick={handleGoBack}
-            />
-            <PrimaryButton
-              buttonText="Selesai"
-              type="button"
-              width="111px"
-              height="39px"
-              css={{ marginRight: "0px", marginLeft: "24px" }}
-              onClick={handleNextForm}
-            />
-          </div>
-        </Form>
-      </div>
+              <Form.Label css={{ fontSize: "12px" }}>
+                Tambahkan 3-10 skill yang Anda kuasai
+              </Form.Label>
+              <CreatableSelect
+                isMulti
+                options={options}
+                styles={styledSelect}
+                placeholder="Ketik skill"
+                name="skills"
+                value={values.skills}
+                onChange={(selectedOptions) => {
+                  setFieldValue("skills", selectedOptions);
+                }}
+                css={{ marginBottom: "2em" }}
+              />
+              {touched.skills && errors.skills && (
+                <div style={{ color: "red" }}>{errors.skills as string}</div>
+              )}
+              <div className="d-flex">
+                <OutlineButton
+                  type="button"
+                  buttonText="Kembali"
+                  width="111px"
+                  height="39px"
+                  onClick={handleGoBack}
+                />
+                <PrimaryButton
+                  buttonText="Selesai"
+                  type="submit"
+                  width="111px"
+                  height="39px"
+                  css={{ marginRight: "0px", marginLeft: "24px" }}
+                  onClick={handleNextForm}
+                />
+              </div>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 };

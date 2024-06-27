@@ -9,7 +9,7 @@ interface Props {
   value: string;
   placeholder: string;
   options: { [key: string]: string };
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
   isInvalid?: boolean;
   errorText?: string;
@@ -35,11 +35,12 @@ const SelectField: React.FC<Props> = ({
             aria-label="Default select example"
             name={name}
             className={`${StyledSelectInput}`}
+            onChange={onChange}
           >
             <option>{placeholder}</option>
-            {Object.values(options).map((option) => (
-              <option key={option} value={option}>
-                {option}
+            {Object.entries(options).map(([key, value]) => (
+              <option key={key} value={value}>
+                {key}
               </option>
             ))}
           </Form.Select>

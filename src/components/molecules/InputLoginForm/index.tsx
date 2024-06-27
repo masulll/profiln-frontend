@@ -14,9 +14,8 @@ import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
 import { useRouter } from "next/router";
 import { useAuth } from "binar/contexts/AuthContext";
-import { error } from "console";
-import { AxiosError } from "axios";
-// import { signIn } from "next-auth/react";
+// import { error } from "console";
+// import { AxiosError } from "axios";
 
 const InputLoginForm: React.FC = () => {
   const { login, isLoading } = useAuth();

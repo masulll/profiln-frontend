@@ -18,7 +18,7 @@ import AboutMe from "binar/components/molecules/InformationForm/AboutMe";
 import Education from "binar/components/molecules/InformationForm/Education";
 import CertificateForm from "binar/components/molecules/InformationForm/CertificateForm";
 import Skill from "binar/components/molecules/InformationForm/Skill";
-
+import { FormSubmittedState } from "binar/types/types";
 const DataInformation: React.FC = () => {
   const {
     activeTab,
@@ -39,7 +39,7 @@ const DataInformation: React.FC = () => {
   };
 
   const handleFormSubmit = (tab: string) => {
-    setFormSubmitted((prevState) => ({
+    setFormSubmitted((prevState: any) => ({
       ...prevState,
       [tab]: true,
     }));

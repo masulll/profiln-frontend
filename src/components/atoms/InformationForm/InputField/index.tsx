@@ -14,6 +14,7 @@ interface Props {
   isInvalid?: boolean;
   errorText?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 const InputField: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const InputField: React.FC<Props> = ({
   isInvalid,
   errorText,
   className,
+  disabled,
 }) => {
   return (
     <>
@@ -42,6 +44,7 @@ const InputField: React.FC<Props> = ({
             value={value}
             isInvalid={isInvalid}
             className={`${StyledInputGroup} ${className} `}
+            disabled={disabled}
           />
 
           <Form.Control.Feedback

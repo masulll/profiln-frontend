@@ -53,8 +53,8 @@ export enum JOB_TYPE {
 }
 
 export enum GENDER {
-  PRIA = "Pria",
-  WANITA = "Wanita",
+  Pria = "L",
+  Wanita = "P",
 }
 
 export enum EDUCATION_LEVEL {
