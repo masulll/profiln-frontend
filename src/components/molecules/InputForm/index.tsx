@@ -6,13 +6,21 @@ import InputComponent from "binar/components/atoms/InputComponent";
 import {
   StyledCheckboxInput,
   styledErrorText,
-} from "binar/constants/emotion/FormControl.style";
+} from "binar/styles/emotion/FormControl.style";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
 import { HaveAccount } from "binar/components/atoms/FormFooter";
+import { useRouter } from "next/router";
+// import API from "binar/pages/api/v1";
+import { useAuth } from "binar/contexts/AuthContext";
+
+import { AxiosError } from "axios";
 
 const InputForm: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [registerError, setRegisterError] = useState("");
   const [isVisible2, setIsVisible2] = useState(false);
+  const { registerManual } = useAuth();
+  const router = useRouter();
 
   const changeVisibility = () => {
     setIsVisible((prevVisible) => !prevVisible);
@@ -22,75 +30,114 @@ const InputForm: React.FC = () => {
     setIsVisible2((prevVisible) => !prevVisible);
   };
 
-  const loginSchema = Yup.object().shape({
+  const registerSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email")
-      .min(10, "too short")
-      .required("Email address is required."),
+      .email("Maaf penulisan email belum tepat. Misal: name@email.com")
+      .min(10, "email minimal 10 karakter")
+      .required("Anda belum mengisi email"),
     password: Yup.string()
-      .required("This field is required")
-      .min(8, " password is at least 8 characters ")
+      .required("Anda belum mengisi password")
+      .min(8, "Minimal 8 karakter")
       .matches(
-        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
-        "Password must contain at least one special character"
-      ),
+        /[^\w\s]/,
+        "Minimal berisi satu karakter spesial dan bukan underscore '_'"
+      )
+      .matches(/^(?=.*[A-Z])/, "Minimal berisi satu karakter huruf besar")
+      .matches(/^(?=.*[a-z])/, "Minimal berisi satu karakter huruf")
+      .matches(/^(?=.*[0-9])/, "Minimal berisi satu angka"),
     retypePassword: Yup.string()
-      .required("This field is required")
-      .oneOf([Yup.ref("password")], "Passwords must match"),
+      .required("Anda belum menulis ulang password")
+      .oneOf([Yup.ref("password")], "Passwords tidak sama"),
 
-    nama: Yup.string().required("This field is required"),
+    fullname: Yup.string().required("Anda belum mengisi nama lengkap"),
     terms: Yup.bool().required().oneOf([true], " "),
   });
 
   return (
-    <div>
+    <>
       <Formik
         initialValues={{
           email: "",
-          nama: "",
+          fullname: "",
           password: "",
           retypePassword: "",
           terms: false,
         }}
-        onSubmit={(values) => {
-          console.log(values);
-          sessionStorage.setItem("data", JSON.stringify(values));
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
+          try {
+            // Destructure email, fullname, and password from values
+            const { email, fullname, password } = values;
+            const response = await registerManual({
+              email,
+              fullname,
+              password,
+            });
+            console.log("response", response);
+          } catch (error: any) {
+            console.error(error);
+            if (error.response && error.response.status === 401) {
+              resetForm();
+              setRegisterError("Email sudah terdaftar");
+            } else {
+              resetForm();
+              setRegisterError("Registrasi gagal");
+            }
+          } finally {
+            setSubmitting(false);
+          }
         }}
-        validationSchema={loginSchema}
+        validationSchema={registerSchema}
       >
-        {({ errors, touched, handleChange, values, handleSubmit }) => (
-          <Form>
+        {({
+          errors,
+          handleChange,
+          values,
+          handleSubmit,
+          touched,
+          isValid,
+
+          handleBlur,
+          isSubmitting,
+          dirty,
+        }) => (
+          <Form onSubmit={handleSubmit}>
             <InputComponent
-              title="Email Kamu"
+              title="Email Anda"
               name="email"
               type="email"
               value={values.email}
-              placeholder={"Masukkan email kamu"}
+              placeholder={"Masukkan email anda"}
               onChange={handleChange}
-              isInvalid={!!errors.email}
+              onBlur={handleBlur}
+              isInvalid={!!errors.email && !!touched.email}
               viewEyeIcon={false}
               errorText={errors.email}
             />
+            {registerError && (
+              <p className={`${styledErrorText}`}>{registerError}</p>
+            )}
 
             <InputComponent
-              title={"Nama Lengkap Kamu"}
-              name="nama"
+              title={"Nama Lengkap Anda"}
+              name="fullname"
               type={"text"}
-              value={values.nama}
-              placeholder={"Masukkan nama lengkap kamu"}
+              value={values.fullname}
+              placeholder={"Masukkan nama lengkap anda"}
               onChange={handleChange}
-              isInvalid={!!errors.nama}
-              errorText={errors.nama}
+              onBlur={handleBlur}
+              isInvalid={!!errors.fullname && !!touched.fullname}
+              errorText={errors.fullname}
             />
 
             <InputComponent
-              title={"Kata Sandi Kamu"}
+              title={"Kata Sandi"}
               name="password"
               type={isVisible ? "text" : "password"}
               value={values.password}
-              placeholder={"Masukkan kata sandi kamu"}
+              placeholder={"Masukkan kata sandi anda"}
               onChange={handleChange}
-              isInvalid={!!errors.password}
+              onBlur={handleBlur}
+              isInvalid={!!errors.password && !!touched.password}
               viewEyeIcon={true}
               eyeIcon={isVisible}
               errorText={errors.password}
@@ -104,39 +151,51 @@ const InputForm: React.FC = () => {
               value={values.retypePassword}
               placeholder={"Masukkan kembali kata sandi"}
               onChange={handleChange}
-              isInvalid={!!errors.retypePassword}
+              onBlur={handleBlur}
+              isInvalid={!!errors.retypePassword && !!touched.retypePassword}
               viewEyeIcon={true}
               eyeIcon={isVisible2}
               errorText={errors.retypePassword}
               togglePasswordVisibility={changeVisibility2}
             />
 
-            <Form.Group className={``}>
+            <Form.Group className={`mb-3 `}>
               <Form.Check.Input
                 required
                 name="terms"
                 onChange={handleChange}
                 isInvalid={!!errors.terms}
-                className={` ${StyledCheckboxInput}`}
+                className={` ${StyledCheckboxInput} `}
               />
-              <Form.Check.Label
-                className={errors.terms ? `${styledErrorText}` : ``}
-              >
+              <Form.Check.Label className={`mx-2`} style={{ fontSize: "14px" }}>
                 Saya setuju dengan syarat dan ketentuan
               </Form.Check.Label>
               <Form.Control.Feedback
                 type="invalid"
-                className={`${styledErrorText}`}
+                style={{ fontSize: "14px" }}
               >
                 {errors.terms}
               </Form.Control.Feedback>
             </Form.Group>
-            <PrimaryButton buttonText="Buat Akun" />
-            <HaveAccount />
+            <Form.Group>
+              <PrimaryButton
+                buttonText="Buat Akun"
+                type="submit"
+                disabled={!isValid || !dirty}
+                isSubmitting={isSubmitting}
+              />
+            </Form.Group>
+            <div className="mb-3">
+              <HaveAccount
+                href={"/auth/login"}
+                text="Sudah memiliki akun?"
+                linkText="Masuk di sini"
+              />
+            </div>
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 };
 

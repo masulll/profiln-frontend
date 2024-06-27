@@ -1,12 +1,26 @@
 import React from "react";
-import { causten } from "binar/helpers/fontTheme";
+import { useRouter } from "next/router";
+import { fontTheme } from "binar/helpers/fontTheme";
 import Head from "next/head";
+import Navbars from "binar/components/organisms/Navbars";
+import Footers from "binar/components/organisms/Footers";
+import theme from "binar/constants";
+
 type AppShellProps = {
   children: React.ReactNode;
 };
 
 const Layouts = (props: AppShellProps) => {
   const { children } = props;
+  const router = useRouter();
+
+  const noLayoutPages = ["/info_data", "/404"];
+
+  const noLayoutRegex = /^\/auth($|\/.*)/;
+
+  const needsLayout =
+    !noLayoutPages.includes(router.pathname) &&
+    !noLayoutRegex.test(router.pathname);
 
   return (
     <>
@@ -16,7 +30,19 @@ const Layouts = (props: AppShellProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/assets/logo/Icon Binar.svg" />
       </Head>
-      <main className={`${causten.className} `}>{children}</main>;
+
+      {needsLayout ? (
+        <main
+          className={`${fontTheme.causten.className}`}
+          style={{ background: theme.neutral_colors.grayscale_20 }}
+        >
+          <Navbars />
+          <main className={`${fontTheme.causten.className}`}>{children}</main>
+          <Footers />
+        </main>
+      ) : (
+        <main className={`${fontTheme.causten.className}`}>{children}</main>
+      )}
     </>
   );
 };

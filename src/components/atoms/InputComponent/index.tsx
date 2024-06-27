@@ -1,11 +1,12 @@
+import React, { FocusEventHandler } from "react";
 import { css } from "@emotion/css";
 import { InputGroup, Form, Button } from "react-bootstrap";
 import {
   StyledInputGroup,
   Wrapper,
-  styledFormGroup,
   styledErrorText,
-} from "binar/constants/emotion/FormControl.style";
+  IconStyling,
+} from "binar/styles/emotion/FormControl.style";
 import Image from "next/image";
 import Labels from "../labels";
 interface Props {
@@ -15,6 +16,9 @@ interface Props {
   value: string;
   placeholder: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
+  onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
+
   viewEyeIcon?: boolean;
   isInvalid?: boolean;
   togglePasswordVisibility?: () => void;
@@ -28,6 +32,7 @@ const InputComponent: React.FC<Props> = ({
   type,
   placeholder,
   onChange,
+  onBlur,
   value,
   viewEyeIcon,
   isInvalid,
@@ -35,63 +40,52 @@ const InputComponent: React.FC<Props> = ({
   eyeIcon,
   errorText,
 }) => {
-  const StyledForm = css`
-    ${StyledInputGroup};
-  `;
-
-  const IconStyling = css`
-    position: absolute;
-
-    bottom: 0.5rem;
-    left: 27rem;
-
-    border: none;
-    background: transparent;
-    cursor: pointer;
-  `;
-
   return (
     <>
-      <Form.Group className={`${styledFormGroup}`}>
-        <InputGroup hasValidation>
-          <Labels title={title} />
-          <div className={`${Wrapper}`}>
+      <Form.Group className="mb-3  ">
+        <Labels title={title} />
+
+        <div className={`${Wrapper}`}>
+          <InputGroup hasValidation>
             <Form.Control
               name={name}
               type={type}
               placeholder={placeholder}
               onChange={onChange}
+              onBlur={onBlur}
               value={value}
-              className={`${StyledForm}`}
+              isInvalid={isInvalid}
+              className={`${StyledInputGroup} `}
             />
 
             {viewEyeIcon && (
-              <Button
-                type="button"
-                className={`${IconStyling} as string`}
+              <div
+                role="button"
+                className={``}
                 onClick={togglePasswordVisibility}
               >
                 <Image
                   src={
                     eyeIcon
-                      ? `assets/icons/Eye-visible.svg`
-                      : `assets/icons/Eye-invisible.svg`
+                      ? `/assets/icons/Eye-visible.svg`
+                      : `/assets/icons/Eye-invisible.svg`
                   }
                   width={24}
                   height={24}
                   alt=""
+                  className={`${IconStyling}`}
                 />
-              </Button>
+              </div>
             )}
-          </div>
 
-          <Form.Control.Feedback
-            type="invalid"
-            className={` ${styledErrorText}`}
-          >
-            {errorText}
-          </Form.Control.Feedback>
-        </InputGroup>
+            <Form.Control.Feedback
+              type="invalid"
+              className={` ${styledErrorText} background-image-none`}
+            >
+              {errorText}
+            </Form.Control.Feedback>
+          </InputGroup>
+        </div>
       </Form.Group>
     </>
   );

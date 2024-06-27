@@ -6,8 +6,9 @@ const theme = {
     disabled: "#C2C2C2",
   },
   fonts: {
-    heading: "Open Sans, sans-serif",
+    heading: "Causten-Bold, sans-serif",
     body: "Causten, sans-serif",
+    utility: "Open Sans, sans-serif",
   },
   text_colors: {
     dark: "#121212",
@@ -29,7 +30,52 @@ const theme = {
     grayscale_80: "#616161",
     grayscale_90: "#404040",
     grayscale_100: "#0A0A0A",
-  }
+  },
+  hover_color: {
+    primary: "#f2a0f2",
+  },
 } as const;
+
+export enum LOCATION_TYPE {
+  ON_SITE = "On - Site",
+  REMOTE = "Remote",
+  HYBRID = "Hybrid",
+}
+
+export enum JOB_TYPE {
+  FULL_TIME = "Full-Time",
+  PART_TIME = "Part-Time",
+  CONTRACT = "Contract",
+  FREELANCE = "Freelance",
+  INTERNSHIP = "Internship",
+  APPRENTICESHIP = "Apprenticeship",
+  SEASONAL = "Seasonal",
+}
+
+export enum GENDER {
+  Pria = "L",
+  Wanita = "P",
+}
+
+export enum EDUCATION_LEVEL {
+  SARJANA = "Sarjana S-1",
+  MAGISTER = "Magister S-2",
+  DOKTOR = "Doktor S-3",
+  DIPLOMA4 = "Diploma IV",
+  DIPLOMA3 = "Diploma III",
+  DIPLOMA2 = "Diploma II",
+  DIPLOMA1 = "Diploma I",
+  SMA = "SMA",
+  SMK = "SMK",
+  SMP = "SMP",
+  SD = "SD",
+}
+
+export enum REPORT_TYPE {
+  KEBENCIAN = "Kebencian",
+  PENGHINAAN = "Penghinaan",
+  KEKERASAN = "Kekerasan",
+  SPAM = "Spam",
+}
 
 export default theme;

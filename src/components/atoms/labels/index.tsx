@@ -1,3 +1,4 @@
+import { styledLabel } from "binar/styles/emotion/Label.style";
 import { Form } from "react-bootstrap";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 const Labels: React.FC<Props> = ({ title }) => {
   return (
     <div>
-      <Form.Label className="mb-3 font-bold "> {title}</Form.Label>
+      <Form.Label className={`${styledLabel} `}> {title}</Form.Label>
     </div>
   );
 };

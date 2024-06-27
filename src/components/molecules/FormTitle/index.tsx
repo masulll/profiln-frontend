@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import theme from "binar/constants";
 import Image from "next/image";
+import { ReactNode } from "react";
 
 interface Props {
   title: string;
-  wording: string;
+  wording?: string | ReactNode;
 }
 
 const FormTitle: React.FC<Props> = ({ title, wording }) => {
@@ -13,10 +14,10 @@ const FormTitle: React.FC<Props> = ({ title, wording }) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
   `;
   const Title = styled.p`
     color: ${theme.text_colors.dark};
-    font-family: ${theme.fonts.body};
     text-align: center;
     font-size: 24px;
     font-style: normal;
@@ -27,7 +28,7 @@ const FormTitle: React.FC<Props> = ({ title, wording }) => {
 
   const Wording = styled.p`
     color: ${theme.text_colors.dark};
-    font-family: ${theme.fonts.body};
+    text-align: center;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

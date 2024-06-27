@@ -1,28 +1,45 @@
 import InputForm from "binar/components/molecules/InputForm";
-
+import { useState } from "react";
+import { useRouter } from "next/router";
 import FormTitle from "binar/components/molecules/FormTitle";
-import { styledForm } from "binar/constants/emotion/FormControl.style";
+import {
+  styledErrorText,
+  styledForm,
+} from "binar/styles/emotion/FormControl.style";
 import { ButtonWithIcon } from "binar/components/atoms/Buttons";
 import {
-  containerStyle,
-  styledLine,
-  styledLineText,
-} from "binar/constants/emotion/register.style";
+  OrTextStyle,
+  OrWithLineStyle,
+} from "binar/styles/emotion/FormControl.style";
+import { useAuth } from "binar/contexts/AuthContext";
+
 const RegisterForm: React.FC = () => {
+  const { push, query } = useRouter();
+  const { googleRegister, errorMessage } = useAuth();
+
+  const callbackUrl: any = query.callbackUrl || "";
   return (
-    <div className={` ${styledForm} `}>
+    <div className={`${styledForm} overflow-auto`}>
       <FormTitle
         title="Registrasi"
         wording="Buat akunmu untuk menjelajah lebih jauh"
       />
       <ButtonWithIcon
-        buttonText="Google"
+        buttonText="Daftar dengan Google"
         buttonIcon="/assets/icons/Google.svg"
+        onClick={async () => {
+          try {
+            await googleRegister();
+          } catch (error: any) {
+            console.error(error);
+          }
+        }}
       />
-      <div className={`${containerStyle}`}>
-        <div className={`${styledLine}`} />
-        <p className={`${styledLineText}`}>atau</p>
-        <div className={`${styledLine}`} />
+      {errorMessage && <p className={styledErrorText}>{errorMessage}</p>}
+      <div>
+        <div className={`${OrWithLineStyle}`}>
+          <p className={`${OrTextStyle}`}>atau</p>
+        </div>
       </div>
 
       <InputForm />
