@@ -9,7 +9,6 @@ import Labels from "binar/components/atoms/labels";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import { registerUser } from "binar/pages/api/v1/register";
 import { error } from "console";
 import Link from "next/link";
 import {
