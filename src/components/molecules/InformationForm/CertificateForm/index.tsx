@@ -28,6 +28,11 @@ const CertificateForm: React.FC<Props> = ({ handleBack, handleNext }) => {
     handleNext("tab4");
   };
 
+  const clickStillActive = () => {
+    setStillActive(!stillActive);
+  };
+
+  const [stillActive, setStillActive] = useState(true);
   const [value, onChange] = useState<Value>(null);
   const [value2, onChange2] = useState<Value>(null);
   const [value3, onChange3] = useState<Value>(null);
@@ -113,40 +118,46 @@ const CertificateForm: React.FC<Props> = ({ handleBack, handleNext }) => {
                     backgroundColor: theme.colors.primary,
                   },
                 }}
+                onChange={clickStillActive}
               />
-              <Form.Label style={{ fontSize: "12px" }}>
-                Tanggal Kadaluwarsa (opsional)
-              </Form.Label>
 
-              <div className={customDatePickerStyles}>
-                <DatePicker
-                  onChange={onChange3}
-                  value={value3}
-                  monthAriaLabel="Month"
-                  monthPlaceholder="Bulan"
-                  format="MMMM"
-                  clearIcon={null}
-                  calendarIcon={null}
-                />
-                <DatePicker
-                  onChange={onChange4}
-                  value={value4}
-                  yearAriaLabel="Year"
-                  yearPlaceholder="Tahun"
-                  format="yyyy"
-                  maxDetail="decade"
-                  clearIcon={null}
-                  calendarIcon={null}
-                />
-              </div>
-              <InputGroup hasValidation>
-                {/* <Form.Control.Feedback
+              {stillActive && (
+                <>
+                  <Form.Label style={{ fontSize: "12px" }}>
+                    Tanggal Kadaluwarsa (opsional)
+                  </Form.Label>
+
+                  <div className={customDatePickerStyles}>
+                    <DatePicker
+                      onChange={onChange3}
+                      value={value3}
+                      monthAriaLabel="Month"
+                      monthPlaceholder="Bulan"
+                      format="MMMM"
+                      clearIcon={null}
+                      calendarIcon={null}
+                    />
+                    <DatePicker
+                      onChange={onChange4}
+                      value={value4}
+                      yearAriaLabel="Year"
+                      yearPlaceholder="Tahun"
+                      format="yyyy"
+                      maxDetail="decade"
+                      clearIcon={null}
+                      calendarIcon={null}
+                    />
+                  </div>
+                  <InputGroup hasValidation>
+                    {/* <Form.Control.Feedback
                   type="invalid"
                   className={` ${styledErrorText} background-image-none`}
                 >
                   {errorText}
                 </Form.Control.Feedback> */}
-              </InputGroup>
+                  </InputGroup>
+                </>
+              )}
             </Form.Group>
           </div>
           <InputField

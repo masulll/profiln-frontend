@@ -58,7 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const { data: user, isLoading } = useQuery("user", fetchUser, {
+  const { data: user, isLoading } = useQuery<userData>("user", fetchUser, {
     enabled: !!token,
     retry: false,
     onError: (error: any) => {
