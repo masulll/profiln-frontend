@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-
+import { FormSubmittedState } from "binar/types/types";
 interface TabContextType {
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
