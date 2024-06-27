@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { PillButton } from "binar/components/atoms/Buttons";
-import { useSession } from "next-auth/react";
+
 import TipsComponent from "binar/components/organisms/HomepageComponents/TipsComponents";
 import PostFrame from "binar/components/organisms/HomepageComponents/PostFrame";
 import FollowingFrame from "binar/components/organisms/HomepageComponents/FollowingFrame";
@@ -9,9 +9,6 @@ import FeedsFrame from "binar/components/organisms/HomepageComponents/FeedsFrame
 
 export default function Page() {
   const router = useRouter();
-
-  const { data } = useSession();
-  console.log(data);
 
   return (
     <main className="d-flex justify-content-center my-3">
