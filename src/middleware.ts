@@ -4,6 +4,10 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("token");
 
+  if (token && request.nextUrl.pathname.startsWith("/auth/forget/resetPass")) {
+    return NextResponse.next();
+  }
+
   if (token && request.nextUrl.pathname.startsWith("/auth")) {
     return NextResponse.redirect(new URL("/", request.url));
   }

@@ -4,7 +4,7 @@ import {
   styledForm,
 } from "binar/styles/emotion/DataForm.style";
 import TitleForm from "binar/components/atoms/InformationForm";
-import useSkills from "binar/endpoints/apiOthers";
+import useSkills from "binar/hooks/useSkills";
 import { useMutation } from "react-query";
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
 
@@ -12,7 +12,7 @@ import CreatableSelect from "react-select/creatable";
 import theme from "binar/constants";
 import { Formik, FormikHelpers } from "formik";
 import { Form } from "react-bootstrap";
-import * as Yup from "yup";
+
 interface Props {
   handleBack: (tab: string) => void;
   handleNext: (tab: string) => void;
@@ -32,10 +32,6 @@ const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
 
   const handleGoBack = () => {
     handleBack("tab5");
-  };
-
-  const handleNextForm = () => {
-    handleNext("tab5");
   };
 
   const options =
@@ -140,7 +136,6 @@ const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
                   width="111px"
                   height="39px"
                   css={{ marginRight: "0px", marginLeft: "24px" }}
-                  onClick={handleNextForm}
                 />
               </div>
             </div>

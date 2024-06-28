@@ -1,13 +1,23 @@
-import { useQuery } from "react-query";
 import axiosInstance from "binar/pages/api/v1";
 
-export const getSkills = async () => {
-  const response = await axiosInstance.get("/api/v1/skills?page=1&limit=5");
-  return response.data.data.data;
-};
+export const getAllSkills = async () => {
+  let allSkills: any[] = [];
+  let page = 1;
+  let limit = 100;
 
-const useSkills = () => {
-  return useQuery("skills", getSkills);
-};
+  while (true) {
+    const response = await axiosInstance.get(
+      `/api/v1/skills?page=${page}&limit=${limit}`
+    );
+    const skillsData = response.data.data.data;
 
-export default useSkills;
+    if (skillsData.length === 0) {
+      break;
+    }
+
+    allSkills = [...allSkills, ...skillsData];
+    page++;
+  }
+
+  return allSkills;
+};

@@ -1,13 +1,43 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { JwtPayload, jwtDecode } from "jwt-decode";
 import {
   BgAuth,
   StyledRegister,
   welcomeTextStyle,
 } from "binar/styles/emotion/register.style";
 import { styledFormLayout } from "binar/styles/emotion/FormControl.style";
-
 import ResetPassForm from "binar/components/organisms/ResetPassForm";
-const resetPass = () => {
+
+const ResetPass = () => {
+  const router = useRouter();
+
+  const loadPageWithToken = () => {
+    const { token }: any = router.query;
+
+    try {
+      // Dekode token JWT menggunakan jwt-decode
+      const decodedToken = jwtDecode<JwtPayload>(token);
+
+      // Dapatkan email dari payload token
+      const { email }: any = decodedToken;
+
+      sessionStorage.setItem("email", email);
+
+      console.log("Email yang didapat:", email);
+    } catch (error) {
+      console.error("Gagal mendekode token:", error);
+      router.push("/");
+    }
+  };
+
+  useEffect(() => {
+    if (router.isReady) {
+      loadPageWithToken();
+    }
+  }, [router.isReady]);
+
   return (
     <>
       <div className="container">
@@ -40,4 +70,4 @@ const resetPass = () => {
   );
 };
 
-export default resetPass;
+export default ResetPass;

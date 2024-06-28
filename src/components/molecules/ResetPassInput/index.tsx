@@ -1,7 +1,7 @@
 import { Form, InputGroup } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputComponent from "binar/components/atoms/InputComponent";
 import FormTitle from "binar/components/molecules/FormTitle";
 import { PrimaryButton } from "binar/components/atoms/Buttons";
@@ -25,6 +25,7 @@ const ResetPassInput: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isVisible2, setIsVisible2] = useState(false);
   const [sendErrorText, setSendErrorText] = useState("");
+  const [emailSession, setEmailSession] = useState("");
   const router = useRouter();
 
   const changeVisibility = () => {
@@ -51,11 +52,18 @@ const ResetPassInput: React.FC = () => {
       .oneOf([Yup.ref("password")], "Passwords tidak sama"),
   });
 
+  useEffect(() => {
+    const email = sessionStorage.getItem("email");
+    if (email) {
+      setEmailSession(email);
+    }
+  }, []);
+
   return (
     <>
       <Formik
         initialValues={{
-          email: "",
+          email: emailSession,
           password: "",
           retypePassword: "",
         }}
