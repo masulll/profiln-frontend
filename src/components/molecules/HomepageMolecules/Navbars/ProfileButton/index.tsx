@@ -11,6 +11,7 @@ import { useAuth } from "binar/contexts/AuthContext";
 const ProfileButton: React.FC = () => {
   const { logout, user } = useAuth();
   const router = useRouter();
+
   return (
     <>
       <Link
@@ -44,7 +45,11 @@ const ProfileButton: React.FC = () => {
           bsPrefix="dropdown-toggle"
         >
           <Image
-            src="/assets/icons/Profile_default.png"
+            src={
+              user?.avatar_url
+                ? user?.avatar_url
+                : "/assets/icons/Profile_default.png"
+            }
             width="24"
             height="24"
             className="mx-2 rounded-circle"

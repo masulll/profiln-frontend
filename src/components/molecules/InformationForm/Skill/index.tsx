@@ -7,7 +7,7 @@ import TitleForm from "binar/components/atoms/InformationForm";
 import useSkills from "binar/hooks/useSkills";
 import { useMutation } from "react-query";
 import { OutlineButton, PrimaryButton } from "binar/components/atoms/Buttons";
-
+import { useRouter } from "next/router";
 import CreatableSelect from "react-select/creatable";
 import theme from "binar/constants";
 import { Formik, FormikHelpers } from "formik";
@@ -25,7 +25,7 @@ interface Skill {
 
 const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
   const { data: skillsData, isLoading, isError } = useSkills();
-
+  const router = useRouter();
   const initialValues = {
     skills: [] as Skill[],
   };
@@ -83,6 +83,7 @@ const Skill: React.FC<Props> = ({ handleBack, handleNext }) => {
   ) => {
     console.log(values); // Untuk melihat data yang dikirim
     setSubmitting(false);
+    router.push("/");
   };
   return (
     <>

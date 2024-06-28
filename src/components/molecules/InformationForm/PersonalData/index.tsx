@@ -55,7 +55,7 @@ const PersonalData: React.FC<TabContextProps> = ({ handleNext }) => {
     formData.append("fullname", values.fullname);
     formData.append("email", values.email);
     if (values.avatar_url) {
-      formData.append("avatar_url", values.avatar_url);
+      formData.append("files", values.avatar_url);
     }
     formData.append("phone_number", values.phone_number);
     formData.append("gender", values.gender);
@@ -140,9 +140,13 @@ const PersonalData: React.FC<TabContextProps> = ({ handleNext }) => {
                       const target = event.currentTarget as HTMLInputElement;
                       if (target.files) {
                         setFieldValue("avatar_url", target.files[0]);
+                        console.log(target.files[0]);
                       }
                     }}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.avatar_url}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <PrimaryButton
                   buttonText="Unggah"
