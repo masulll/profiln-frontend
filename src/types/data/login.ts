@@ -28,6 +28,6 @@ export interface emailData {
 }
 
 export interface resetPassData {
-  email: string | undefined;
+  email: string;
   password: string;
 }

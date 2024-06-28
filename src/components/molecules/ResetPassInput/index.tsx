@@ -62,17 +62,19 @@ const ResetPassInput: React.FC = () => {
   return (
     <>
       <Formik
+        enableReinitialize
         initialValues={{
-          email: emailSession,
+          email: emailSession || "",
           password: "",
           retypePassword: "",
         }}
         onSubmit={async (values, { setSubmitting }) => {
           try {
             const { email, password } = values;
+            console.log(values);
             const response = await resetUserPass({ email, password });
             console.log("response", response);
-
+            sessionStorage.removeItem("email");
             setIsSubmit(true);
           } catch (error) {
             console.error(error);
