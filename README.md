@@ -2,6 +2,15 @@
 
 Profiln is an innovative, user-friendly, and versatile career profiling platform designed to empower Binar Academy graduates. Profiln provides users with the ability to easily create, manage and showcase their career profiles, portfolios and experiences. By fostering a strong professional presence, cultivating new connections, and unveiling exciting opportunities, Profiln paves the way for career growth and success within the Binar Academy network and beyond.
 
+##Feature
+- User Registration
+- User Login
+- Password Reset
+- Profile Management
+- Post Management
+- Post Interaction
+
+
 ## Getting Started
 
 First, run the development server:
