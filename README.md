@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Profiln
+
+Profiln is an innovative, user-friendly, and versatile career profiling platform designed to empower Binar Academy graduates. Profiln provides users with the ability to easily create, manage and showcase their career profiles, portfolios and experiences. By fostering a strong professional presence, cultivating new connections, and unveiling exciting opportunities, Profiln paves the way for career growth and success within the Binar Academy network and beyond.
 
 ## Getting Started
 
@@ -18,20 +20,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
+## Tech and Dependencies
 
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Typescript](https://www.typescriptlang.org/) - strongly type define for javascript.
+- [React-Bootstrap](https://react-bootstrap.netlify.app/) - an interactive component based library for React
+- [Emotion CSS](https://nextjs.org/learn) - a styled component library for React and Next.js
+- [React-Query](https://nextjs.org/learn) - powerful asynchronous state management for TS/JS
+- [Axios](https://nextjs.org/learn) - promise based HTTP client for the browser and node.js
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
